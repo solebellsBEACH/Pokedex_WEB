@@ -1,10 +1,17 @@
 import React from 'react'
-import { Container, Content } from './styles'
-
+import { Container, Content, ContentRight, ContentLeft, ContentImage } from './styles'
+import {LogoPokemon} from '../../../assets';
 export const Header = () => {
     return (
         <Container>
-<Content></Content>
+            <Content>
+                <ContentLeft>
+                    <ContentImage/>
+                {/* <img src={LogoPokemon} alt="React Logo" /> */}
+                </ContentLeft>
+                <ContentRight>
+                </ContentRight>
+            </Content>
         </Container>
     )
 }
