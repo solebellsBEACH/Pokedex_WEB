@@ -9,6 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-ui/core": "4.11.4",
+    "@material-ui/icons": "4.11.2",
+    "classnames": "2.3.1",
+    "moment": "2.29.1",
+    "next-compose-plugins": "2.2.1",
+    "next-images": "1.7.0",
+    "nextjs-redirect": "5.0.2",
+    "node-sass": "5.0.0",
+    "nouislider": "15.1.0",
+    "path": "0.12.7",
+    "prop-types": "15.7.2",
+    "react-datetime": "3.0.4",
+    "react-slick": "0.28.1",
+    "webpack": "4.46.0",
     "@chakra-ui/react": "^2.2.1",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
@@ -17,6 +31,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.5"
+    
   },
   "devDependencies": {
     "@svgr/webpack": "^6.2.1",

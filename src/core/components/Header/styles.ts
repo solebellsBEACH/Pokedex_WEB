@@ -1,8 +1,9 @@
 import styled from 'styled-components'
+import Image from 'next/image'
 
 export const Container = styled.div`
 width:100%;
-margin-top:10px;
+margin-top:0px;
 display:flex;
 justify-content:center;
 align-items:center;
@@ -12,7 +13,7 @@ align-items:center;
 export const Content = styled.div`
 width:95%;
 min-height:100px;
-background-color:blue;
+
 display:flex; 
 flex-direction:row;
 @media(max-width:920px){
@@ -20,7 +21,6 @@ flex-direction:row;
 }
 `
 export const ContentLeft = styled.div`
-background-color:red;
 height:100px;
 width:30%;
 @media(max-width:920px){
@@ -33,7 +33,7 @@ justify-content:center;
 align-items:center;
 `
 export const ContentRight = styled(ContentLeft)`
-background-color:green;
+background:blue;
 width:70%;
 @media(max-width:920px){
     width:100%;
@@ -41,8 +41,6 @@ width:70%;
 }
 `
 export const ContentImage = styled.div`
-min-width:250px;
-width:60% ;
-height:70% ;
-background:black;
+`
+export const ImageLogoPokemon = styled(Image)`
 `
