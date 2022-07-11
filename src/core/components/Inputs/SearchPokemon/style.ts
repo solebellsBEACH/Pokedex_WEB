@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../../helpers'
  
 export const Container  = styled.input`
-width:80vw;
+width:70vw;
 height:50px;
  border-radius: 30px;
  background:${colors().gray2};

@@ -1,34 +1,28 @@
 import React from 'react'
 
-import { Container, Content, ContentRight, ContentLeft, ContentImage, ImageLogoPokemon } from './styles'
-import { LogoPokemon } from '../../../assets';
-import { SearchPokemonInput} from '../../components';
+import { Container, Content, ContentRight, ContentLeft, ContentImage, ImageLogoPokemon, FilterButton } from './styles'
+import { LogoPokemon, LogoConfig } from '../../../assets';
+import { SearchPokemonInput } from '../../components';
+import Image from 'next/image';
 
 export const Header = () => {
+
+    const handleFilterButton = () => {
+        console.log('test')
+    }
     return (
         <Container>
-            
             <Content>
                 <ContentLeft>
                     <ContentImage><ImageLogoPokemon height='80%' src={LogoPokemon} /></ContentImage>
                 </ContentLeft>
                 <ContentRight>
-                <SearchPokemonInput/>
-                    {/* <SimpleGrid  columns={[2, 4]} spacing='40px'
+                    <SearchPokemonInput />
+                    <FilterButton
+                        onClick={handleFilterButton}
                     >
-                        <Button w='75px' h='25px' colorScheme='teal' variant='ghost' size='md'>
-                            Button
-                        </Button>
-                        <Button w='75px' h='25px' colorScheme='teal' variant='ghost' size='md'>
-                            Button
-                        </Button>
-                        <Button w='75px' h='25px' colorScheme='teal' variant='ghost' size='md'>
-                            Button
-                        </Button>
-                        <Button w='75px' h='25px' colorScheme='teal' variant='ghost' size='md'>
-                            Button
-                        </Button>
-                    </SimpleGrid> */}
+                        <Image src={LogoConfig} />
+                    </FilterButton>
                 </ContentRight>
             </Content>
         </Container>

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Image from 'next/image'
+import { colors } from '../../helpers'
 
 export const Container = styled.div`
 width:100%;
@@ -33,14 +34,30 @@ justify-content:center;
 align-items:center;
 `
 export const ContentRight = styled(ContentLeft)`
-background:blue;
 width:70%;
+flex-direction:row;
 @media(max-width:920px){
     width:100%;
-    flex-direction:column;
 }
 `
 export const ContentImage = styled.div`
 `
 export const ImageLogoPokemon = styled(Image)`
+`
+
+export const FilterButton = styled.button`
+margin-left:2vw;
+width:50px ;
+height:50px ;
+border-radius:50px ;
+background-color:${colors().gray1};
+ 
+&:hover{
+    background-color:${colors().gray2}
+}
+
+display: flex;
+align-items:center;
+justify-content:center;
+
 `

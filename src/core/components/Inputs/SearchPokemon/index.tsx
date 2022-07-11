@@ -6,7 +6,6 @@ export const SearchPokemonInput = () => {
         <Container
         placeholder='Buscar Pokémon'
         >
-
         </Container>
     )
 }
