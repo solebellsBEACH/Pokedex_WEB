@@ -1,13 +1,11 @@
 import type { NextPage } from 'next'
-import { Header, Carousel } from '../core/components'
-import { Container } from './styles'
+import {HomeComponent} from './home'
 
 const Home: NextPage = () => {
   return (
-    <Container>
-      <Header/>
-      <Carousel/>
-    </Container>
+    <>
+    <HomeComponent/>
+    </>
   )
 }
 

@@ -1,3 +1,21 @@
+export function useCapitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+export function useAddZeroInNumber(number: number): string {
+    if (number < 0) {
+        return number + ''
+    }
+    if (number < 10) {
+        return "00" + number
+    }
+    if (number < 100) {
+        return "0" + number
+    }
+    return number + ''
+}
+
+
 export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
     const data = {
         fire: { secondary: '#fdafaf', primary: '#ff6c6c' },
@@ -18,4 +36,9 @@ export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
 
     return data[pokemonType]
 
+}
+export const returnId = (url: string) => {
+    url = url.slice(34)
+    url = url.replace('/', '')
+    return parseInt(url)
 }

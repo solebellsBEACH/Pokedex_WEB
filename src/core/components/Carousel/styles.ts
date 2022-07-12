@@ -5,8 +5,10 @@ import { colors } from '../../helpers';
 
 export const Container = styled.div`
 background-color:${colors().gray1};
-width:100% ;
+width:95% ;
 padding:2vh 5%;
+border-radius:30px;
+margin:0 2.5%;
 
 @media(min-width:920px){
     margin-top:2vh
