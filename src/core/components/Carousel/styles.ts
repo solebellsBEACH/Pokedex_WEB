@@ -1,11 +1,25 @@
 import Carousel from 'nuka-carousel';
 import styled from 'styled-components';
 import Image from 'next/image';
- 
-export const Container  = styled(Carousel)`
-width:auto;
-align-items:center;
-justify-content:center;
+import { colors } from '../../helpers';
+
+export const Container = styled.div`
+background-color:${colors().gray1};
+width:100% ;
+padding:2vh 5%;
+
+@media(min-width:920px){
+    margin-top:2vh
+}
+
 `
 
-export const StyledImage  = styled(Image)``
+export const StyledCarousel = styled(Carousel)`
+align-items:center;
+justify-content:center;
+
+`
+
+export const StyledImage = styled(Image)`
+
+`
