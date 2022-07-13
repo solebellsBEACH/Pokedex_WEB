@@ -1,32 +1,32 @@
 export const Types = {
-    HOME_BALL_REQUEST: 'HOME_BALL_REQUEST',
-    HOME_BALL_SUCCESS: 'HOME_BALL_SUCCESS',
-    HOME_BALL_FAIL: 'HOME_BALL_FAIL',
+    HOME_POKEMONS_REQUEST: 'HOME_POKEMONS_REQUEST',
+    HOME_POKEMONS_SUCCESS: 'HOME_POKEMONS_SUCCESS',
+    HOME_POKEMONS_FAIL: 'HOME_POKEMONS_FAIL',
 };
 
 const INITIAL_STATE = {
     loading: false,
     error: false,
-    data: null,
+    pokemons: null,
     success: false,
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
     switch (action.type) {
-        case Types.HOME_BALL_REQUEST:
+        case Types.HOME_POKEMONS_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: false
             };
-        case Types.HOME_BALL_SUCCESS:
+        case Types.HOME_POKEMONS_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 error: false,
-                ball: action.payload
+                pokemons: action.payload
             };
-        case Types.HOME_BALL_FAIL:
+        case Types.HOME_POKEMONS_FAIL:
             return {
                 ...state,
                 loading: false,
@@ -38,15 +38,15 @@ export default function Home(state = INITIAL_STATE, action: any) {
 }
 
 export const Creators = {
-    homeBallRequest: (payload: any) => ({
-        type: Types.HOME_BALL_REQUEST,
+    homePokemonsRequest: (payload: any) => ({
+        type: Types.HOME_POKEMONS_REQUEST,
         payload
     }),
-    homeBallSuccess: (payload: any) => ({
-        type: Types.HOME_BALL_SUCCESS,
+    homePokemonsSuccess: (payload: any) => ({
+        type: Types.HOME_POKEMONS_SUCCESS,
         payload
     }),
-    homeBallFail: () => ({
-        type: Types.HOME_BALL_FAIL
+    homePokemonsFail: () => ({
+        type: Types.HOME_POKEMONS_FAIL
     }),
 };

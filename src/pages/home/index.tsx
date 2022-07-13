@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { PokemonImage } from '../../assets'
 import { Header, Carousel } from '../../core/components'
 import { Container } from './styles'
+import { Creators as HomeActions } from '../../core/store/ducks/home'
 
 export const HomeComponent = () => {
+  const dispacth = useDispatch();
+  useEffect(() => {
+    dispacth(HomeActions.homePokemonsRequest({}))
+  }, [])
+
   return (
     <Container>
-      <Header/>
-      <Carousel/>
+      <Header />
+      <Carousel />
       {/* <PokemonItem 
       index={1}
       label={'Pokemon'}

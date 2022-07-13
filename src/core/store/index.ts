@@ -1,28 +1,16 @@
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 
-import rootSagas from './sagas';
-import rootReducers from './ducks';
-/* import { composeWithDevTools } from 'redux-devtools-extension'; */
+import reducer from './ducks'
+import mySaga from './saga'
 
-export const makeStore = (initialState:any, { isServer, req = null }) => {
-  const sagaMiddleware = createSagaMiddleware();
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+// mount it on the Store
+export const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
 
-  const store:any = createStore(
-    rootReducers,
-    initialState,
-    applyMiddleware(sagaMiddleware)
-  );
-
-  /*   const store = createStore(
-    rootReducers,
-    initialState,
-    composeWithDevTools(applyMiddleware(sagaMiddleware))
-  ); */
-
-  if (req || !isServer) {
-    store.sagaTask = sagaMiddleware.run(rootSagas);
-  }
-
-  return store;
-};
+// then run the saga
+sagaMiddleware.run(mySaga)
