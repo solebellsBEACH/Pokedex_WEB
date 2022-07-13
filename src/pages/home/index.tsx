@@ -8,7 +8,10 @@ import { Creators as HomeActions } from '../../core/store/ducks/home'
 export const HomeComponent = () => {
   const dispacth = useDispatch();
   useEffect(() => {
-    dispacth(HomeActions.homePokemonsRequest({}))
+    dispacth(HomeActions.HomePokemonsRequest({
+      offset: 0,
+      limit: 10
+    }))
   }, [])
 
   return (

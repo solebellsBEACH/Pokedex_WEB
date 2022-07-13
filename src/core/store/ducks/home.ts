@@ -1,10 +1,19 @@
+import { IPokemonRequest } from "../../interfaces";
+
 export const Types = {
     HOME_POKEMONS_REQUEST: 'HOME_POKEMONS_REQUEST',
     HOME_POKEMONS_SUCCESS: 'HOME_POKEMONS_SUCCESS',
     HOME_POKEMONS_FAIL: 'HOME_POKEMONS_FAIL',
 };
 
-const INITIAL_STATE = {
+interface IInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemons: IPokemonRequest[] | null,
+    success: boolean,
+}
+
+const INITIAL_STATE: IInitialState = {
     loading: false,
     error: false,
     pokemons: null,
@@ -38,15 +47,15 @@ export default function Home(state = INITIAL_STATE, action: any) {
 }
 
 export const Creators = {
-    homePokemonsRequest: (payload: any) => ({
+    HomePokemonsRequest: (payload: { offset: number, limit: number }) => ({
         type: Types.HOME_POKEMONS_REQUEST,
         payload
     }),
-    homePokemonsSuccess: (payload: any) => ({
+    HomePokemonsSuccess: (payload: IPokemonRequest[] | null) => ({
         type: Types.HOME_POKEMONS_SUCCESS,
         payload
     }),
-    homePokemonsFail: () => ({
+    HomePokemonsFail: () => ({
         type: Types.HOME_POKEMONS_FAIL
     }),
 };

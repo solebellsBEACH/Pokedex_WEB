@@ -1,18 +1,20 @@
 import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
+import { api } from '../../../services/api';
 import { Creators as HomeActions, Types as HomeTypes } from '../../ducks/home';
 
-function* getHomePokemons() {
-  console.log('teste getHomePokemons')
-//   try {
-//     const response = yield call(api.get, 'ballinballout?Include=Type,Status');
-//     if (response.status === 200) {
-//       yield put(HomeActions.HomePokemonsSuccess(response.data.data));
-//     } else {
-//       yield put(HomeActions.HomePokemonsFail());
-//     }
-//   } catch (error) {
-//     yield put(HomeActions.HomePokemonsFail());
-//   }
+function* getHomePokemons(params: { type: string, payload: { offset: number, limit: number } }) {
+  const { limit, offset } = params.payload
+
+  try {
+    const response = yield call(api.get, `pokemon/?offset=${offset}&limit=${limit}`);
+    if (response.status === 200) {
+      yield put(HomeActions.HomePokemonsSuccess(response.data.results));
+    } else {
+      yield put(HomeActions.HomePokemonsFail());
+    }
+  } catch (error) {
+    yield put(HomeActions.HomePokemonsFail());
+  }
 }
 
 
