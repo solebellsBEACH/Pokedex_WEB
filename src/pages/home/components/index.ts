@@ -1,0 +1,1 @@
+export {PokemonItem} from './PokemonItem'

@@ -1,6 +1,5 @@
-const withImages = require('next-images');
 const withPlugins = require('next-compose-plugins');
-const withFonts = require('next-fonts');
+
 
 const nextConfig = {
   reactStrictMode: true,
@@ -9,4 +8,4 @@ const nextConfig = {
     }
 }
 
-module.exports = withPlugins([withImages, withFonts], nextConfig);
+module.exports = nextConfig;

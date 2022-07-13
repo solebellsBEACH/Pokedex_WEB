@@ -1,5 +1,5 @@
 
-import { colors } from '../../../helpers';
+import { colors } from '../../../../core/helpers';
 import styled from 'styled-components'
 
 export const Container = styled.button`
