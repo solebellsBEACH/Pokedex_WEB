@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { useCapitalizeFirstLetter, usePokemonColors } from '../../../hooks'
-import { IPokemon } from '../../../interfaces';
+import { IPokemon } from '../../../../core/interfaces';
+import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
 import { Container, PokemonName, Content } from './styles'
 
 interface IPokemonItem {
@@ -17,13 +17,14 @@ export const PokemonItem = ({ index, label, url }: IPokemonItem) => {
     const [pokemon, setPokemon] = useState<IPokemon | null>(null)
     return (
         <Container
-            key={1}
+            key={index+label}
             onClick={() => {
                 console.log('LUCAS')
             }}
         >
             <Content
-                color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}
+            color='red'
+                // color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}
             >
                 <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
             </Content>

@@ -1,4 +1,4 @@
-import { IPokemonRequest } from "../../interfaces";
+import { IHomeDuckInitialState, IPokemonRequest } from "../../interfaces";
 
 export const Types = {
     HOME_POKEMONS_REQUEST: 'HOME_POKEMONS_REQUEST',
@@ -6,14 +6,9 @@ export const Types = {
     HOME_POKEMONS_FAIL: 'HOME_POKEMONS_FAIL',
 };
 
-interface IInitialState {
-    loading: boolean,
-    error: boolean,
-    pokemons: IPokemonRequest[] | null,
-    success: boolean,
-}
 
-const INITIAL_STATE: IInitialState = {
+
+const INITIAL_STATE: IHomeDuckInitialState = {
     loading: false,
     error: false,
     pokemons: null,

@@ -8,7 +8,7 @@ function* getHomePokemons(params: { type: string, payload: { offset: number, lim
   try {
     const response = yield call(api.get, `pokemon/?offset=${offset}&limit=${limit}`);
     if (response.status === 200) {
-      yield put(HomeActions.HomePokemonsSuccess(response.data.results));
+      yield put(HomeActions.HomePokemonsSuccess(response.data));
     } else {
       yield put(HomeActions.HomePokemonsFail());
     }

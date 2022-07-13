@@ -84,3 +84,11 @@ export interface IPossiblePokemonKeys {
     'fighting' |
     'normal'
 }
+
+
+export interface IHomeDuckInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemons: IPokemonRequest | null,
+    success: boolean,
+}
