@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
-import { Container, PokemonName, Content, StyledSpinner } from './styles'
+import { Container, PokemonName, Content, StyledSpinner, PokemonImage } from './styles'
 import { Skeleton } from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
-import { IPokemon, IPokemonDuckInitialState } from '../../../../core/interfaces';
-import { useDispatch } from 'react-redux';
-import { Creators as PokemonActions } from '../../../../core/store/ducks/pokemons'
+import { IPokemon} from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
 interface IPokemonItemProps {
     index: number; label: string; url: string
@@ -43,11 +40,11 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                 <Container
                     color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
                     onClick={() => {
-                        console.log('LUCAS')
+                        console.log(returnId(url))
                     }}
                 >
+                    <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default}/>
                     <Content
-
                     >
                         <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
                     </Content>

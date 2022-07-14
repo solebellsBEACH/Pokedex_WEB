@@ -8,23 +8,22 @@ interface IContainerProps {
 }
 
 export const Container = styled.button<IContainerProps>`
-width: 220px;
-height: 175px;
+width: 190px;
+height: 165px;
 background:${(props) => props.color} ;
 display: flex;
-align-items:flex-end;
+align-items:center;
 justify-content: center;
 border-radius:10px;
-
+flex-direction:column; 
 `
 
 
 export const Content = styled.div`
-margin-bottom:6%;
 
 `
 export const PokemonName = styled.h1`
-font-size:18px;
+font-size:17px;
 
 color:${colors().white};
 background-color:${colors().gray3};
@@ -32,12 +31,16 @@ background-color:${colors().gray3};
 width: auto;
 height:auto;
 min-width:100px;
-padding:5px 12px;
-
+padding:4px 10px;
 border-radius:10px;
 `
 
 export const StyledSpinner = styled(Spinner)`
 position: absolute;
 margin:56px 88px;
+`
+
+export const PokemonImage = styled.img`
+height:100px ;
+margin-bottom:10px ;
 `
