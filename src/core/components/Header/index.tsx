@@ -5,11 +5,12 @@ import { LogoPokemon, LogoConfig } from '../../../assets';
 import { SearchPokemonInput } from '../../components';
 import Image from 'next/image';
 
-export const Header = () => {
+interface IHeaderProps {
+    handleFilterButton: () => void
+}
 
-    const handleFilterButton = () => {
-        console.log('test')
-    }
+export const Header = ({handleFilterButton}:IHeaderProps) => {
+
     return (
         <Container>
             <Content>
