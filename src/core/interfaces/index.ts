@@ -92,3 +92,9 @@ export interface IHomeDuckInitialState {
     pokemons: IPokemonRequest | null,
     success: boolean,
 }
+export interface IPokemonDuckInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemonData: IPokemon | null,
+    success: boolean,
+}

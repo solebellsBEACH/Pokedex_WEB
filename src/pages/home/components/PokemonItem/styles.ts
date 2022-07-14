@@ -3,22 +3,25 @@ import { colors } from '../../../../core/helpers';
 import styled from 'styled-components'
 import { Spinner } from '@chakra-ui/react';
 
-export const Container = styled.button`
+interface IContainerProps {
+    readonly color: string;
+}
+
+export const Container = styled.button<IContainerProps>`
 width: 220px;
 height: 175px;
-background:blue ;
+background:${(props) => props.color} ;
 display: flex;
 align-items:flex-end;
 justify-content: center;
 border-radius:10px;
 
 `
-interface IContentProps {
-    readonly color: string;
-}
 
-export const Content = styled.div<IContentProps>`
+
+export const Content = styled.div`
 margin-bottom:6%;
+
 `
 export const PokemonName = styled.h1`
 font-size:18px;

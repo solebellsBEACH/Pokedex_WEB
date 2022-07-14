@@ -1,24 +1,33 @@
-import React, { useState } from 'react'
-import { IPokemon } from '../../../../core/interfaces';
-import { useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
+import React, { useEffect, useState } from 'react'
+import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
 import { Container, PokemonName, Content, StyledSpinner } from './styles'
 import { Skeleton } from '@chakra-ui/react';
-
+import { useSelector } from 'react-redux';
+import { IPokemon, IPokemonDuckInitialState } from '../../../../core/interfaces';
+import { useDispatch } from 'react-redux';
+import { Creators as PokemonActions } from '../../../../core/store/ducks/pokemons'
+import { api } from '../../../../core/services/api';
 interface IPokemonItemProps {
     index: number; label: string; url: string
 }
-interface IPokemonData {
-    isLoaded: boolean;
-    pokemonData: IPokemon | null;
-}
-
 export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
-    const [pokemonPreRequest, setPreRequestPokemon] = useState<IPokemonData | null>(null)
 
-    const [pokemon, setPokemon] = useState<IPokemon | null>(null)
+    const [pokemon, setPokemon] = useState<{ error: boolean, isLoaded: boolean, data: IPokemon | null }>({ error: false, isLoaded: false, data: null })
+
+    const getPokemon = async () => {
+        try {
+            const { data } = await api.get(`pokemon/${returnId(url)}`)
+            setPokemon({ error: false, isLoaded: true, data })
+        } catch (error) {
+            setPokemon({ error: true, isLoaded: true, data: null })
+        }
+    }
+
+    useEffect(() => { getPokemon() }, [])
+
     return (
         <>
-            {!pokemonPreRequest?.isLoaded ? <StyledSpinner
+            {!pokemon.isLoaded ? <StyledSpinner
                 thickness='4px'
                 speed='0.80s'
                 emptyColor='gray.200'
@@ -26,26 +35,22 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                 size='xl'
             /> : <></>}
             <Skeleton
-                isLoaded={pokemonPreRequest?.isLoaded}
+                key={index + label}
+                isLoaded={pokemon.isLoaded}
                 color='white'
                 fadeDuration={2}
             >
                 <Container
-                    key={index + label}
+                    color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
                     onClick={() => {
                         console.log('LUCAS')
                     }}
                 >
                     <Content
-                        color='red'
-                    // color={pokemon != null ? usePokemonColors({ pokemonType: pokemon.types[0].type.name }).primary : 'blue'}
+
                     >
                         <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
                     </Content>
-                    {/* {pokemon != null ? <PokemonImage
-                height={RFValue(82) + ''}
-                uri={pokemon.sprites.other.dream_world.front_default}
-            /> : <ActivityIndicator style={{ marginTop: '20%' }} size={40} color='black' />} */}
                 </Container>
             </Skeleton>
         </>
