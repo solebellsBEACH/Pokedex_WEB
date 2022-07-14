@@ -1,6 +1,7 @@
 
 import { colors } from '../../../../core/helpers';
 import styled from 'styled-components'
+import { Spinner } from '@chakra-ui/react';
 
 export const Container = styled.button`
 width: 220px;
@@ -31,4 +32,9 @@ min-width:100px;
 padding:5px 12px;
 
 border-radius:10px;
+`
+
+export const StyledSpinner = styled(Spinner)`
+position: absolute;
+margin:56px 88px;
 `
