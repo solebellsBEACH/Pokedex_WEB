@@ -2,7 +2,7 @@ import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
 import { api } from '../../../services/api';
 import { Creators as PokemonsActions, Types as PokemonTypes } from '../../ducks/pokemons';
 
-function* getPokemons(params: { type: string, payload: { id: number } }) {
+function* getPokemons(params: { type: string, payload: { id: number } }):any {
     const { id } = params.payload
     
       try {

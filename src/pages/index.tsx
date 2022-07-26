@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import {HomeComponent} from './home'
+import HomeComponent from './Home'
 
-const Home: NextPage = () => {
+const Index: NextPage = () => {
   return (
     <>
     <HomeComponent/>
@@ -9,4 +9,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Index

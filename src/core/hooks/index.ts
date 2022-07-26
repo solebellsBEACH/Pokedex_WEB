@@ -1,4 +1,6 @@
-export function useCapitalizeFirstLetter(string: string) {
+import { IPossiblePokemonKeys } from "../interfaces";
+
+export function capitalizeFirstLetter(string: string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -16,7 +18,7 @@ export function useAddZeroInNumber(number: number): string {
 }
 
 
-export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
+export function pokemonColors({ pokemonType }: IPossiblePokemonKeys) {
     const data = {
         fire: { secondary: '#fdafaf', primary: '#ff6c6c' , name:'red'},
         grass: { secondary: '#8DF59F', primary: '#22AE39' , name:'green'},

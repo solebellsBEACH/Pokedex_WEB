@@ -2,7 +2,7 @@ import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
 import { api } from '../../../services/api';
 import { Creators as HomeActions, Types as HomeTypes } from '../../ducks/home';
 
-function* getHomePokemons(params: { type: string, payload: { offset: number, limit: number } }) {
+function* getHomePokemons(params: { type: string, payload: { offset: number, limit: number } }):any {
   const { limit, offset } = params.payload
 
   try {

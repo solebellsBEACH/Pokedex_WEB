@@ -40,7 +40,20 @@ export interface IPokemon {
     types: [
         {
             type: {
-                name: string
+                name:'fire' |
+                'grass' |
+                'electric' |
+                'water' |
+                'ground' |
+                'rock' |
+                'fairy' |
+                'poison' |
+                'bug' |
+                'dragon' |
+                'psychic' |
+                'flying' |
+                'fighting' |
+                'normal'
             }
         }
     ],
@@ -69,7 +82,7 @@ export interface IRequestContextProviderProps {
     isPost?: number;
 }
 
-export interface IPossiblePokemonKeys {
+export type IPossiblePokemonKeys ={
     pokemonType: 'fire' |
     'grass' |
     'electric' |
