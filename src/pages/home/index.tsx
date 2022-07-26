@@ -16,7 +16,7 @@ export const HomeComponent = () => {
       offset: 0,
       limit: 20
     }))
-  }, [])
+  })
 
   const handleDrawer = () => {
     onOpen()

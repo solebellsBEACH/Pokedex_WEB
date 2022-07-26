@@ -18,10 +18,9 @@ export const PokemonGrid = ({ pokemons }: IPokemonGridProps) => {
             >
                 {pokemons !== null ? pokemons.results.map((item, index) => {
                     return <WrapItem
-
+                    key={index + item.name}
                     >
                         <PokemonItem
-                            key={index + item.name}
                             index={index}
                             label={item.name}
                             url={item.url}
