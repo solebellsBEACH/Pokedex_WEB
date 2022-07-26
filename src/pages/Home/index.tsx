@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Header, Carousel, Drawer } from '../../core/components'
-import { Container } from './styles'
+import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
 import { useDisclosure } from '@chakra-ui/react'
 import { PokemonGrid } from '../../pageComplements/home/components'
 
-export const HomeComponent = (props:any) => {
+const HomeComponent = (props:any) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
   const dispacth = useDispatch();
@@ -33,3 +33,4 @@ export const HomeComponent = (props:any) => {
   )
 }
 
+export default HomeComponent;
