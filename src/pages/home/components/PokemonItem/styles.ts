@@ -1,7 +1,7 @@
 
 import { colors } from '../../../../core/helpers';
 import styled from 'styled-components'
-import { Spinner } from '@chakra-ui/react';
+import { Collapse, Spinner } from '@chakra-ui/react';
 
 interface IContainerProps {
     readonly color: string;

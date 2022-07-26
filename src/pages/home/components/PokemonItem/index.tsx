@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
 import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom } from './styles'
-import { Skeleton } from '@chakra-ui/react';
+import { Box, Collapse, Skeleton, useDisclosure } from '@chakra-ui/react';
 import { IPokemon } from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
 import { BaseExperienceContainer, BaseExperienceLabel, BaseExperiencePokemonName } from './baseExperienceStyles';
@@ -11,6 +11,8 @@ interface IPokemonItemProps {
 export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
 
     const [pokemon, setPokemon] = useState<{ error: boolean, isLoaded: boolean, data: IPokemon | null }>({ error: false, isLoaded: false, data: null })
+
+    const { isOpen, onToggle } = useDisclosure()
 
     const getPokemon = async () => {
         try {
@@ -27,7 +29,7 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
         return <BaseExperienceContainer>
             <BaseExperiencePokemonName>{useCapitalizeFirstLetter(label)}</BaseExperiencePokemonName>
             <BaseExperienceLabel
-            color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
             >120 PS</BaseExperienceLabel>
         </BaseExperienceContainer>
     }
@@ -51,6 +53,8 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
             >
 
                 <Container
+                    onMouseEnter={() => { onToggle() }}
+                    onMouseLeave={() => { onToggle() }}
                     color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
                     onClick={() => {
                         console.log(returnId(url))
@@ -67,7 +71,17 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                             <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default} />
                         </ContentImage>
                     </Content>
-                    <ContentBottom></ContentBottom>
+
+                    <Collapse in={isOpen} animateOpacity>
+                        <Box
+                            w='100%'
+                            height='300px'
+                            backgroundColor='whiteAlpha.100'
+                            
+                        >
+                        </Box>
+                    </Collapse>
+                    {/* </ContentBottom> */}
                 </Container>
             </Skeleton>
         </>
