@@ -23,5 +23,7 @@ justify-content:center;
 `
 
 export const StyledImage = styled(Image)`
+filter:saturate(0.5);
+border-radius:8px;
 
 `
