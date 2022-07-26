@@ -52,6 +52,6 @@ export const ContentImage =styled.div<IContainerProps>`
 
 export const ContentBottom = styled.div`
 width:100%;
-height:130px;
+min-height:130px;
 background:${colors().white}
 `

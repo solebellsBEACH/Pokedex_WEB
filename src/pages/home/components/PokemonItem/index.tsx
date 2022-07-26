@@ -71,17 +71,18 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                             <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default} />
                         </ContentImage>
                     </Content>
-
-                    <Collapse in={isOpen} animateOpacity>
+                    <ContentBottom>
+                    <Collapse in={isOpen}>
                         <Box
-                            w='100%'
+                            width='300px'
                             height='300px'
-                            backgroundColor='whiteAlpha.100'
+                            bg='white'
                             
                         >
+                            ksklsdk
                         </Box>
                     </Collapse>
-                    {/* </ContentBottom> */}
+                    </ContentBottom>
                 </Container>
             </Skeleton>
         </>
