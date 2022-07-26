@@ -1,7 +1,7 @@
 
 import { colors } from '../../../../core/helpers';
 import styled from 'styled-components'
-import { Collapse, Spinner, Stack } from '@chakra-ui/react';
+import { Spinner, Stack } from '@chakra-ui/react';
 
 interface IContainerProps {
     readonly color: string;
@@ -9,12 +9,13 @@ interface IContainerProps {
 
 export const Container = styled(Stack) <IContainerProps>`
 width: 300px;
-min-height: 300px;
+min-height: 200px;
 /* height: 450px; */
 background:${(props) => props.color} ;
 display: flex;
 border-radius:8px;
 flex-direction:column; 
+
 `
 
 
@@ -53,8 +54,47 @@ export const ContentImage = styled.div<IContainerProps>`
     border-radius:5px;
 `;
 
-export const ContentBottom = styled.div`
+export const ContentBottom = styled.div<IPokemonImageProps>`
 width:100%;
-min-height:130px;
-background:${colors().white}
+min-height:80px;
+background:${colors().white};
+padding-bottom:${props => props.isOpen ? 30 : 0}px ;
+padding-top:5px ;
+`;
+
+export const PokemonName = styled.h1`
+color:${colors().gray6};
+font-weight:bold;
+font-size:19px;
+margin:10px 20px 5px 20px;
+`;
+
+export const BaseExperienceContainer = styled.div`
+max-width:200px;
+min-width:50px;
+min-height:30px;
+margin:0px 30px 10px 30px;
+display: flex;
+align-items: center;
+
 `
+
+export const BaseExperienceLabel = styled.h1`
+color:${colors().gray6};
+font-style: italic;
+font-size:17px;
+margin-right:5px;
+`;
+
+export const AbilityLabel = styled.h1`
+color:${colors().gray6};
+font-style: italic;
+font-size:17px;
+margin-right:5px;
+`;
+export const AbilityValue = styled.h1`
+color:${colors().gray6};
+font-style: italic;
+font-size:17px;
+margin-left:10px;
+`;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
-import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom } from './styles'
-import { Box, Collapse, Skeleton, useDisclosure } from '@chakra-ui/react';
+import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom, PokemonName, BaseExperienceContainer, BaseExperienceLabel, AbilityLabel, AbilityValue } from './styles'
+import { Box, Collapse, Progress, SimpleGrid, Skeleton, useDisclosure } from '@chakra-ui/react';
 import { IPokemon } from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
-import { BaseExperienceContainer, BaseExperienceLabel, BaseExperiencePokemonName } from './baseExperienceStyles';
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 interface IPokemonItemProps {
     index: number; label: string; url: string
 }
@@ -24,15 +24,6 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
     }
 
     useEffect(() => { getPokemon() }, []);
-
-    const renderBaseExperience = (baseExperience: number): JSX.Element => {
-        return <BaseExperienceContainer>
-            <BaseExperiencePokemonName>{useCapitalizeFirstLetter(label)}</BaseExperiencePokemonName>
-            <BaseExperienceLabel
-                color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
-            >120 PS</BaseExperienceLabel>
-        </BaseExperienceContainer>
-    }
 
     return (
         <>
@@ -73,13 +64,64 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                             <PokemonImage isOpen={isOpen} src={pokemon.data?.sprites.other.dream_world.front_default} />
                         </ContentImage>
                     </Content>
-                    <ContentBottom>
-                        <Collapse in={isOpen}>
+                    <ContentBottom
+                    isOpen={isOpen}>
+
+                        <PokemonName>{useCapitalizeFirstLetter(label)} {pokemon?.data?.types[0].type.name}</PokemonName>
+                        {pokemon.data?.base_experience != null ?
+                            <BaseExperienceContainer>
+                                <BaseExperienceLabel>
+                                    {pokemon.data?.base_experience} {isOpen ? 'Base Experience' : 'BS'}
+                                </BaseExperienceLabel>
+                                {pokemon.data?.base_experience < 100 ?
+                                    <AiFillCaretDown
+                                        color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                                        size={25}
+                                    /> :
+                                    <AiFillCaretUp
+                                        color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                                        size={25}
+                                    />
+                                }
+                            </BaseExperienceContainer>
+                            :
+                            <></>}
+                        <Collapse
+
+                            in={isOpen}>
                             <Box
                                 width='300px'
-                                height='300px'
+                                height='auto'
                                 bg='white'
                             >
+                                <SimpleGrid columns={1} spacingY='5px'>
+                                    {pokemon.data?.stats.map((item, index)=>{
+                                        return <Box
+                                        key={index+'Stats'}
+                                        paddingX='10px'
+                                        minHeight='40px'>
+                                        <AbilityLabel>{useCapitalizeFirstLetter(item.stat.name)}</AbilityLabel>
+                                        <Box
+                                            display='flex'
+                                            flexDirection='row'
+                                           alignItems='center'
+                                        >
+
+                                            <Progress
+                                     isAnimated
+                                     hasStripe
+                                     colorScheme={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).name : 'gray'}
+                                                size='sm'
+                                                w='75%'
+                                                value={item.base_stat} />
+                                            <AbilityValue>{item.base_stat} pts</AbilityValue>
+                                        </Box>
+
+                                    </Box>
+                                    })}
+
+                                </SimpleGrid>
+
                             </Box>
                         </Collapse>
                     </ContentBottom>

@@ -18,20 +18,20 @@ export function useAddZeroInNumber(number: number): string {
 
 export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
     const data = {
-        fire: { secondary: '#fdafaf', primary: '#ff6c6c' },
-        grass: { secondary: '#8DF59F', primary: '#22AE39' },
-        electric: { secondary: '#fff1aa', primary: '#f6df6f' },
-        water: { secondary: '#aee5ff', primary: '#62cdff' },
-        ground: { secondary: '#fdcb99', primary: '#f2aa62' },
-        rock: { secondary: '#d8d8b7', primary: '#d8d84c' },
-        fairy: { secondary: '#f5b9ff', primary: '#e655ff' },
-        poison: { secondary: '#8ed69d', primary: '#56d26f' },
-        bug: { secondary: '#f5cd95', primary: '#f8b960' },
-        dragon: { secondary: '#90aee7', primary: '#6794e7' },
-        psychic: { secondary: '#eaeda1', primary: '#8d903c' },
-        flying: { secondary: '#f8baba', primary: '#e9c0c0' },
-        fighting: { secondary: '#e0d4bc', primary: '#f7a603' },
-        normal: { secondary: '#DCDCDC', primary: '#666666' }
+        fire: { secondary: '#fdafaf', primary: '#ff6c6c' , name:'red'},
+        grass: { secondary: '#8DF59F', primary: '#22AE39' , name:'green'},
+        electric: { secondary: '#fff1aa', primary: '#f6df6f' , name:'green'},
+        water: { secondary: '#aee5ff', primary: '#62cdff' , name:'blue'},
+        ground: { secondary: '#fdcb99', primary: '#f2aa62' , name:'green'},
+        rock: { secondary: '#d8d8b7', primary: '#d8d84c' , name:'green'},
+        fairy: { secondary: '#f5b9ff', primary: '#e655ff' , name:'green'},
+        poison: { secondary: '#8ed69d', primary: '#56d26f' , name:'green'},
+        bug: { secondary: '#f5cd95', primary: '#f8b960' , name:'red'},
+        dragon: { secondary: '#90aee7', primary: '#6794e7' , name:'green'},
+        psychic: { secondary: '#eaeda1', primary: '#8d903c' , name:'green'},
+        flying: { secondary: '#f8baba', primary: '#e9c0c0' , name:'gray'},
+        fighting: { secondary: '#e0d4bc', primary: '#f7a603' , name:'gray'},
+        normal: { secondary: '#DCDCDC', primary: '#666666' , name:'gray'}
     }
 
     return data[pokemonType]
