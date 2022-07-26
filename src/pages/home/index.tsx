@@ -4,8 +4,8 @@ import { Header, Carousel, Drawer } from '../../core/components'
 import { Container } from './styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
-import { PokemonGrid } from './components'
 import { useDisclosure } from '@chakra-ui/react'
+import { PokemonGrid } from '../../pageComplements/home/components'
 
 export const HomeComponent = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
