@@ -53,6 +53,8 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
             >
 
                 <Container
+                    boxShadow={isOpen ? 'lg' : ''}
+                    rounded='md' bg='white'
                     onMouseEnter={() => { onToggle() }}
                     onMouseLeave={() => { onToggle() }}
                     color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
@@ -68,20 +70,18 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                             color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
                         >
 
-                            <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default} />
+                            <PokemonImage isOpen={isOpen} src={pokemon.data?.sprites.other.dream_world.front_default} />
                         </ContentImage>
                     </Content>
                     <ContentBottom>
-                    <Collapse in={isOpen}>
-                        <Box
-                            width='300px'
-                            height='300px'
-                            bg='white'
-                            
-                        >
-                            ksklsdk
-                        </Box>
-                    </Collapse>
+                        <Collapse in={isOpen}>
+                            <Box
+                                width='300px'
+                                height='300px'
+                                bg='white'
+                            >
+                            </Box>
+                        </Collapse>
                     </ContentBottom>
                 </Container>
             </Skeleton>

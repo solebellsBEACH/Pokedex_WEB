@@ -1,13 +1,13 @@
 
 import { colors } from '../../../../core/helpers';
 import styled from 'styled-components'
-import { Collapse, Spinner } from '@chakra-ui/react';
+import { Collapse, Spinner, Stack } from '@chakra-ui/react';
 
 interface IContainerProps {
     readonly color: string;
 }
 
-export const Container = styled.button<IContainerProps>`
+export const Container = styled(Stack) <IContainerProps>`
 width: 300px;
 min-height: 300px;
 /* height: 450px; */
@@ -34,13 +34,16 @@ export const StyledSpinner = styled(Spinner)`
 position: absolute;
 margin:56px 88px;
 `
+interface IPokemonImageProps {
+    isOpen: boolean;
+}
 
-export const PokemonImage = styled.img`
-height:150px ;
+export const PokemonImage = styled.img<IPokemonImageProps>`
+height:${props => props.isOpen ? 160 : 130}px;
 margin:20px 20px;
 `
 
-export const ContentImage =styled.div<IContainerProps>`
+export const ContentImage = styled.div<IContainerProps>`
     width:85%;
     height:150px;
     /* background:${(props) => props.color} ; */
