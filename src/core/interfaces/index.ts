@@ -47,6 +47,7 @@ export interface IPokemon {
     species: { name: string },
     height: number,
     abilities: { ability: { name: string } }[],
+    base_experience:number
 }
 export interface IPokemonPreRequest {
     name: string;

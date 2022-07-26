@@ -23,9 +23,9 @@ export const HomeComponent = () => {
   }
 
   return (<>
-    <Drawer isOpen={isOpen} onClose={onClose}  />
+    <Drawer isOpen={isOpen} onClose={onClose} />
     <Container>
-      <Header handleFilterButton={handleDrawer}/>
+      <Header handleFilterButton={handleDrawer} />
       <Carousel />
       <PokemonGrid pokemons={homeData.pokemons} />
     </Container></>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
-import { Container, PokemonName, Content, StyledSpinner, PokemonImage, ContentImage } from './styles'
+import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom } from './styles'
 import { Skeleton } from '@chakra-ui/react';
 import { IPokemon } from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
+import { BaseExperienceContainer, BaseExperienceLabel, BaseExperiencePokemonName } from './baseExperienceStyles';
 interface IPokemonItemProps {
     index: number; label: string; url: string
 }
@@ -20,41 +21,53 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
         }
     }
 
-    useEffect(() => { getPokemon() }, [])
+    useEffect(() => { getPokemon() }, []);
+
+    const renderBaseExperience = (baseExperience: number): JSX.Element => {
+        return <BaseExperienceContainer>
+            <BaseExperiencePokemonName>{useCapitalizeFirstLetter(label)}</BaseExperiencePokemonName>
+            <BaseExperienceLabel
+            color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+            >120 PS</BaseExperienceLabel>
+        </BaseExperienceContainer>
+    }
 
     return (
         <>
-            {!pokemon.isLoaded ? <StyledSpinner
-                thickness='4px'
-                speed='0.80s'
-                emptyColor='gray.200'
-                color='blue.500'
-                size='xl'
-            /> : <></>}
+            {!pokemon.isLoaded ?
+                <StyledSpinner
+                    thickness='4px'
+                    speed='0.80s'
+                    emptyColor='gray.200'
+                    color='blue.500'
+                    size='xl'
+                />
+                : <></>}
             <Skeleton
                 key={index + label}
                 isLoaded={pokemon.isLoaded}
                 color='white'
                 fadeDuration={2}
             >
+
                 <Container
-                    color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                    color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
                     onClick={() => {
                         console.log(returnId(url))
                     }}
                 >
-                    <Content color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}>
+                    <Content
+                        color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
+                    >
+                        {/* {pokemon.data != undefined ? renderBaseExperience(pokemon.data.base_experience) : <></>} */}
                         <ContentImage
-                        color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                            color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
                         >
+
                             <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default} />
                         </ContentImage>
                     </Content>
-                    {/* <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default}/>
-                    <Content
-                    >
-                        <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
-                    </Content> */}
+                    <ContentBottom></ContentBottom>
                 </Container>
             </Skeleton>
         </>
