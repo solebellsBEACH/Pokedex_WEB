@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { returnId, useCapitalizeFirstLetter, usePokemonColors } from '../../../../core/hooks'
-import { Container, PokemonName, Content, StyledSpinner, PokemonImage } from './styles'
+import { Container, PokemonName, Content, StyledSpinner, PokemonImage, ContentImage } from './styles'
 import { Skeleton } from '@chakra-ui/react';
-import { IPokemon} from '../../../../core/interfaces';
+import { IPokemon } from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
 interface IPokemonItemProps {
     index: number; label: string; url: string
@@ -43,11 +43,18 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                         console.log(returnId(url))
                     }}
                 >
-                    <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default}/>
+                    <Content color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}>
+                        <ContentImage
+                        color={pokemon?.data?.types[0].type.name != undefined ? usePokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                        >
+                            <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default} />
+                        </ContentImage>
+                    </Content>
+                    {/* <PokemonImage src={pokemon.data?.sprites.other.dream_world.front_default}/>
                     <Content
                     >
                         <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
-                    </Content>
+                    </Content> */}
                 </Container>
             </Skeleton>
         </>
