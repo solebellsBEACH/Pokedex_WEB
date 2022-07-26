@@ -26,7 +26,7 @@ export function usePokemonColors({ pokemonType }: IPossiblePokemonKeys) {
         rock: { secondary: '#d8d8b7', primary: '#d8d84c' , name:'green'},
         fairy: { secondary: '#f5b9ff', primary: '#e655ff' , name:'green'},
         poison: { secondary: '#8ed69d', primary: '#56d26f' , name:'green'},
-        bug: { secondary: '#f5cd95', primary: '#f8b960' , name:'red'},
+        bug: { secondary: '#f5cd95', primary: '#f8b960' , name:'yellow'},
         dragon: { secondary: '#90aee7', primary: '#6794e7' , name:'green'},
         psychic: { secondary: '#eaeda1', primary: '#8d903c' , name:'green'},
         flying: { secondary: '#f8baba', primary: '#e9c0c0' , name:'gray'},

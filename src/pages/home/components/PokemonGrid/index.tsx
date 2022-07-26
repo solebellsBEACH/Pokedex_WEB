@@ -12,8 +12,8 @@ export const PokemonGrid = ({ pokemons }: IPokemonGridProps) => {
         <Container
         >
             <Grid
-                spacingX='90px'
-                spacingY='70px'
+                spacingX='20px'
+                spacingY='30px'
                 justify='center'
             >
                 {pokemons !== null ? pokemons.results.map((item, index) => {

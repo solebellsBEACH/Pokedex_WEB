@@ -67,7 +67,7 @@ export const PokemonItem = ({ index, label, url }: IPokemonItemProps) => {
                     <ContentBottom
                     isOpen={isOpen}>
 
-                        <PokemonName>{useCapitalizeFirstLetter(label)} {pokemon?.data?.types[0].type.name}</PokemonName>
+                        <PokemonName>{useCapitalizeFirstLetter(label)}</PokemonName>
                         {pokemon.data?.base_experience != null ?
                             <BaseExperienceContainer>
                                 <BaseExperienceLabel>
