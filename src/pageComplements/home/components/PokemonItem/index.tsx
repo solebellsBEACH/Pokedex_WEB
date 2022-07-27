@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { returnId, capitalizeFirstLetter, pokemonColors } from '../../../../core/hooks'
+import { returnId, capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks'
 import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom, PokemonName, BaseExperienceContainer, BaseExperienceLabel, AbilityLabel, AbilityValue } from './styles'
 import { Box, Collapse, Progress, SimpleGrid, Skeleton, useDisclosure } from '@chakra-ui/react';
 import { IPokemon } from '../../../../core/interfaces';
@@ -67,7 +67,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                     <ContentBottom
                         isOpen={isOpen}>
 
-                        <PokemonName>{capitalizeFirstLetter(label)}</PokemonName>
+                        <PokemonName>{isOpen ? capitalizeFirstLetter(label) : `$ ${returnPrice(pokemon.data?.height).toFixed(2)}`}</PokemonName>
                         {pokemon.data?.base_experience != null ?
                             <BaseExperienceContainer>
                                 <BaseExperienceLabel>
@@ -94,6 +94,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 height='auto'
                                 bg='white'
                             >
+                                <PokemonName>$ 100.00</PokemonName>
                                 <SimpleGrid columns={1} spacingY='5px'>
                                     {pokemon.data?.stats.map((item, index) => {
                                         return <Box

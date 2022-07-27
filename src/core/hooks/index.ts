@@ -44,3 +44,7 @@ export const returnId = (url: string) => {
     url = url.replace('/', '')
     return parseInt(url)
 }
+export const returnPrice = (value:number | undefined) => {
+    if(value==undefined) return 0;
+    return value*1.8
+}
