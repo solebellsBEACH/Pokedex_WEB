@@ -12,12 +12,31 @@ const INITIAL_STATE: IHomeDuckInitialState = {
     loading: false,
     error: false,
     pokemons: null,
-    success: false,
+    success: false,    
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
     switch (action.type) {
         case Types.HOME_POKEMONS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+                error: false
+            };
+        case Types.HOME_POKEMONS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: false,
+                pokemons: action.payload
+            };
+        case Types.HOME_POKEMONS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: true
+            };
+            case Types.HOME_POKEMONS_REQUEST:
             return {
                 ...state,
                 loading: true,

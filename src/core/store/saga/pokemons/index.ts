@@ -17,14 +17,31 @@ function* getPokemons(params: { type: string, payload: { id: number } }):any {
       }
 }
 
+function* getPokemonTypes(): any {
+  try {
+    const response = yield call(api.get, `type`);
+    if (response.status === 200) {
+      yield put(PokemonsActions.getPokemonTypesSuccess(response.data));
+    } else {
+      yield put(PokemonsActions.getPokemonTypesFail());
+    }
+  } catch (error) {
+    yield put(PokemonsActions.getPokemonTypesFail());
+  }
+}
+
 
 function* getPokemonsWatcher() {
     yield takeLatest(PokemonTypes.GET_POKEMONS_REQUEST, getPokemons);
+}
+function* getPokemonTypesWatcher() {
+  yield takeLatest(PokemonTypes.GET_POKEMON_TYPES_REQUEST, getPokemonTypes);
 }
 
 
 export default function* rootSagas() {
     yield all([
         fork(getPokemonsWatcher),
+        fork(getPokemonTypesWatcher),
     ]);
 }

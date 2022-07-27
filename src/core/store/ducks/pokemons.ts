@@ -4,6 +4,9 @@ export const Types = {
     GET_POKEMONS_REQUEST: 'GET_POKEMONS_REQUEST',
     GET_POKEMONS_SUCCESS: 'GET_POKEMONS_SUCCESS',
     GET_POKEMONS_FAIL: 'GET_POKEMONS_FAIL',
+    GET_POKEMON_TYPES_REQUEST: 'GET_POKEMON_TYPES_REQUEST',
+    GET_POKEMON_TYPES_SUCCESS: 'GET_POKEMON_TYPES_SUCCESS',
+    GET_POKEMON_TYPES_FAIL: 'GET_POKEMON_TYPES_FAIL',
 };
 
 const INITIAL_STATE: IPokemonDuckInitialState = {
@@ -11,6 +14,10 @@ const INITIAL_STATE: IPokemonDuckInitialState = {
     error: false,
     pokemonData: null,
     success: false,
+    loadingPokemonTypes: false,
+    errorPokemonTypes: false,
+    pokemonTypes: null,
+    successPokemonTypes: false,
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
@@ -34,6 +41,25 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 loading: false,
                 error: true
             };
+        case Types.GET_POKEMON_TYPES_REQUEST:
+            return {
+                ...state,
+                loadingPokemonTypes: true,
+                errorPokemonTypes: false
+            };
+        case Types.GET_POKEMON_TYPES_SUCCESS:
+            return {
+                ...state,
+                loadingPokemonTypes: false,
+                errorPokemonTypes: false,
+                pokemonTypes: action.payload
+            };
+        case Types.GET_POKEMON_TYPES_FAIL:
+            return {
+                ...state,
+                loadingPokemonTypes: false,
+                errorPokemonTypes: true
+            };
         default:
             return state;
     }
@@ -50,5 +76,18 @@ export const Creators = {
     }),
     getPokemonsFail: () => ({
         type: Types.GET_POKEMONS_FAIL
+    }),
+    getPokemonTypesRequest: () => ({
+        type: Types.GET_POKEMON_TYPES_REQUEST,
+    }),
+    getPokemonTypesSuccess: (payload: {
+        count: 20,
+        results: { name: string, url: string }[]
+    } | null) => ({
+        type: Types.GET_POKEMON_TYPES_SUCCESS,
+        payload
+    }),
+    getPokemonTypesFail: () => ({
+        type: Types.GET_POKEMON_TYPES_FAIL
     }),
 };

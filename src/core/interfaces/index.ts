@@ -40,7 +40,7 @@ export interface IPokemon {
     types: [
         {
             type: {
-                name:'fire' |
+                name: 'fire' |
                 'grass' |
                 'electric' |
                 'water' |
@@ -60,7 +60,7 @@ export interface IPokemon {
     species: { name: string },
     height: number,
     abilities: { ability: { name: string } }[],
-    base_experience:number
+    base_experience: number
 }
 export interface IPokemonPreRequest {
     name: string;
@@ -82,7 +82,7 @@ export interface IRequestContextProviderProps {
     isPost?: number;
 }
 
-export type IPossiblePokemonKeys ={
+export type IPossiblePokemonKeys = {
     pokemonType: 'fire' |
     'grass' |
     'electric' |
@@ -111,4 +111,12 @@ export interface IPokemonDuckInitialState {
     error: boolean,
     pokemonData: IPokemon | null,
     success: boolean,
+    loadingPokemonTypes: boolean,
+    errorPokemonTypes: boolean,
+    pokemonTypes: {
+        count: 20,
+        results: { name: string, url: string }[]
+    } | null,
+    successPokemonTypes: boolean,
+
 }
