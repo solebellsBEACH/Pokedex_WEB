@@ -1,6 +1,6 @@
-import { DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, useDisclosure, Drawer as ChakraDrawer } from '@chakra-ui/react'
-import React from 'react'
-import { Container } from './styles'
+import { DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, useDisclosure, Drawer as ChakraDrawer, Wrap, WrapItem } from '@chakra-ui/react'
+import React, { useState } from 'react'
+import { FilterButton } from '../FilterButton';
 
 interface IDrawerProps {
     isOpen: boolean;
@@ -8,28 +8,43 @@ interface IDrawerProps {
 }
 
 export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
+
+    const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
+
     return (
         <>
             <ChakraDrawer
                 isOpen={isOpen}
                 placement='right'
                 onClose={onClose}
-                size={'md'}
+                size='md'
             >
                 <DrawerOverlay />
                 <DrawerContent>
                     <DrawerCloseButton />
-                    <DrawerHeader>{'drawer contents'}</DrawerHeader>
-                    <DrawerBody>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                            Consequat nisl vel pretium lectus quam id. Semper quis lectus
-                            nulla at volutpat diam ut venenatis. Dolor morbi non arcu risus
-                            quis varius quam quisque. Massa ultricies mi quis hendrerit dolor
-                            magna eget est lorem. Erat imperdiet sed euismod nisi porta.
-                            Lectus vestibulum mattis ullamcorper velit.
-                        </p>
+                    <DrawerHeader
+                        color='blue.700'
+                        fontWeight='bold'
+                    >Filtros</DrawerHeader>
+                    <DrawerBody
+                        >
+                        <Wrap
+                        spacing='5px'
+                            background='blue.100'
+                            >
+                            {['', '', '', '', '', ''].map((item, index) => {
+                                return <WrapItem
+                                    key={index + item}
+                                >
+                                    <FilterButton
+                                        filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
+                                        index={index} key={index} label={'item'+index} 
+                                        />
+
+                                </WrapItem>
+                            })}
+
+                        </Wrap>
                     </DrawerBody>
                 </DrawerContent>
             </ChakraDrawer>

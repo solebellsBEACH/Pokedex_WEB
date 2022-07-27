@@ -1,4 +1,4 @@
-import { SimpleGrid, Wrap } from '@chakra-ui/react'
+import {  Wrap } from '@chakra-ui/react'
 import styled from 'styled-components'
 import { colors } from '../../../../core/helpers'
 export const Container = styled.div`

@@ -94,7 +94,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 height='auto'
                                 bg='white'
                             >
-                                <PokemonName>$ 100.00</PokemonName>
+                                <PokemonName>{`$ ${returnPrice(pokemon.data?.height).toFixed(2)}`}</PokemonName>
                                 <SimpleGrid columns={1} spacingY='5px'>
                                     {pokemon.data?.stats.map((item, index) => {
                                         return <Box
