@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Container, TextButton } from './styles'
+import { Container, TextButton, StyledAiOutlineClose } from './styles'
+
 
 interface ITypePokemonButton {
     label: string, index: number;
@@ -7,7 +8,8 @@ interface ITypePokemonButton {
 }
 
 export const FilterButton = ({ index, label, filtersActiveds, setFiltersActiveds }: ITypePokemonButton) => {
-const [isActive, setIsActive] = useState<boolean|null>(null)
+    const [isActive, setIsActive] = useState<boolean | null>(null)
+    const [onHover, setOnHover] = useState<boolean>(false)
 
     const isActiveUtil = () => {
         if (filtersActiveds.find(e => e == label) == undefined) {
@@ -37,10 +39,13 @@ const [isActive, setIsActive] = useState<boolean|null>(null)
 
     return (
         <Container
+            onMouseEnter={() => { setOnHover(true) }}
+            onMouseLeave={() => { setOnHover(false) }}
             key={index}
             onClick={handlePress}
-            isActive={isActive!=null?isActive:isActiveUtil()} >
-            <TextButton isActive={isActive!=null?isActive:isActiveUtil()} >{label.charAt(0).toUpperCase() + label.slice(1)}</TextButton>
+            isActive={isActive != null ? isActive : isActiveUtil()} >
+            {isActive && onHover ? <StyledAiOutlineClose size={13} /> : <></>}
+            <TextButton isActive={isActive != null ? isActive : isActiveUtil()} >{label.charAt(0).toUpperCase() + label.slice(1)}</TextButton>
         </Container>
     )
 }
