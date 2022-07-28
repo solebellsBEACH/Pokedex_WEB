@@ -1,4 +1,6 @@
+import { Tooltip } from '@chakra-ui/react';
 import React, { useState } from 'react'
+import { capitalizeFirstLetter } from '../../hooks';
 import { Container, TextButton, StyledAiOutlineClose } from './styles'
 
 
@@ -22,7 +24,6 @@ export const FilterButton = ({ index, label, filtersActiveds, setFiltersActiveds
     }
 
     const handlePress = () => {
-        console.log(filtersActiveds)
         const array = filtersActiveds;
         if (!isActiveUtil()) {
             setIsActive(true)
@@ -33,19 +34,20 @@ export const FilterButton = ({ index, label, filtersActiveds, setFiltersActiveds
             array.splice(array.indexOf(label))
         }
         setFiltersActiveds(array)
-        console.log(filtersActiveds)
     }
 
 
     return (
-        <Container
-            onMouseEnter={() => { setOnHover(true) }}
-            onMouseLeave={() => { setOnHover(false) }}
-            key={index}
-            onClick={handlePress}
-            isActive={isActive != null ? isActive : isActiveUtil()} >
-            {isActive && onHover ? <StyledAiOutlineClose size={13} /> : <></>}
-            <TextButton isActive={isActive != null ? isActive : isActiveUtil()} >{label.charAt(0).toUpperCase() + label.slice(1)}</TextButton>
-        </Container>
+        <Tooltip label={isActive ? `Remover ${capitalizeFirstLetter(label)}` : `Adicionar ${capitalizeFirstLetter(label)}`} aria-label='A tooltip'>
+            <Container
+                onMouseEnter={() => { setOnHover(true) }}
+                onMouseLeave={() => { setOnHover(false) }}
+                key={index}
+                onClick={handlePress}
+                isActive={isActive != null ? isActive : isActiveUtil()} >
+                {isActive && onHover ? <StyledAiOutlineClose size={13} /> : <></>}
+                <TextButton isActive={isActive != null ? isActive : isActiveUtil()} >{capitalizeFirstLetter(label)}</TextButton>
+            </Container>
+        </Tooltip>
     )
 }
