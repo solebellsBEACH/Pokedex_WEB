@@ -1,4 +1,4 @@
-import { DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, useDisclosure, Drawer as ChakraDrawer, Wrap, WrapItem } from '@chakra-ui/react'
+import { DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, useDisclosure, Drawer as ChakraDrawer, Wrap, WrapItem, Button } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { FilterButton } from '../FilterButton';
@@ -16,11 +16,16 @@ export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
 
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
     const dispacth = useDispatch()
-    const pokemonData= useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
+    const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
 
     useEffect(() => {
         dispacth(PokemonActions.getPokemonTypesRequest())
     }, [isOpen])
+
+    const handleClearFilters = () => {
+        setFiltersActiveds([]);
+        onClose();
+    }
 
     return (
         <>
@@ -36,13 +41,15 @@ export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
                     <DrawerHeader
                         color='blue.700'
                         fontWeight='bold'
-                    >Filtros</DrawerHeader>
+                    >Filtros
+
+                    </DrawerHeader>
+
                     <DrawerBody
                     >
                         <Wrap
                             spacingY='10px'
                             spacingX='20px'
-                            background='blue.100'
                         >
                             {pokemonData?.pokemonTypes?.results.map((item, index) => {
                                 return <WrapItem
@@ -57,6 +64,16 @@ export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
                             })}
 
                         </Wrap>
+                        <Button
+                            onClick={handleClearFilters}
+                            size='lg'
+                            colorScheme='blue'
+                            marginTop='60px'
+                            width='100%'
+                            // marginBottom='10px'
+                            variant='solid'>
+                            Limpar Filtros
+                        </Button>
                     </DrawerBody>
                 </DrawerContent>
             </ChakraDrawer>

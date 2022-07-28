@@ -8,7 +8,7 @@ interface IRadioButton {
 }
 
 export const Container = styled.button<IRadioButton>`
-width:100px;
+width:105px;
 min-height:50px;
 margin:6px;
 border-radius:4px;
