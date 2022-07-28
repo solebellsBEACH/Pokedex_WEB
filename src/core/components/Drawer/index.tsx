@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { FilterButton } from '../FilterButton';
 import { Creators as PokemonActions } from '../../store/ducks/pokemons'
+import { useSelector } from 'react-redux';
+import { IPokemonDuckInitialState } from '../../interfaces';
+import { capitalizeFirstLetter } from '../../hooks';
 
 interface IDrawerProps {
     isOpen: boolean;
@@ -13,7 +16,8 @@ export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
 
     const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
     const dispacth = useDispatch()
-    
+    const pokemonData= useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
+
     useEffect(() => {
         dispacth(PokemonActions.getPokemonTypesRequest())
     }, [isOpen])
@@ -24,7 +28,7 @@ export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
                 isOpen={isOpen}
                 placement='right'
                 onClose={onClose}
-                size='md'
+                size='sm'
             >
                 <DrawerOverlay />
                 <DrawerContent>
@@ -36,16 +40,17 @@ export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
                     <DrawerBody
                     >
                         <Wrap
-                            spacing='5px'
+                            spacingY='10px'
+                            spacingX='20px'
                             background='blue.100'
                         >
-                            {['', '', '', '', '', ''].map((item, index) => {
+                            {pokemonData?.pokemonTypes?.results.map((item, index) => {
                                 return <WrapItem
-                                    key={index + item}
+                                    key={index + item.name}
                                 >
                                     <FilterButton
                                         filtersActiveds={filtersActiveds} setFiltersActiveds={setFiltersActiveds}
-                                        index={index} key={index} label={'item' + index}
+                                        index={index} key={index} label={capitalizeFirstLetter(item.name)}
                                     />
 
                                 </WrapItem>
