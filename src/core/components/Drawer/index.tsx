@@ -10,11 +10,13 @@ import { capitalizeFirstLetter } from '../../hooks';
 interface IDrawerProps {
     isOpen: boolean;
     onClose: () => void;
+    filtersActiveds: string[];
+    setFiltersActiveds: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-export const Drawer = ({ isOpen, onClose }: IDrawerProps) => {
+export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }: IDrawerProps) => {
 
-    const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
+
     const dispacth = useDispatch()
     const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
 

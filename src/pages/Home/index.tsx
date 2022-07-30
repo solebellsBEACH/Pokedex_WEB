@@ -5,29 +5,40 @@ import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
 import { useDisclosure } from '@chakra-ui/react'
-import { PokemonGrid } from '../../pageComplements/home/components'
+import { ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
 
-const HomeComponent = (props:any) => {
+const HomeComponent = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
   const dispacth = useDispatch();
-  
+  const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
+
   useEffect(() => {
     dispacth(HomeActions.HomePokemonsRequest({
       offset: 0,
       limit: 20
     }))
-  },[props])
+  }, [props])
 
   const handleDrawer = () => {
     onOpen()
   }
 
   return (<>
-    <Drawer isOpen={isOpen} onClose={onClose} />
+    <Drawer
+      isOpen={isOpen}
+      onClose={onClose}
+      filtersActiveds={filtersActiveds}
+      setFiltersActiveds={setFiltersActiveds}
+    />
     <Container>
       <Header handleFilterButton={handleDrawer} />
       <Carousel />
+      <ActiveFiltersGrid
+        filtersActiveds={filtersActiveds}
+        setFiltersActiveds={setFiltersActiveds}
+      />
+      {/* {filtersActiveds.length == 0 ? <></> : <ActiveFiltersGrid />} */}
       <PokemonGrid pokemons={homeData.pokemons} />
     </Container></>
   )
