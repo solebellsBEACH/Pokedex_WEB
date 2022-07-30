@@ -1,7 +1,7 @@
-import { Wrap, WrapItem } from '@chakra-ui/react'
+import { Tooltip, Wrap, WrapItem } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { capitalizeFirstLetter } from '../../../../core/hooks';
-import { Container, FilterButton as FilterButtonContainer, TextButton } from './styles'
+import { StyledMdOutlineClear, Container, FilterButton as FilterButtonContainer, TextButton, Title, ContentTop } from './styles'
 
 interface IActiveFiltersGrid {
     filtersActiveds: string[];
@@ -9,7 +9,6 @@ interface IActiveFiltersGrid {
 }
 
 export const ActiveFiltersGrid = ({ filtersActiveds, setFiltersActiveds }: IActiveFiltersGrid) => {
-
 
     const FilterButton = (props: { item: string, index: number }) => {
         const { item, index } = props;
@@ -35,6 +34,15 @@ export const ActiveFiltersGrid = ({ filtersActiveds, setFiltersActiveds }: IActi
 
     return (
         <Container>
+            <ContentTop>
+                <Title>Filtros</Title>
+                <Tooltip
+                    label='Limpar filtros'
+                >
+                    <div><StyledMdOutlineClear size={25} /></div>
+                </Tooltip>
+            </ContentTop>
+
             <Wrap
                 spacingY='10px'
                 spacingX='20px'

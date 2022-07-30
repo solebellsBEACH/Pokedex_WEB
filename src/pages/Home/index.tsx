@@ -34,11 +34,10 @@ const HomeComponent = (props: any) => {
     <Container>
       <Header handleFilterButton={handleDrawer} />
       <Carousel />
-      <ActiveFiltersGrid
+      {filtersActiveds.length == 0 ? <></> : <ActiveFiltersGrid
         filtersActiveds={filtersActiveds}
         setFiltersActiveds={setFiltersActiveds}
-      />
-      {/* {filtersActiveds.length == 0 ? <></> : <ActiveFiltersGrid />} */}
+      />}
       <PokemonGrid pokemons={homeData.pokemons} />
     </Container></>
   )
