@@ -11,7 +11,6 @@ export const Carousel = () => {
     const [isLargerThan700] = useMediaQuery('(min-width: 700px)');
 
     useEffect(() => {
-       console.log(slideToShow)
         if ([isLargerThan1400, isLargerThan700].toString() == [true, true].toString()) {
             setSlideToShow(3)
         }
