@@ -67,10 +67,20 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
 
                         </Wrap>
                         <Button
-                            onClick={handleClearFilters}
+                            onClick={() => { onClose(); }}
                             size='lg'
                             colorScheme='blue'
                             marginTop='60px'
+                            width='100%'
+                            // marginBottom='10px'
+                            variant='solid'>
+                            Aplicar Filtros
+                        </Button>
+                        <Button
+                            onClick={handleClearFilters}
+                            size='lg'
+                            colorScheme='red'
+                            marginTop='20px'
                             width='100%'
                             // marginBottom='10px'
                             variant='solid'>

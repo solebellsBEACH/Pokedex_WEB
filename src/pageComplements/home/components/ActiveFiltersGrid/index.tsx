@@ -39,7 +39,9 @@ export const ActiveFiltersGrid = ({ filtersActiveds, setFiltersActiveds }: IActi
                 <Tooltip
                     label='Limpar filtros'
                 >
-                    <div><StyledMdOutlineClear size={25} /></div>
+                    <div
+                    onClick={()=>{setFiltersActiveds([])}}
+                    ><StyledMdOutlineClear size={25} /></div>
                 </Tooltip>
             </ContentTop>
 
