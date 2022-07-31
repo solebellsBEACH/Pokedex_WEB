@@ -12,6 +12,7 @@ display:flex;
 align-items:center;
 padding:3vh 30px ;
 border-radius:15px;
+flex-direction:column;
 
 `
 

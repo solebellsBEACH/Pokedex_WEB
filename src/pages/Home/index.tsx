@@ -54,7 +54,6 @@ const HomeComponent = (props: any) => {
           activeTab={activeTab}
           filtersActiveds={filtersActiveds}
         />}
-
     </Container></>
   )
 }

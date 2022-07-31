@@ -10,6 +10,7 @@ interface IPokemonItemProps {
 }
 export const PokemonItem = (props: IPokemonItemProps) => {
     const { index, label, url } = props;
+
     const [pokemon, setPokemon] = useState<{ error: boolean, isLoaded: boolean, data: IPokemon | null }>({ error: false, isLoaded: false, data: null })
 
     const { isOpen, onToggle } = useDisclosure()
@@ -42,7 +43,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                 color='white'
                 fadeDuration={2}
             >
-
+               
                 <Container
                     boxShadow={isOpen ? 'lg' : ''}
                     rounded='md' bg='white'
@@ -53,6 +54,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                         console.log(returnId(url))
                     }}
                 >
+                    
                     <Content
                         color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
                     >

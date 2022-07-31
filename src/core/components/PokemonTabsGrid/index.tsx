@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { PokemonGrid } from '../../../pageComplements/home/components';
+import { IHomeDuckInitialState } from '../../interfaces';
 import { Container, TabSelectorContainer, TabSelectorText, ContentTop, ContentBottom } from './styles'
-
+import { Creators as HomeActions } from '../../../core/store/ducks/home'
 interface IPokemonTabsGrid {
     filtersActiveds: string[];
     setActiveTab: React.Dispatch<React.SetStateAction<string>>;
     activeTab: string;
 }
 
-export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab}: IPokemonTabsGrid) => {
-    {/* {filtersActiveds.map((item, index)=><Tab 
-                    onClick={()=>{console.log(item)}}
-                    key={item+index}>{item}</Tab>)} */}
+export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab }: IPokemonTabsGrid) => {
+
+    const dispacth = useDispatch();
+    const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
+
+    useEffect(() => {
+        console.log(activeTab)
+        dispacth(HomeActions.HomePokemonsForTypeRequest({
+            offset: 0,
+            limit: 20,
+            pokemonType: activeTab
+        }))
+    }, [activeTab])
+
+
 
     const TabSelector = (props: { label: string }) => {
         const { label } = props;
@@ -29,6 +44,7 @@ export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab}: IPo
                 {filtersActiveds.map((item, index) => <TabSelector key={index + item} label={item} />)}
             </ContentTop>
             <ContentBottom>
+                <PokemonGrid filtersActiveds pokemons={homeData.pokemons} />
             </ContentBottom>
         </Container>
     )
