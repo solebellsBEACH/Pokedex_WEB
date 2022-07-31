@@ -1,7 +1,7 @@
 import { IPossiblePokemonKeys } from "../interfaces";
 
 export function capitalizeFirstLetter(string: string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string?.charAt(0).toUpperCase() + string?.slice(1);
 }
 
 export function useAddZeroInNumber(number: number): string {
@@ -23,6 +23,7 @@ export function pokemonColors({ pokemonType }: IPossiblePokemonKeys) {
         fire: { secondary: '#fdafaf', primary: '#ff6c6c' , name:'red'},
         grass: { secondary: '#8DF59F', primary: '#22AE39' , name:'green'},
         electric: { secondary: '#fff1aa', primary: '#f6df6f' , name:'green'},
+        ice: { secondary: '#fff1aa', primary: '#f6df6f' , name:'green'},
         water: { secondary: '#aee5ff', primary: '#62cdff' , name:'blue'},
         ground: { secondary: '#fdcb99', primary: '#f2aa62' , name:'green'},
         rock: { secondary: '#d8d8b7', primary: '#d8d84c' , name:'green'},
@@ -35,7 +36,9 @@ export function pokemonColors({ pokemonType }: IPossiblePokemonKeys) {
         fighting: { secondary: '#e0d4bc', primary: '#f7a603' , name:'gray'},
         normal: { secondary: '#DCDCDC', primary: '#666666' , name:'gray'}
     }
-
+if(data[pokemonType]==undefined){
+    return { secondary: '#f5b9ff', primary: '#e655ff' , name:'green'}
+}
     return data[pokemonType]
 
 }

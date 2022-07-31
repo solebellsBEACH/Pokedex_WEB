@@ -1,9 +1,12 @@
-import { IHomeDuckInitialState, IPokemonRequest } from "../../interfaces";
+import { IHomeDuckInitialState, IPokemonPreRequest, IPokemonRequest } from "../../interfaces";
 
 export const Types = {
     HOME_POKEMONS_REQUEST: 'HOME_POKEMONS_REQUEST',
     HOME_POKEMONS_SUCCESS: 'HOME_POKEMONS_SUCCESS',
     HOME_POKEMONS_FAIL: 'HOME_POKEMONS_FAIL',
+    HOME_POKEMONS_FOR_TYPE_REQUEST: 'HOME_POKEMONS_FOR_TYPE_REQUEST',
+    HOME_POKEMONS_FOR_TYPE_SUCCESS: 'HOME_POKEMONS_FOR_TYPE_SUCCESS',
+    HOME_POKEMONS_FOR_TYPE_FAIL: 'HOME_POKEMONS_FOR_TYPE_FAIL',
 };
 
 
@@ -12,7 +15,7 @@ const INITIAL_STATE: IHomeDuckInitialState = {
     loading: false,
     error: false,
     pokemons: null,
-    success: false,    
+    success: false,
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
@@ -36,20 +39,27 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 loading: false,
                 error: true
             };
-            case Types.HOME_POKEMONS_REQUEST:
+        case Types.HOME_POKEMONS_FOR_TYPE_REQUEST:
             return {
                 ...state,
                 loading: true,
                 error: false
             };
-        case Types.HOME_POKEMONS_SUCCESS:
+        case Types.HOME_POKEMONS_FOR_TYPE_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 error: false,
-                pokemons: action.payload
+                pokemons: {
+                    count: 0,
+                    next: null,
+                    previous: null,
+                    results: action.payload
+                }
+
+
             };
-        case Types.HOME_POKEMONS_FAIL:
+        case Types.HOME_POKEMONS_FOR_TYPE_FAIL:
             return {
                 ...state,
                 loading: false,
@@ -71,5 +81,16 @@ export const Creators = {
     }),
     HomePokemonsFail: () => ({
         type: Types.HOME_POKEMONS_FAIL
+    }),
+    HomePokemonsForTypeRequest: (payload: { offset: number, limit: number, pokemonType: string }) => ({
+        type: Types.HOME_POKEMONS_FOR_TYPE_REQUEST,
+        payload
+    }),
+    HomePokemonsForTypeSuccess: (payload: IPokemonPreRequest[] | null) => ({
+        type: Types.HOME_POKEMONS_FOR_TYPE_SUCCESS,
+        payload
+    }),
+    HomePokemonsForTypeFail: () => ({
+        type: Types.HOME_POKEMONS_FOR_TYPE_FAIL
     }),
 };
