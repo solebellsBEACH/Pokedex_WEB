@@ -27,11 +27,11 @@ height:40px;
 justify-content:center;
 align-items:center;
 border-bottom-width:${(props) => props.isActive ? 3 : 0}px;
-border-bottom-color:${({ theme }) => colors().red1};
+border-bottom-color:${({ theme }) => colors().blue3};
 `
 export const TabSelectorText = styled.h1<ITabSelectorProps>`
 font-weight: ${(props) => props.isActive ? 'bold' : 'normal'};
-font-size:14px;
+font-size:16px;
 color:${(props) => props.isActive ? colors().gray6 : colors().gray4};
 `
 

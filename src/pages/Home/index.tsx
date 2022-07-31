@@ -13,13 +13,19 @@ const HomeComponent = (props: any) => {
   const dispacth = useDispatch();
   const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
   const [activeTab, setActiveTab] = useState('')
-  
+
   useEffect(() => {
     dispacth(HomeActions.HomePokemonsRequest({
       offset: 0,
       limit: 20
     }))
   }, [props])
+
+  useEffect(() => {
+    if (filtersActiveds.length != 0) {
+      setActiveTab(filtersActiveds[0])
+    }
+  }, [filtersActiveds])
 
   const handleDrawer = () => {
     onOpen()
