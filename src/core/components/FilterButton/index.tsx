@@ -20,11 +20,10 @@ export const FilterButton = ({ index, label, filtersActiveds, setFiltersActiveds
         else {
             return true;
         }
-
     }
 
     const handlePress = () => {
-        const array = filtersActiveds;
+        const array = [...filtersActiveds];
         if (!isActiveUtil()) {
             setIsActive(true)
             array.push(label)

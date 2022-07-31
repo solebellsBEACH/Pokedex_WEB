@@ -19,7 +19,7 @@ export const ActiveFiltersGrid = ({ filtersActiveds, setFiltersActiveds }: IActi
             {isActive ?
                 <FilterButtonContainer
                     onClick={() => {
-                        const array = filtersActiveds;
+                        const array = [...filtersActiveds];
                         array.splice(array.indexOf(item), 1)
                         setFiltersActiveds(array)
                         setIsActive(false)
@@ -49,7 +49,7 @@ export const ActiveFiltersGrid = ({ filtersActiveds, setFiltersActiveds }: IActi
                 spacingY='10px'
                 spacingX='20px'
             >
-                {filtersActiveds.map((item, index) => <FilterButton item={item} index={index} />)}
+                {filtersActiveds.map((item, index) => <FilterButton key={item}item={item} index={index} />)}
 
             </Wrap>
         </Container>
