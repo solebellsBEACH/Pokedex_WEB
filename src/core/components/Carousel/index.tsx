@@ -31,7 +31,6 @@ export const Carousel = () => {
                 withoutControls
                 autoplay
                 // cellAlign={'center'}
-                
             >
                 <StyledImage src={CarouselIMG01} />
                 <StyledImage src={CarouselIMG02} />

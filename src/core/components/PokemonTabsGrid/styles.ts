@@ -63,10 +63,10 @@ color: ${colors().gray6};
 `
 export const ContentTop  = styled.div`
 width:100% ;
-height: 47px;
+min-height: 47px;
 flex-direction:row;
 justify-content:space-between;
-margin-bottom:30px;
+margin-bottom:0px;
 `;
 // export const StatusTabFlatList = styled.FlatList`
 // width:100% ;
