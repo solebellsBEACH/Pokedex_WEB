@@ -1,28 +1,24 @@
 import React from 'react'
 
-import { Container, Content, ContentRight, ContentLeft, ContentImage, ImageLogoPokemon, FilterButton } from './styles'
-import { LogoPokemon, LogoConfig } from '../../../../assets';
-import Image from 'next/image';
+import { Container, ContentImage, ImageLogoPokemon } from './styles'
+import { LogoPokemon } from '../../../../assets';
+import { useRouter } from 'next/router';
 
 interface IHeaderProps {
 
 }
 
 export const Header = () => {
-
+    const router = useRouter();
     return (
         <Container>
-            <Content>
-                <ContentLeft>
-                    <ContentImage><ImageLogoPokemon height='80%' src={LogoPokemon} /></ContentImage>
-                </ContentLeft>
-                <ContentRight>
-                    <FilterButton
-                    >
-                        <Image src={LogoConfig} />
-                    </FilterButton>
-                </ContentRight>
-            </Content>
+            <ContentImage
+                onClick={() => {
+                    router.push('/')
+                }}
+            >
+                <ImageLogoPokemon height='100%' src={LogoPokemon} />
+            </ContentImage>
         </Container>
     )
 }

@@ -4,7 +4,7 @@ import { colors } from '../../../../core/helpers'
 export const Container = styled.div`
 width:95% ;
 margin:5vh 2.5%;
-background-color:${colors().gray1};
+background-color:${colors().background};
 display:flex;
 justify-content:center;
 align-items:center;
