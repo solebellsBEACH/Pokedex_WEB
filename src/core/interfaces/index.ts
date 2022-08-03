@@ -120,3 +120,10 @@ export interface IPokemonDuckInitialState {
     successPokemonTypes: boolean,
 
 }
+
+export interface IPokemonScreenDuckInitialState {
+    loading: boolean,
+    error: boolean,
+    pokemonData: IPokemon | null,
+    success: boolean,
+}

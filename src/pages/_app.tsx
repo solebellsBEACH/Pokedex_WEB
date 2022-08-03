@@ -6,11 +6,11 @@ import { Provider } from "react-redux";
 import { store } from "../core/store";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Provider store={store}>
-    <ChakraProvider>
-    <Component {...pageProps} />
+  return  <ChakraProvider>
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
   </ChakraProvider>
-  </Provider>
 }
 
 export default MyApp

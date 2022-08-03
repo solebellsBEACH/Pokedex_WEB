@@ -27,16 +27,16 @@ export const Carousel = () => {
             <StyledCarousel
                 wrapAround={true}
                 animation='zoom'
-                slidesToShow={3}
+                slidesToShow={slideToShow}
                 withoutControls
                 autoplay
                 // cellAlign={'center'}
             >
-                <StyledImage src={CarouselIMG01} />
-                <StyledImage src={CarouselIMG02} />
-                <StyledImage src={CarouselIMG03} />
-                <StyledImage src={CarouselIMG04} />
-                <StyledImage src={CarouselIMG05} />
+                <StyledImage key='carrosselImagem1'src={CarouselIMG01} />
+                <StyledImage key='carrosselImagem2'src={CarouselIMG02} />
+                <StyledImage key='carrosselImagem3'src={CarouselIMG03} />
+                <StyledImage key='carrosselImagem4'src={CarouselIMG04} />
+                <StyledImage key='carrosselImagem5'src={CarouselIMG05} />
             </StyledCarousel >
         </Container>
     )
