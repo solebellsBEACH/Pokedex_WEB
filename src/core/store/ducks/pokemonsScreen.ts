@@ -13,7 +13,7 @@ const INITIAL_STATE: IPokemonScreenDuckInitialState = {
     success: false,
 };
 
-export default function Home(state = INITIAL_STATE, action: any) {
+export default function PokemonScreen(state = INITIAL_STATE, action: any) {
     switch (action.type) {
         case Types.GET_POKEMONS_SCREEN_REQUEST:
             return {

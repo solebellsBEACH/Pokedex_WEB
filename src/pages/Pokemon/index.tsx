@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router'
-import { Header } from '../../pageComplements/pokemonScreen/components'
-import { Container } from '../../pageComplements/pokemonScreen/styles'
+import { Header, ProductContainer } from '../../pageComplements/pokemonScreen/components'
+import { Container, Content } from '../../pageComplements/pokemonScreen/styles'
 
 const Pokemon = () => {
-    const router = useRouter()
-    const { id } = router.query
-
+    const id = 15;
     return <Container>
         <Header/>
-        PokemonScreen
+        <Content>
+            <ProductContainer id={id}/>
+        </Content>
     </Container>
 }
 

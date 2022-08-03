@@ -2,11 +2,13 @@ import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
 import { api } from '../../../services/api';
 import { Creators as PokemonsScreenActions, Types as PokemonTypes } from '../../ducks/pokemonsScreen';
 
-function* getPokemonsScreen(params: { type: string, payload: { id: number} }): any {
+function* getPokemonsScreen(params: { type: string, payload: { id: number } }): any {
+
   const { id } = params.payload
 
   try {
     const response = yield call(api.get, `pokemon/${id}`);
+
     if (response.status === 200) {
       yield put(PokemonsScreenActions.getPokemonsScreenSuccess(response.data));
     } else {
