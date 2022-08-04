@@ -13,7 +13,8 @@ import {
     AbilityValue,
     BaseExperienceContainer,
     BaseExperienceLabel,
-    ContentPrice
+    ContentPrice,
+    FreteText
 } from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
 import { useSelector } from 'react-redux';
@@ -21,6 +22,8 @@ import { IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks';
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { ErrorData } from '../../../../core/components';
+import { BsTruck } from 'react-icons/bs'
+
 interface IProductContainer {
     id: number;
 }
@@ -57,7 +60,7 @@ export const ProductContainer = (props: IProductContainer) => {
                         {capitalizeFirstLetter(pokemonScreenData?.pokemonData?.name)}
                     </Heading>
                     <Stat>
-                        <StatHelpText>$  {(returnPrice(pokemonScreenData?.pokemonData?.height)*1.8).toFixed(2)}</StatHelpText>
+                        <StatHelpText>$  {(returnPrice(pokemonScreenData?.pokemonData?.height) * 1.8).toFixed(2)}</StatHelpText>
                     </Stat>
                     <Heading size='lg' my='0'>
                         $ {returnPrice(pokemonScreenData.pokemonData?.height).toFixed(2)}
@@ -115,7 +118,9 @@ export const ProductContainer = (props: IProductContainer) => {
                 </LinkBox>
             </ContentData>
             <ContentPrice>
-            <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md' my='0'></LinkBox>
+                <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md' my='0'>
+                    <FreteText><BsTruck size='20' style={{ marginRight: '10px' }} />Chegará grátis quinta-feira 18 de agosto</FreteText>
+                </LinkBox>
             </ContentPrice>
         </Container>
     )

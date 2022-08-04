@@ -7,7 +7,6 @@ export const ErrorData = () => {
     return (
         <Container>
             ErrorData
-            <Image src={ErrorImage}/>
         </Container>
     )
 }

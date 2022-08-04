@@ -104,3 +104,11 @@ width:380px;
 min-height:500px;
 margin:0 10px;
 `;
+
+export const FreteText = styled.div`
+display: flex;
+align-items: center;
+color:${colors().green1};
+font-weight:bold;
+font-size:15px;
+`;
