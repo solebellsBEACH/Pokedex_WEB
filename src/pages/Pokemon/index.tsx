@@ -6,9 +6,7 @@ const Pokemon = () => {
     const id = 15;
     return <Container>
         <Header/>
-        <Content>
             <ProductContainer id={id}/>
-        </Content>
     </Container>
 }
 

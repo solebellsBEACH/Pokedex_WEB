@@ -18,6 +18,7 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
+    name: string,
     stats: {
         base_stat: number,
         stat: {
