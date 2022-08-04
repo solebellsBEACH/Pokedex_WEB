@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import React from 'react'
-import { Container } from './styles'
+import { Container, ErrorText } from './styles'
 import ErrorImage from '../../../assets/errorImage.svg'
 
 export const ErrorData = () => {
     return (
         <Container>
-            ErrorData
+            <Image src={ErrorImage} width="500px"height="500px"  />
+            <ErrorText>Erro ao carregar a Página</ErrorText>
         </Container>
     )
 }

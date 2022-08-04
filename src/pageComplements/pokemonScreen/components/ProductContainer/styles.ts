@@ -49,7 +49,7 @@ font-size:22px;
 export const PokemonImage = styled.img`
 `;
 
-export const PromocaoText= styled.div`
+export const PromocaoText = styled.div`
 display: flex;
 font-size:20px;
 
@@ -111,4 +111,55 @@ align-items: center;
 color:${colors().green1};
 font-weight:bold;
 font-size:15px;
+margin-bottom:30px;
 `;
+
+export const EstoqueContent = styled.div`
+width:100%; 
+min-height:30px;
+display: flex;
+align-items: center;
+margin-top:20px;
+h1{
+margin-right:5px ;
+font-size:18px;
+}
+h2{
+margin-left:5px ;
+font-size:12px;
+color:${colors().gray4};
+}
+#downIcon{
+    margin-left:5px
+
+}
+
+`
+export const ContentBuyButtons = styled.div`
+width:100% ;
+height:110px;
+margin-top:30px;
+display:flex;
+align-items: center;
+justify-content: space-between;
+flex-direction: column;
+`
+
+interface IBuyButtonProps {
+    readonly backgroundColor: string;
+    readonly color: string;
+}
+
+export const BuyButton = styled.button<IBuyButtonProps>`
+background:${props => props.backgroundColor};
+width:100% ;
+height:48px ;
+border-radius:10px;
+filter:saturate(1.3);
+&:hover{
+    filter:saturate(1);
+}
+color:${props => props.color};
+font-size:18px;
+font-weight:bold;
+`
