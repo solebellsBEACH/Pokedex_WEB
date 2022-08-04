@@ -18,6 +18,7 @@ border-radius:10px;
     justify-content: center;
     align-items: center;
 }
+
 `
 interface IContentImagesProps {
     color: string;
@@ -30,18 +31,25 @@ background-color:${props => props.color};
 display: flex;
 padding:1px;
 border-radius:10px;
+@media(max-width:450px){
+    width:350px;
+}
+@media(max-width:400px){
+width
+300px}
 
 `;
 
 export const ContentImage = styled.div`
 border-top-left-radius:10px;
 border-top-right-radius:10px;
-width:400px;
+width:100%;
 height:450px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color:${colors().white};
+
 `;
 
 export const ContentData = styled.div`
@@ -54,6 +62,13 @@ margin:0 10px;
     margin:30px 10px 10px 10px;
     width:380px;
 }
+@media(max-width:450px){
+    width:350px;
+}
+@media(max-width:400px){
+width
+300px}
+
 `;
 
 export const PokemonTitle = styled.h1`
@@ -116,6 +131,16 @@ export const ContentPrice = styled.div`
 width:380px;
 min-height:500px;
 margin:0 10px;
+@media(max-width:450px){
+    width:350px;
+}
+@media(max-width:400px){
+width:300px ;
+}
+@media(max-width:350px){
+width:250px ;
+}
+
 `;
 
 export const FreteText = styled.div<IContentImagesProps>`
