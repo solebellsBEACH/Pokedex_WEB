@@ -105,13 +105,14 @@ min-height:500px;
 margin:0 10px;
 `;
 
-export const FreteText = styled.div`
+export const FreteText = styled.div<IContentImagesProps>`
 display: flex;
 align-items: center;
-color:${colors().green1};
+color:${props=> props.color};
 font-weight:bold;
 font-size:15px;
 margin-bottom:30px;
+filter:saturate(2);
 `;
 
 export const EstoqueContent = styled.div`
@@ -155,9 +156,9 @@ background:${props => props.backgroundColor};
 width:100% ;
 height:48px ;
 border-radius:10px;
-filter:saturate(1.3);
+filter:saturate(1);
 &:hover{
-    filter:saturate(1);
+    filter:saturate(1.8);
 }
 color:${props => props.color};
 font-size:18px;
