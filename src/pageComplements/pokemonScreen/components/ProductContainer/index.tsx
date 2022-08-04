@@ -54,10 +54,10 @@ export const ProductContainer = (props: IProductContainer) => {
             <ContentData>
                 <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
                     <Heading size='md' my='2'>
-                        {capitalizeFirstLetter(pokemonScreenData.pokemonData?.name)}
+                        {capitalizeFirstLetter(pokemonScreenData?.pokemonData?.name)}
                     </Heading>
                     <Stat>
-                        <StatHelpText>$  {returnPrice(pokemonScreenData.pokemonData?.height * 1.9).toFixed(2)}</StatHelpText>
+                        <StatHelpText>$  {(returnPrice(pokemonScreenData?.pokemonData?.height)*1.8).toFixed(2)}</StatHelpText>
                     </Stat>
                     <Heading size='lg' my='0'>
                         $ {returnPrice(pokemonScreenData.pokemonData?.height).toFixed(2)}
