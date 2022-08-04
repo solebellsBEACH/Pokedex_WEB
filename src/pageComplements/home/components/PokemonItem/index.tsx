@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { returnId, capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks'
-import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom, PokemonName, BaseExperienceContainer, BaseExperienceLabel, AbilityLabel, AbilityValue } from './styles'
+import { returnId, capitalizeFirstLetter, pokemonColors, returnPrice, checkDevice } from '../../../../core/hooks'
+import { Container, Content, StyledSpinner, PokemonImage, ContentImage, ContentBottom, PokemonName, BaseExperienceContainer, BaseExperienceLabel, AbilityLabel, AbilityValue, VisitButton } from './styles'
 import { Box, Collapse, Progress, SimpleGrid, Skeleton, useDisclosure } from '@chakra-ui/react';
 import { IPokemon } from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
@@ -13,6 +13,12 @@ export const PokemonItem = (props: IPokemonItemProps) => {
     const { index, label, url } = props;
 
     const router = useRouter();
+
+    let isDevice = false;
+
+    if (typeof window !== 'undefined') {
+        isDevice = checkDevice(window)
+    }
 
     const [pokemon, setPokemon] = useState<{ error: boolean, isLoaded: boolean, data: IPokemon | null }>({ error: false, isLoaded: false, data: null })
 
@@ -28,6 +34,12 @@ export const PokemonItem = (props: IPokemonItemProps) => {
     }
 
     useEffect(() => { getPokemon() }, [props]);
+
+    let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
+    if (pokemon.data?.types[0].type.name != undefined) {
+        pokemonColor = pokemonColors({ pokemonType: pokemon.data?.types[0].type.name })
+    }
+
 
     return (
         <>
@@ -54,7 +66,10 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                     onMouseLeave={() => { onToggle() }}
                     color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
                     onClick={() => {
-                        router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                        if (!isDevice) {
+                            router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                        }
+
                         console.log(returnId(url))
                     }}
                 >
@@ -128,7 +143,18 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                     })}
 
                                 </SimpleGrid>
+                                {isDevice ? <div
+                                    style={{ width: '100%', display: 'flex', marginTop: '15px' }}
+                                >
+                                    <VisitButton
+                                        onClick={() => {
+                                            router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                                        }}
+                                        backgroundColor={pokemonColor.primary}
+                                        color={'white'}
+                                    >Visitar</VisitButton>
 
+                                </div> : <></>}
                             </Box>
                         </Collapse>
                     </ContentBottom>

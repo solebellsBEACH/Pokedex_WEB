@@ -98,3 +98,23 @@ font-style: italic;
 font-size:17px;
 margin-left:10px;
 `;
+
+interface IVisitButtonProps {
+    readonly backgroundColor: string;
+    readonly color: string;
+}
+
+export const VisitButton = styled.button<IVisitButtonProps>`
+background:${props => props.backgroundColor};
+width:100% ;
+height:48px ;
+border-radius:10px;
+margin:10px 5px;
+filter:saturate(1);
+&:hover{
+    filter:saturate(1.8);
+}
+color:${props => props.color};
+font-size:18px;
+font-weight:bold;
+`
