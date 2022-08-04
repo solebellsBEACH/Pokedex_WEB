@@ -97,3 +97,10 @@ font-style: italic;
 font-size:17px;
 margin-right:5px;
 `;
+
+
+export const ContentPrice = styled.div`
+width:380px;
+min-height:500px;
+margin:0 10px;
+`;

@@ -1,7 +1,20 @@
 import { Box, Heading, LinkBox, Progress, SimpleGrid, Stat, StatHelpText, useMediaQuery } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { Container, ContentImages, ContentData, PromocaoText, ContentImage, PokemonImage, PokemonTitle, AbilityLabel, AbilityValue, BaseExperienceContainer, BaseExperienceLabel } from './styles'
+import {
+    Container,
+    ContentImages,
+    ContentData,
+    PromocaoText,
+    ContentImage,
+    PokemonImage,
+    PokemonTitle,
+    AbilityLabel,
+    AbilityValue,
+    BaseExperienceContainer,
+    BaseExperienceLabel,
+    ContentPrice
+} from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
 import { useSelector } from 'react-redux';
 import { IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
@@ -18,13 +31,13 @@ export const ProductContainer = (props: IProductContainer) => {
     const dispacth = useDispatch();
 
     useEffect(() => {
-        dispacth(PokemonScreenActions.getPokemonsScreenRequest({ id:props.id}))
+        dispacth(PokemonScreenActions.getPokemonsScreenRequest({ id: props.id }))
     }, [props])
 
     const pokemonScreenData = useSelector((state: { pokemonScreen: IPokemonScreenDuckInitialState }) => state.pokemonScreen)
 
     if (pokemonScreenData.error) {
-        return <ErrorData/>
+        return <ErrorData />
     }
 
     return (
@@ -101,6 +114,9 @@ export const ProductContainer = (props: IProductContainer) => {
                     </SimpleGrid>
                 </LinkBox>
             </ContentData>
+            <ContentPrice>
+            <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md' my='0'></LinkBox>
+            </ContentPrice>
         </Container>
     )
 }
