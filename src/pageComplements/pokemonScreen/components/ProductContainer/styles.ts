@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../../../core/helpers'
 
 export const Container = styled.div`
+margin-bottom:150px;
 width:1200px;
 min-height:500px;
 background-color:${colors().background};
@@ -10,6 +11,13 @@ flex-direction: row;
 padding:10px 10px 20px 10px;
 border:1px ${colors().gray1} solid;
 border-radius:10px;
+
+@media(max-width:1250px){
+    flex-direction: column;
+    width:auto;
+    justify-content: center;
+    align-items: center;
+}
 `
 interface IContentImagesProps {
     color: string;
@@ -41,6 +49,11 @@ width:350px;
 min-height:500px;
 /* background-color:red; */
 margin:0 10px;
+
+@media(max-width:1250px){
+    margin:30px 10px 10px 10px;
+    width:380px;
+}
 `;
 
 export const PokemonTitle = styled.h1`
