@@ -3,9 +3,7 @@ import HomeComponent from './Home'
 
 const Index: NextPage = () => {
   return (
-    <>
-    <HomeComponent/>
-    </>
+    <HomeComponent />
   )
 }
 

@@ -1,15 +1,19 @@
-import {  Wrap } from '@chakra-ui/react'
 import styled from 'styled-components'
+import Image from 'next/image'
 import { colors } from '../../../../core/helpers'
+
 export const Container = styled.div`
-width:95% ;
-margin:5vh 2.5%;
-background-color:${colors().background};
+width:100%;
+margin-top:1.5vh;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:3vh 0 ;
-border-radius:15px;
+
 `
-export const Grid = styled(Wrap)`
+
+export const ContentImage = styled.div`
+
+
+`
+export const ImageLogoPokemon = styled(Image)`
 `

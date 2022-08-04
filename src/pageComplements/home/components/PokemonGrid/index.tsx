@@ -9,8 +9,9 @@ interface IPokemonGridProps {
     filtersActiveds?: boolean
 }
 export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) => {
+
     const PokemonMap = (results: any[]) => {
-        if (filtersActiveds) {
+        if (results[0]?.pokemon !== undefined) {
 
             return results.map((item, index) => {
                 if (item.pokemon?.name == undefined) {

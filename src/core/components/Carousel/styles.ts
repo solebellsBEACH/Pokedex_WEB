@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { colors } from '../../helpers';
 
 export const Container = styled.div`
-background-color:${colors().gray1};
+background-color:${colors().background};
 width:95% ;
 padding:2vh 5%;
 border-radius:30px;

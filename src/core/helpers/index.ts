@@ -12,6 +12,8 @@ export const colors = () => {
         gray6: '#3F3F3F',
         gray7: '#5E5D5D',
         black: '#5E5D5D',
-        red1: '#FF1D1D'
+        red1: '#FF1D1D',
+        background:'#F8F8FF',
+        green1:'#228B22'
     }
 }
