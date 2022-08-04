@@ -108,7 +108,7 @@ margin:0 10px;
 export const FreteText = styled.div<IContentImagesProps>`
 display: flex;
 align-items: center;
-color:${props=> props.color};
+color:${props => props.color};
 font-weight:bold;
 font-size:15px;
 margin-bottom:30px;
@@ -163,4 +163,31 @@ filter:saturate(1);
 color:${props => props.color};
 font-size:18px;
 font-weight:bold;
+`
+
+export const AddInfoContent = styled.div`
+width:100% ;
+min-height:100px;
+
+margin-top:25px;
+`
+export const InfoContent = styled.div`
+width:100% ;
+min-height:30px;
+margin-top:15px;
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+div{
+    margin-left:5px;
+    width:90% ;
+    display: flex;
+    align-items: center;
+    color:${colors().gray6};
+    font-weight:bold;
+    font-style:italic;
+    font-size:13px;
+    filter:saturate(2);
+}
 `

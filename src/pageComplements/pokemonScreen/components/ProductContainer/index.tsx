@@ -17,15 +17,17 @@ import {
     FreteText,
     EstoqueContent,
     ContentBuyButtons,
-    BuyButton
+    BuyButton,
+    AddInfoContent,
+    InfoContent
 } from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
 import { useSelector } from 'react-redux';
 import { IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks';
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretDown, AiFillCaretUp, AiOutlineSafety, AiOutlineTrophy } from "react-icons/ai";
 import { ErrorData } from '../../../../core/components';
-import { BsTruck, BsChevronDown } from 'react-icons/bs'
+import { BsTruck, BsChevronDown, BsAward } from 'react-icons/bs'
 import { colors } from '../../../../core/helpers';
 
 interface IProductContainer {
@@ -174,7 +176,20 @@ export const ProductContainer = (props: IProductContainer) => {
                             color={colors().gray6}
                         >Adicionar ao carrinho</BuyButton>
                     </ContentBuyButtons>
-                    
+                    <AddInfoContent>
+                        {[{ text: 'Compra Garantida, receba o produto que está esperando ou devolvemos o dinheiro.', icon: <AiOutlineSafety /> },
+                        { text: 'Mercado Pontos. Você acumula 4086 pontos.', icon: <AiOutlineTrophy /> },
+                        { text: '12 meses de garantia de fábrica.', icon: <BsAward /> },
+                        ].map((item, index) => {
+                            return <InfoContent
+                                key={'AddInfoContent' + index}
+                            >
+                                {item.icon}<div>{item.text}</div>
+                            </InfoContent>
+
+                        })}
+                    </AddInfoContent>
+
                 </LinkBox>
             </ContentPrice>
         </Container>
