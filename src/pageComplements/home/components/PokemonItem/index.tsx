@@ -5,11 +5,14 @@ import { Box, Collapse, Progress, SimpleGrid, Skeleton, useDisclosure } from '@c
 import { IPokemon } from '../../../../core/interfaces';
 import { api } from '../../../../core/services/api';
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { useRouter } from 'next/router';
 interface IPokemonItemProps {
     index: number; label: string; url: string
 }
 export const PokemonItem = (props: IPokemonItemProps) => {
     const { index, label, url } = props;
+
+    const router = useRouter();
 
     const [pokemon, setPokemon] = useState<{ error: boolean, isLoaded: boolean, data: IPokemon | null }>({ error: false, isLoaded: false, data: null })
 
@@ -43,7 +46,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                 color='white'
                 fadeDuration={2}
             >
-               
+
                 <Container
                     boxShadow={isOpen ? 'lg' : ''}
                     rounded='md' bg='white'
@@ -51,10 +54,11 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                     onMouseLeave={() => { onToggle() }}
                     color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
                     onClick={() => {
+                        router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
                         console.log(returnId(url))
                     }}
                 >
-                    
+
                     <Content
                         color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
                     >

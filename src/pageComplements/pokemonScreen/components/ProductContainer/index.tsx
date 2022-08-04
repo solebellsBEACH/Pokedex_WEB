@@ -17,15 +17,17 @@ import {
     FreteText,
     EstoqueContent,
     ContentBuyButtons,
-    BuyButton
+    BuyButton,
+    AddInfoContent,
+    InfoContent
 } from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
 import { useSelector } from 'react-redux';
 import { IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks';
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import { AiFillCaretDown, AiFillCaretUp, AiOutlineSafety, AiOutlineTrophy } from "react-icons/ai";
 import { ErrorData } from '../../../../core/components';
-import { BsTruck, BsChevronDown } from 'react-icons/bs'
+import { BsTruck, BsChevronDown, BsAward } from 'react-icons/bs'
 import { colors } from '../../../../core/helpers';
 
 interface IProductContainer {
@@ -44,9 +46,9 @@ export const ProductContainer = (props: IProductContainer) => {
 
     const pokemonScreenData = useSelector((state: { pokemonScreen: IPokemonScreenDuckInitialState }) => state.pokemonScreen)
 
- 
 
-    let pokemonColor = {primary:'red', secondary:'red', name:'red'}
+
+    let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
     if (pokemonScreenData.pokemonData?.types[0].type.name != undefined) {
         pokemonColor = pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.types[0].type.name })
     }
@@ -76,7 +78,7 @@ export const ProductContainer = (props: IProductContainer) => {
                     <Heading size='lg' my='0'>
                         $ {returnPrice(pokemonScreenData.pokemonData?.height).toFixed(2)}
                     </Heading>
-                    <PromocaoText>em<div>10x {(returnPrice(pokemonScreenData.pokemonData?.height) / 10).toFixed(1)}</div><div id='cents'>00</div> <div>sem juros</div></PromocaoText>
+                    <PromocaoText>em<div style={{ color: pokemonColor.primary }}>10x {(returnPrice(pokemonScreenData.pokemonData?.height) / 10).toFixed(1)}</div><div style={{ color: pokemonColor.primary }} id='cents'>00</div> <div style={{ color: pokemonColor.primary }}>sem juros</div></PromocaoText>
                 </LinkBox>
                 <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md' my='5'>
                     <Heading size='lg' my='2'>
@@ -130,7 +132,9 @@ export const ProductContainer = (props: IProductContainer) => {
             </ContentData>
             <ContentPrice>
                 <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md' my='0'>
-                    <FreteText><BsTruck size='20' style={{ marginRight: '10px' }} />Chegará grátis quinta-feira, 18 de agosto</FreteText>
+                    <FreteText
+                        color={pokemonColor.primary}
+                    ><BsTruck size='20' style={{ marginRight: '10px' }} />Chegará grátis quinta-feira, 18 de agosto</FreteText>
                     <Heading size='sm' my='2'>
                         Estoque disponível
                     </Heading>
@@ -172,6 +176,20 @@ export const ProductContainer = (props: IProductContainer) => {
                             color={colors().gray6}
                         >Adicionar ao carrinho</BuyButton>
                     </ContentBuyButtons>
+                    <AddInfoContent>
+                        {[{ text: 'Compra Garantida, receba o produto que está esperando ou devolvemos o dinheiro.', icon: <AiOutlineSafety /> },
+                        { text: 'Mercado Pontos. Você acumula 4086 pontos.', icon: <AiOutlineTrophy /> },
+                        { text: '12 meses de garantia de fábrica.', icon: <BsAward /> },
+                        ].map((item, index) => {
+                            return <InfoContent
+                                key={'AddInfoContent' + index}
+                            >
+                                {item.icon}<div>{item.text}</div>
+                            </InfoContent>
+
+                        })}
+                    </AddInfoContent>
+
                 </LinkBox>
             </ContentPrice>
         </Container>

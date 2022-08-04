@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { colors } from '../../../../core/helpers'
 
 export const Container = styled.div`
+margin-bottom:150px;
 width:1200px;
 min-height:500px;
 background-color:${colors().background};
@@ -10,6 +11,13 @@ flex-direction: row;
 padding:10px 10px 20px 10px;
 border:1px ${colors().gray1} solid;
 border-radius:10px;
+
+@media(max-width:1250px){
+    flex-direction: column;
+    width:auto;
+    justify-content: center;
+    align-items: center;
+}
 `
 interface IContentImagesProps {
     color: string;
@@ -41,6 +49,11 @@ width:350px;
 min-height:500px;
 /* background-color:red; */
 margin:0 10px;
+
+@media(max-width:1250px){
+    margin:30px 10px 10px 10px;
+    width:380px;
+}
 `;
 
 export const PokemonTitle = styled.h1`
@@ -105,13 +118,14 @@ min-height:500px;
 margin:0 10px;
 `;
 
-export const FreteText = styled.div`
+export const FreteText = styled.div<IContentImagesProps>`
 display: flex;
 align-items: center;
-color:${colors().green1};
+color:${props => props.color};
 font-weight:bold;
 font-size:15px;
 margin-bottom:30px;
+filter:saturate(2);
 `;
 
 export const EstoqueContent = styled.div`
@@ -155,11 +169,38 @@ background:${props => props.backgroundColor};
 width:100% ;
 height:48px ;
 border-radius:10px;
-filter:saturate(1.3);
+filter:saturate(1);
 &:hover{
-    filter:saturate(1);
+    filter:saturate(1.8);
 }
 color:${props => props.color};
 font-size:18px;
 font-weight:bold;
+`
+
+export const AddInfoContent = styled.div`
+width:100% ;
+min-height:100px;
+
+margin-top:25px;
+`
+export const InfoContent = styled.div`
+width:100% ;
+min-height:30px;
+margin-top:15px;
+display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+div{
+    margin-left:5px;
+    width:90% ;
+    display: flex;
+    align-items: center;
+    color:${colors().gray6};
+    font-weight:bold;
+    font-style:italic;
+    font-size:13px;
+    filter:saturate(2);
+}
 `
