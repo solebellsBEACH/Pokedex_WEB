@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
-import { ParsedUrlQuery } from 'querystring';
-import { Header, ProductContainer } from '../../pageComplements/pokemonScreen/components'
+import { Header } from '../../core/components';
+import { ProductContainer } from '../../pageComplements/pokemonScreen/components'
 import { Container, Content } from '../../pageComplements/pokemonScreen/styles'
 
 const Pokemon = () => {
