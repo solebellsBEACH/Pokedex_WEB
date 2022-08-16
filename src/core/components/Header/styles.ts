@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import { colors } from '../../helpers';
+import Link from 'next/link';
 
 export const Container = styled.nav`
     width:100%;
@@ -14,6 +15,14 @@ export const Container = styled.nav`
     border-bottom:1px ${colors().gray1} solid;
 
 `
+
+export const ContentLeft = styled.div`
+`
+export const ContentRight = styled.div`
+display:flex;
+`
+
+
 export const Content = styled.div`
     width:80% ;
     margin-left:20%;
@@ -21,14 +30,14 @@ export const Content = styled.div`
     display:flex;
     flex-direction:row;
     align-items:center;
-    justify-content:flex-end;
+    justify-content:space-between;
 `;
 
 export const ContentImage = styled.div`
     width:120px;
     display:flex;
     margin:5px 0;
-    @media (max-width:660px){
+    @media (max-width:950px){
         justify-content:center;
         align-items:center;
         width:100%;
@@ -60,3 +69,12 @@ export const FavoriteButton = styled.button`
     }
     margin:0 0 0 2vw;
 `
+
+export const StyledLink = styled(Link)`
+a{
+    font-size: 1px;
+    font-family: nunito;
+}
+
+`;
+
