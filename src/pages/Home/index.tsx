@@ -31,30 +31,32 @@ const HomeComponent = (props: any) => {
     onOpen()
   }
 
-  return (<>
-    <Drawer
-      isOpen={isOpen}
-      onClose={onClose}
-      filtersActiveds={filtersActiveds}
-      setFiltersActiveds={setFiltersActiveds}
-    />
-    <Container>
-      <Header handleFilterButton={handleDrawer} />
-      <Carousel />
-      {filtersActiveds.length == 0 ? <></> :
-        <ActiveFiltersGrid
-          filtersActiveds={filtersActiveds}
-          setFiltersActiveds={setFiltersActiveds}
-        />
-      }
-      {filtersActiveds.length == 0 ?
-        <PokemonGrid pokemons={homeData.pokemons} /> :
-        <PokemonTabsGrid
-          setActiveTab={setActiveTab}
-          activeTab={activeTab}
-          filtersActiveds={filtersActiveds}
-        />}
-    </Container></>
+  return (
+    <h1>Testando</h1>
+  // <>
+  //   <Drawer
+  //     isOpen={isOpen}
+  //     onClose={onClose}
+  //     filtersActiveds={filtersActiveds}
+  //     setFiltersActiveds={setFiltersActiveds}
+  //   />
+  //   <Container>
+  //     <Header handleFilterButton={handleDrawer} />
+  //     <Carousel />
+  //     {filtersActiveds.length == 0 ? <></> :
+  //       <ActiveFiltersGrid
+  //         filtersActiveds={filtersActiveds}
+  //         setFiltersActiveds={setFiltersActiveds}
+  //       />
+  //     }
+  //     {filtersActiveds.length == 0 ?
+  //       <PokemonGrid pokemons={homeData.pokemons} /> :
+  //       <PokemonTabsGrid
+  //         setActiveTab={setActiveTab}
+  //         activeTab={activeTab}
+  //         filtersActiveds={filtersActiveds}
+  //       />}
+  //   </Container></>
   )
 }
 

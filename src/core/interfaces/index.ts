@@ -19,49 +19,11 @@ export interface IPokemonTypeRequest {
 
 export interface IPokemon {
     name: string,
-    stats: {
-        base_stat: number,
-        stat: {
-            name: string,
-        }
-    }[],
-    forms: [
-        {
-            name: string,
-
-        }
-    ],
-    sprites: {
-        other: {
-            dream_world: {
-                front_default: string
-            }
-        }
-    }
-    types: [
-        {
-            type: {
-                name: 'fire' |
-                'grass' |
-                'electric' |
-                'water' |
-                'ground' |
-                'rock' |
-                'fairy' |
-                'poison' |
-                'bug' |
-                'dragon' |
-                'psychic' |
-                'flying' |
-                'fighting' |
-                'normal'
-            }
-        }
-    ],
-    species: { name: string },
+    front_default: string,
     height: number,
-    abilities: { ability: { name: string } }[],
-    base_experience: number
+    stat_value: { stat_value: number, name: string }[],
+    abilities: { value: number, name: string }[],
+    type: string,
 }
 export interface IPokemonPreRequest {
     name: string;
