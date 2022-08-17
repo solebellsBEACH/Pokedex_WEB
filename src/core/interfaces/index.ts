@@ -30,10 +30,9 @@ export interface IPokemonPreRequest {
     url: string;
 }
 export interface IPokemonRequest {
-    count: number,
-    next: string | null,
-    previous: string | null,
-    results: IPokemonPreRequest[];
+    success: boolean,
+    status: number
+    data: IPokemonPreRequest[];
 }
 
 //  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - - //

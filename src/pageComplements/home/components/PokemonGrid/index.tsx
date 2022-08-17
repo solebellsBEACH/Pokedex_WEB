@@ -54,7 +54,7 @@ export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) =>
                 justify='center'
             >
 
-                {pokemons !== null ? PokemonMap(pokemons.results) : <></>}
+                {pokemons !== null ? PokemonMap(pokemons.data) : <></>}
             </Grid>
         </Container>
     )
