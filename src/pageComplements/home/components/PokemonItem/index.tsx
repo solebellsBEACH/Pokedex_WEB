@@ -120,8 +120,8 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                                     colorScheme={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).name : 'gray'}
                                                     size='sm'
                                                     w='75%'
-                                                    value={item.stat_value} />
-                                                <AbilityValue>{item.stat_value} pts</AbilityValue>
+                                                    value={item.stats_value} />
+                                                <AbilityValue>{item.stats_value} pts</AbilityValue>
                                             </Box>
 
                                         </Box>

@@ -20,7 +20,7 @@ export interface IPokemon {
     name: string,
     front_default: string,
     height: number,
-    stat_value: { stat_value: number, name: string }[],
+    stat_value: { stats_value: number, name: string }[],
     abilities: { value: number, name: string }[],
     type: 'fire' |
     'grass' |
