@@ -1,6 +1,6 @@
 import { Box, WrapItem } from '@chakra-ui/react'
 import React from 'react'
-import { IPokemonPreRequest, IPokemonRequest } from '../../../../core/interfaces'
+import { IPokemon, IPokemonRequest } from '../../../../core/interfaces'
 import { PokemonItem } from '../PokemonItem'
 import { Container, Grid } from './styles'
 
@@ -10,20 +10,20 @@ interface IPokemonGridProps {
 }
 export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) => {
 
-    const PokemonMap = (results: any[]) => {
-        if (results[0]?.pokemon !== undefined) {
+    const PokemonMap = (results: IPokemon[]) => {
+        if (results !== undefined && pokemons != null) {
 
             return results.map((item, index) => {
-                if (item.pokemon?.name == undefined) {
-                    return <div style={{height:'0'}}/>
-                 }
+                if (item.name == undefined) {
+                    return <div style={{ height: '0' }} />
+                }
                 return <WrapItem
-                    key={index + item.pokemon?.name}
+                    key={index + item.name}
                 >
                     <PokemonItem
+                        pokemon={item}
                         index={index}
-                        label={item.pokemon?.name}
-                        url={item.pokemon?.url}
+                        label={item.name}
                     />
                 </WrapItem>
 
@@ -36,9 +36,9 @@ export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) =>
                 key={index + item.name}
             >
                 <PokemonItem
+                    pokemon={item}
                     index={index}
                     label={item.name}
-                    url={item.url}
                 />
             </WrapItem>
 

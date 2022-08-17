@@ -10,7 +10,6 @@ export interface INavigationProps<T = never> {
 
 export interface IPokemonType {
     name: string;
-    url: string;
 }
 export interface IPokemonTypeRequest {
     count: number,
@@ -23,16 +22,25 @@ export interface IPokemon {
     height: number,
     stat_value: { stat_value: number, name: string }[],
     abilities: { value: number, name: string }[],
-    type: string,
-}
-export interface IPokemonPreRequest {
-    name: string;
-    url: string;
+    type: 'fire' |
+    'grass' |
+    'electric' |
+    'water' |
+    'ground' |
+    'rock' |
+    'fairy' |
+    'poison' |
+    'bug' |
+    'dragon' |
+    'psychic' |
+    'flying' |
+    'fighting' |
+    'normal'
 }
 export interface IPokemonRequest {
     success: boolean,
     status: number
-    data: IPokemonPreRequest[];
+    data: IPokemon[];
 }
 
 //  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - - //

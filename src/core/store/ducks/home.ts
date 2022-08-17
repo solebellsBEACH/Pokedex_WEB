@@ -1,4 +1,4 @@
-import { IHomeDuckInitialState, IPokemonPreRequest, IPokemonRequest } from "../../interfaces";
+import { IHomeDuckInitialState, IPokemonRequest } from "../../interfaces";
 
 export const Types = {
     HOME_POKEMONS_REQUEST: 'HOME_POKEMONS_REQUEST',
@@ -86,7 +86,7 @@ export const Creators = {
         type: Types.HOME_POKEMONS_FOR_TYPE_REQUEST,
         payload
     }),
-    HomePokemonsForTypeSuccess: (payload: IPokemonPreRequest[] | null) => ({
+    HomePokemonsForTypeSuccess: (payload: IPokemonRequest[] | null) => ({
         type: Types.HOME_POKEMONS_FOR_TYPE_SUCCESS,
         payload
     }),
