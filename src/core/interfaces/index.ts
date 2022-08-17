@@ -83,10 +83,7 @@ export interface IPokemonDuckInitialState {
     success: boolean,
     loadingPokemonTypes: boolean,
     errorPokemonTypes: boolean,
-    pokemonTypes: {
-        count: 20,
-        results: { name: string, url: string }[]
-    } | null,
+    pokemonTypes: { success: boolean, status: number, data: IPokemonType[] } | null,
     successPokemonTypes: boolean,
 
 }

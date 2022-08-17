@@ -28,7 +28,7 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
         setFiltersActiveds([]);
         onClose();
     }
-
+console.log(pokemonData.pokemonTypes)
     return (
         <>
             <ChakraDrawer
@@ -46,14 +46,13 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                     >Filtros
 
                     </DrawerHeader>
-
                     <DrawerBody
                     >
                         <Wrap
                             spacingY='10px'
                             spacingX='20px'
                         >
-                            {pokemonData?.pokemonTypes?.results.map((item, index) => {
+                            {pokemonData?.pokemonTypes?.data.map((item, index) => {
                                 return <WrapItem
                                     key={index + item.name}
                                 >
