@@ -20,16 +20,13 @@ function* getHomePokemons(params: { type: string, payload: { offset: number, lim
 
 
 
-function* getHomePokemonsForType(params: { type: string, payload: { offset: number, limit: number, pokemonType: string } }): any {
-  const { limit, offset, pokemonType } = params.payload
-
+function* getHomePokemonsForType(params: { type: string, payload: { page: number, limit: number, pokemonType: string } }): any {
+  const { limit, page, pokemonType } = params.payload
   try {
-    const response = yield call(api.get, `type/${pokemonType.toLowerCase()}`);
+    const response = yield call(api.get, `pokemon?type=${pokemonType.toLowerCase()}&limit=${limit}&page=${page}`);
     if (response.status === 200) {
       yield put(HomeActions.HomePokemonsForTypeSuccess(
-
-        response.data.pokemon.slice(offset, limit)
-
+        response.data
       ));
     } else {
       yield put(HomeActions.HomePokemonsForTypeFail());

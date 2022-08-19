@@ -9,8 +9,9 @@ interface IPokemonGridProps {
     filtersActiveds?: boolean
 }
 export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) => {
-
+console.log(pokemons)
     const PokemonMap = (results: IPokemon[]) => {
+        console.log(results)
         if (results !== undefined && pokemons != null) {
 
             return results.map((item, index) => {
@@ -30,8 +31,8 @@ export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) =>
             })
 
         }
-        return results.map((item, index) => {
-            // console.log(item)
+
+        return results?.map((item, index) => {
             return <WrapItem
                 key={index + item.name}
             >
@@ -44,7 +45,6 @@ export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) =>
 
         })
     }
-
     return (
         <Container
         >

@@ -50,13 +50,7 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 ...state,
                 loading: false,
                 error: false,
-                pokemons: {
-                    count: 0,
-                    next: null,
-                    previous: null,
-                    results: action.payload
-                }
-
+                pokemons: action.payload
 
             };
         case Types.HOME_POKEMONS_FOR_TYPE_FAIL:
@@ -82,7 +76,7 @@ export const Creators = {
     HomePokemonsFail: () => ({
         type: Types.HOME_POKEMONS_FAIL
     }),
-    HomePokemonsForTypeRequest: (payload: { offset: number, limit: number, pokemonType: string }) => ({
+    HomePokemonsForTypeRequest: (payload: { limit: number, page: number, pokemonType: string }) => ({
         type: Types.HOME_POKEMONS_FOR_TYPE_REQUEST,
         payload
     }),
