@@ -31,7 +31,7 @@ import { BsTruck, BsChevronDown, BsAward } from 'react-icons/bs'
 import { colors } from '../../../../core/helpers';
 
 interface IProductContainer {
-    id: number;
+    id: string;
 }
 
 export const ProductContainer = (props: IProductContainer) => {
@@ -46,11 +46,9 @@ export const ProductContainer = (props: IProductContainer) => {
 
     const pokemonScreenData = useSelector((state: { pokemonScreen: IPokemonScreenDuckInitialState }) => state.pokemonScreen)
 
-
-
     let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
-    if (pokemonScreenData.pokemonData?.types[0].type.name != undefined) {
-        pokemonColor = pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.types[0].type.name })
+    if (pokemonScreenData.pokemonData?.data[0].type != undefined) {
+        pokemonColor = pokemonColors({ pokemonType:pokemonScreenData.pokemonData?.data[0].type })
     }
 
     if (pokemonScreenData.error) {
@@ -64,32 +62,32 @@ export const ProductContainer = (props: IProductContainer) => {
                 <ContentImage>
                     <PokemonImage
                         width='70%'
-                        src={pokemonScreenData.pokemonData?.sprites.other.dream_world.front_default} />
+                        src={pokemonScreenData.pokemonData?.data[0].front_default} />
                 </ContentImage>
             </ContentImages>
             <ContentData>
                 <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
                     <Heading size='md' my='2'>
-                        {capitalizeFirstLetter(pokemonScreenData?.pokemonData?.name)}
+                        {capitalizeFirstLetter(pokemonScreenData.pokemonData?.data[0].name)}
                     </Heading>
                     <Stat>
-                        <StatHelpText>$  {(returnPrice(pokemonScreenData?.pokemonData?.height) * 1.8).toFixed(2)}</StatHelpText>
+                        <StatHelpText>$  {(returnPrice(pokemonScreenData.pokemonData?.data[0].height) * 1.8).toFixed(2)}</StatHelpText>
                     </Stat>
                     <Heading size='lg' my='0'>
-                        $ {returnPrice(pokemonScreenData.pokemonData?.height).toFixed(2)}
+                        $ {returnPrice(pokemonScreenData.pokemonData?.data[0].height).toFixed(2)}
                     </Heading>
-                    <PromocaoText>em<div style={{ color: pokemonColor.primary }}>10x {(returnPrice(pokemonScreenData.pokemonData?.height) / 10).toFixed(1)}</div><div style={{ color: pokemonColor.primary }} id='cents'>00</div> <div style={{ color: pokemonColor.primary }}>sem juros</div></PromocaoText>
+                    <PromocaoText>em<div style={{ color: pokemonColor.primary }}>10x {(returnPrice(pokemonScreenData.pokemonData?.data[0].height) / 10).toFixed(1)}</div><div style={{ color: pokemonColor.primary }} id='cents'>00</div> <div style={{ color: pokemonColor.primary }}>sem juros</div></PromocaoText>
                 </LinkBox>
                 <LinkBox as='article' maxW='sm' p='5' borderWidth='1px' rounded='md' my='5'>
                     <Heading size='lg' my='2'>
                         Abilities
                     </Heading>
-                    {pokemonScreenData.pokemonData?.base_experience != null ?
+                    {pokemonScreenData.pokemonData?.data[0].height != null ?
                         <BaseExperienceContainer>
                             <BaseExperienceLabel>
-                                {pokemonScreenData.pokemonData?.base_experience}  Base Experience
+                                {pokemonScreenData.pokemonData?.data[0].height}  Base Experience
                             </BaseExperienceLabel>
-                            {pokemonScreenData.pokemonData?.base_experience < 100 ?
+                            {pokemonScreenData.pokemonData?.data[0].height < 100 ?
                                 <AiFillCaretDown
                                     color={pokemonColor.primary}
                                     size={25}
@@ -103,12 +101,12 @@ export const ProductContainer = (props: IProductContainer) => {
                         :
                         <></>}
                     <SimpleGrid columns={1} spacingY='5px'>
-                        {pokemonScreenData.pokemonData?.stats.map((item, index) => {
+                        {pokemonScreenData.pokemonData?.data[0].stat_value.map((item, index) => {
                             return <Box
                                 key={index + 'Stats'}
                                 paddingX='10px'
                                 minHeight='40px'>
-                                <AbilityLabel>{capitalizeFirstLetter(item.stat.name)}</AbilityLabel>
+                                <AbilityLabel>{capitalizeFirstLetter(item.name)}</AbilityLabel>
                                 <Box
                                     display='flex'
                                     flexDirection='row'
@@ -118,11 +116,11 @@ export const ProductContainer = (props: IProductContainer) => {
                                     <Progress
                                         isAnimated
                                         hasStripe
-                                        colorScheme={pokemonScreenData.pokemonData?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.types[0].type.name }).name : 'gray'}
+                                        colorScheme={pokemonScreenData.pokemonData?.data[0].type != undefined ? pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type  }).name : 'gray'}
                                         size='sm'
                                         w='75%'
-                                        value={item.base_stat} />
-                                    <AbilityValue>{item.base_stat} pts</AbilityValue>
+                                        value={item.stats_value} />
+                                    <AbilityValue>{item.stats_value} pts</AbilityValue>
                                 </Box>
                             </Box>
                         })}

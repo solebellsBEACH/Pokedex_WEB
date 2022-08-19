@@ -46,14 +46,13 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                     >Filtros
 
                     </DrawerHeader>
-
                     <DrawerBody
                     >
                         <Wrap
                             spacingY='10px'
                             spacingX='20px'
                         >
-                            {pokemonData?.pokemonTypes?.results.map((item, index) => {
+                            {!pokemonData.errorPokemonTypes && pokemonData?.pokemonTypes?.data ?pokemonData?.pokemonTypes?.data.map((item, index) => {
                                 return <WrapItem
                                     key={index + item.name}
                                 >
@@ -63,7 +62,7 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                                     />
 
                                 </WrapItem>
-                            })}
+                            }):<></>}
 
                         </Wrap>
                         <Button

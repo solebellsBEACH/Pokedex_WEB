@@ -35,8 +35,8 @@ border-radius:10px;
     width:350px;
 }
 @media(max-width:400px){
-width
-300px}
+width:300px;
+}
 
 `;
 

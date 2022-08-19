@@ -7,10 +7,10 @@ import { api } from '../../../../core/services/api';
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import { useRouter } from 'next/router';
 interface IPokemonItemProps {
-    index: number; label: string; url: string
+    index: number; label: string; pokemon: IPokemon,
 }
 export const PokemonItem = (props: IPokemonItemProps) => {
-    const { index, label, url } = props;
+    const { index, label,  pokemon } = props;
 
     const router = useRouter();
 
@@ -20,30 +20,17 @@ export const PokemonItem = (props: IPokemonItemProps) => {
         isDevice = checkDevice(window)
     }
 
-    const [pokemon, setPokemon] = useState<{ error: boolean, isLoaded: boolean, data: IPokemon | null }>({ error: false, isLoaded: false, data: null })
-
-    const { isOpen, onToggle } = useDisclosure()
-
-    const getPokemon = async () => {
-        try {
-            const { data } = await api.get(`pokemon/${returnId(url)}`)
-            setPokemon({ error: false, isLoaded: true, data })
-        } catch (error) {
-            setPokemon({ error: true, isLoaded: true, data: null })
-        }
-    }
-
-    useEffect(() => { getPokemon() }, [props]);
+    const { isOpen, onToggle } = useDisclosure();
 
     let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
-    if (pokemon.data?.types[0].type.name != undefined) {
-        pokemonColor = pokemonColors({ pokemonType: pokemon.data?.types[0].type.name })
+    if (pokemon.type != undefined) {
+        pokemonColor = pokemonColors({ pokemonType: pokemon.type })
     }
 
-
+    console.log(pokemon)
     return (
         <>
-            {!pokemon.isLoaded ?
+            {false ?
                 <StyledSpinner
                     thickness='4px'
                     speed='0.80s'
@@ -54,7 +41,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                 : <></>}
             <Skeleton
                 key={index + label}
-                isLoaded={pokemon.isLoaded}
+                isLoaded={true}
                 color='white'
                 fadeDuration={2}
             >
@@ -64,43 +51,43 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                     rounded='md' bg='white'
                     onMouseEnter={() => { onToggle() }}
                     onMouseLeave={() => { onToggle() }}
-                    color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
+                    color={pokemon?.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).secondary : 'red'}
                     onClick={() => {
                         if (!isDevice) {
-                            router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                            router.push({ pathname: '/Pokemon', query: { id: pokemon._id } })
                         }
 
-                        console.log(returnId(url))
+                        // console.log(returnId(url))
                     }}
                 >
 
                     <Content
-                        color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).secondary : 'red'}
+                        color={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).secondary : 'red'}
                     >
                         {/* {pokemon.data != undefined ? renderBaseExperience(pokemon.data.base_experience) : <></>} */}
                         <ContentImage
-                            color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                            color={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).primary : 'red'}
                         >
 
-                            <PokemonImage isOpen={isOpen} src={pokemon.data?.sprites.other.dream_world.front_default} />
+                            <PokemonImage isOpen={isOpen} src={pokemon.front_default} />
                         </ContentImage>
                     </Content>
                     <ContentBottom
                         isOpen={isOpen}>
 
-                        <PokemonName>{isOpen ? capitalizeFirstLetter(label) : `$ ${returnPrice(pokemon.data?.height).toFixed(2)}`}</PokemonName>
-                        {pokemon.data?.base_experience != null ?
+                        <PokemonName>{isOpen ? capitalizeFirstLetter(label) : `$ ${returnPrice(pokemon.height).toFixed(2)}`}</PokemonName>
+                        {pokemon.height != null ?
                             <BaseExperienceContainer>
                                 <BaseExperienceLabel>
-                                    {pokemon.data?.base_experience} {isOpen ? 'Base Experience' : 'BS'}
+                                    {pokemon.height} {isOpen ? 'Base Experience' : 'BS'}
                                 </BaseExperienceLabel>
-                                {pokemon.data?.base_experience < 100 ?
+                                {pokemon.height < 100 ?
                                     <AiFillCaretDown
-                                        color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                                        color={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).primary : 'red'}
                                         size={25}
                                     /> :
                                     <AiFillCaretUp
-                                        color={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).primary : 'red'}
+                                        color={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).primary : 'red'}
                                         size={25}
                                     />
                                 }
@@ -115,14 +102,14 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 height='auto'
                                 bg='white'
                             >
-                                <PokemonName>{`$ ${returnPrice(pokemon.data?.height).toFixed(2)}`}</PokemonName>
+                                <PokemonName>{`$ ${returnPrice(pokemon.height).toFixed(2)}`}</PokemonName>
                                 <SimpleGrid columns={1} spacingY='5px'>
-                                    {pokemon.data?.stats.map((item, index) => {
+                                    {pokemon.stat_value.map((item, index) => {
                                         return <Box
                                             key={index + 'Stats'}
                                             paddingX='10px'
                                             minHeight='40px'>
-                                            <AbilityLabel>{capitalizeFirstLetter(item.stat.name)}</AbilityLabel>
+                                            <AbilityLabel>{capitalizeFirstLetter(item.name)}</AbilityLabel>
                                             <Box
                                                 display='flex'
                                                 flexDirection='row'
@@ -132,11 +119,11 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                                 <Progress
                                                     isAnimated
                                                     hasStripe
-                                                    colorScheme={pokemon?.data?.types[0].type.name != undefined ? pokemonColors({ pokemonType: pokemon?.data?.types[0].type.name }).name : 'gray'}
+                                                    colorScheme={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).name : 'gray'}
                                                     size='sm'
                                                     w='75%'
-                                                    value={item.base_stat} />
-                                                <AbilityValue>{item.base_stat} pts</AbilityValue>
+                                                    value={item.stats_value} />
+                                                <AbilityValue>{item.stats_value} pts</AbilityValue>
                                             </Box>
 
                                         </Box>
@@ -148,7 +135,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 >
                                     <VisitButton
                                         onClick={() => {
-                                            router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                                            router.push({ pathname: '/Pokemon', query: { id: pokemon._id } })
                                         }}
                                         backgroundColor={pokemonColor.primary}
                                         color={'white'}

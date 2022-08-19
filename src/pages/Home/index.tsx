@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Header, Carousel, Drawer, PokemonTabsGrid } from '../../core/components'
+import {  Carousel, Drawer, PokemonTabsGrid } from '../../core/components'
 import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
 import { useDisclosure } from '@chakra-ui/react'
-import { ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
+import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
 
 const HomeComponent = (props: any) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -22,7 +22,7 @@ const HomeComponent = (props: any) => {
   }, [props])
 
   useEffect(() => {
-    if (filtersActiveds.length != 0) {
+    if (filtersActiveds.length !== 0) {
       setActiveTab(filtersActiveds[0])
     }
   }, [filtersActiveds])
@@ -31,7 +31,8 @@ const HomeComponent = (props: any) => {
     onOpen()
   }
 
-  return (<>
+  return (
+  <>
     <Drawer
       isOpen={isOpen}
       onClose={onClose}

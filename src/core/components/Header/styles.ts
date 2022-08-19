@@ -1,63 +1,80 @@
 import styled from 'styled-components'
 import Image from 'next/image'
-import { colors } from '../../helpers'
+import { colors } from '../../helpers';
+import Link from 'next/link';
 
-export const Container = styled.div`
-width:100%;
-margin-top:1.5vh;
-display:flex;
-justify-content:center;
-align-items:center;
+export const Container = styled.nav`
+    width:100%;
+    display:flex;
+    margin-bottom:30px ;
+    flex-direction:row;
+    align-items:center;
+    padding: 0px 40px;
+    background: ${colors().background};
+    justify-content:space-between;
+    border-bottom:1px ${colors().gray1} solid;
 
 `
+
+export const ContentLeft = styled.div`
+`
+export const ContentRight = styled.div`
+display:flex;
+`
+
 
 export const Content = styled.div`
-width:95%;
-min-height:100px;
+    width:80% ;
+    margin-left:20%;
+    height:100%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+`;
 
-display:flex; 
-flex-direction:row;
-@media(max-width:920px){
-    flex-direction:column;
-}
-`
-export const ContentLeft = styled.div`
-height:100px;
-width:30%;
-@media(max-width:920px){
-    width:100%;
-    flex-direction:column;
-}
-
-display: flex;
-justify-content:center;
-align-items:center;
-`
-export const ContentRight = styled(ContentLeft)`
-width:70%;
-flex-direction:row;
-@media(max-width:920px){
-    width:100%;
-}
-`
 export const ContentImage = styled.div`
-`
+    width:120px;
+    display:flex;
+    margin:5px 0;
+    @media (max-width:950px){
+        justify-content:center;
+        align-items:center;
+        width:100%;
+    }
+    padding:2px ;
+`;
+
 export const ImageLogoPokemon = styled(Image)`
+`;
+
+export const CarrinhoButton = styled.button`
+     margin:0 0 0 2vw;   
+    width: 40px;
+    height: 40px;
+    border-radius:5px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    color:${colors().gray7};
+    &:hover{
+        color:${colors().gray6};
+    }
 `
 
-export const FilterButton = styled.button`
-margin-left:2vw;
-width:50px ;
-height:50px ;
-border-radius:50px ;
-background-color:${colors().gray1};
- 
-&:hover{
-    background-color:${colors().gray2}
+export const FavoriteButton = styled.button`
+    color:${colors().gray7};
+    &:hover{
+        color:${colors().gray6};
+    }
+    margin:0 0 0 2vw;
+`
+
+export const StyledLink = styled(Link)`
+a{
+    font-size: 1px;
+    font-family: nunito;
 }
 
-display: flex;
-align-items:center;
-justify-content:center;
+`;
 
-`

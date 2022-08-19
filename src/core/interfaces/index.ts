@@ -10,7 +10,6 @@ export interface INavigationProps<T = never> {
 
 export interface IPokemonType {
     name: string;
-    url: string;
 }
 export interface IPokemonTypeRequest {
     count: number,
@@ -18,60 +17,31 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
+    _id: number;
     name: string,
-    stats: {
-        base_stat: number,
-        stat: {
-            name: string,
-        }
-    }[],
-    forms: [
-        {
-            name: string,
-
-        }
-    ],
-    sprites: {
-        other: {
-            dream_world: {
-                front_default: string
-            }
-        }
-    }
-    types: [
-        {
-            type: {
-                name: 'fire' |
-                'grass' |
-                'electric' |
-                'water' |
-                'ground' |
-                'rock' |
-                'fairy' |
-                'poison' |
-                'bug' |
-                'dragon' |
-                'psychic' |
-                'flying' |
-                'fighting' |
-                'normal'
-            }
-        }
-    ],
-    species: { name: string },
+    front_default: string,
     height: number,
-    abilities: { ability: { name: string } }[],
-    base_experience: number
-}
-export interface IPokemonPreRequest {
-    name: string;
-    url: string;
+    stat_value: { stats_value: number, name: string }[],
+    abilities: { value: number, name: string }[],
+    type: 'fire' |
+    'grass' |
+    'electric' |
+    'water' |
+    'ground' |
+    'rock' |
+    'fairy' |
+    'poison' |
+    'bug' |
+    'dragon' |
+    'psychic' |
+    'flying' |
+    'fighting' |
+    'normal'
 }
 export interface IPokemonRequest {
-    count: number,
-    next: string | null,
-    previous: string | null,
-    results: IPokemonPreRequest[];
+    success: boolean,
+    status: number
+    data: IPokemon[];
 }
 
 //  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - -  - - - - - - - //
@@ -114,10 +84,7 @@ export interface IPokemonDuckInitialState {
     success: boolean,
     loadingPokemonTypes: boolean,
     errorPokemonTypes: boolean,
-    pokemonTypes: {
-        count: 20,
-        results: { name: string, url: string }[]
-    } | null,
+    pokemonTypes: { success: boolean, status: number, data: IPokemonType[] } | null,
     successPokemonTypes: boolean,
 
 }
@@ -125,6 +92,6 @@ export interface IPokemonDuckInitialState {
 export interface IPokemonScreenDuckInitialState {
     loading: boolean,
     error: boolean,
-    pokemonData: IPokemon | null,
+    pokemonData: { success: boolean, status: number, data: IPokemon[] } | null,
     success: boolean,
 }

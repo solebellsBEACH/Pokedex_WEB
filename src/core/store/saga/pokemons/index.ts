@@ -19,7 +19,7 @@ function* getPokemons(params: { type: string, payload: { id: number} }): any {
 
 function* getPokemonTypes(): any {
   try {
-    const response = yield call(api.get, `type`);
+    const response = yield call(api.get, `pokemon/types`);
     if (response.status === 200) {
       yield put(PokemonsActions.getPokemonTypesSuccess(response.data));
     } else {

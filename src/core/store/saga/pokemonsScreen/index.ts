@@ -3,11 +3,11 @@ import { api } from '../../../services/api';
 import { Creators as PokemonsScreenActions, Types as PokemonTypes } from '../../ducks/pokemonsScreen';
 
 function* getPokemonsScreen(params: { type: string, payload: { id: number } }): any {
-
+console.log(params.payload)
   const { id } = params.payload
 
   try {
-    const response = yield call(api.get, `pokemon/${id}`);
+    const response = yield call(api.get, `pokemon?_id=${id}`);
 
     if (response.status === 200) {
       yield put(PokemonsScreenActions.getPokemonsScreenSuccess(response.data));
