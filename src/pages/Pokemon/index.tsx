@@ -7,8 +7,8 @@ const Pokemon = () => {
     const router = useRouter();
     const { id } = router.query
     return <Container>
-        <Header />
-        {typeof id == 'string' ? <ProductContainer id={parseInt(id)} /> : <></>}
+        <Header />  
+        {typeof id == 'string' ? <ProductContainer id={id} /> : <></>}
     </Container>
 }
 

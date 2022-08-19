@@ -28,7 +28,7 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
         setFiltersActiveds([]);
         onClose();
     }
-console.log(pokemonData)
+
     return (
         <>
             <ChakraDrawer

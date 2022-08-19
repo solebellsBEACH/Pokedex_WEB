@@ -40,7 +40,7 @@ export default function PokemonScreen(state = INITIAL_STATE, action: any) {
 }
 
 export const Creators = {
-    getPokemonsScreenRequest: (payload: { id: number }) => ({
+    getPokemonsScreenRequest: (payload: { id:string }) => ({
         type: Types.GET_POKEMONS_SCREEN_REQUEST,
         payload
     }),

@@ -26,6 +26,8 @@ export const PokemonItem = (props: IPokemonItemProps) => {
     if (pokemon.type != undefined) {
         pokemonColor = pokemonColors({ pokemonType: pokemon.type })
     }
+
+    console.log(pokemon)
     return (
         <>
             {false ?
@@ -52,7 +54,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                     color={pokemon?.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).secondary : 'red'}
                     onClick={() => {
                         if (!isDevice) {
-                            // router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                            router.push({ pathname: '/Pokemon', query: { id: pokemon._id } })
                         }
 
                         // console.log(returnId(url))
@@ -133,7 +135,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 >
                                     <VisitButton
                                         onClick={() => {
-                                            // router.push({ pathname: '/Pokemon', query: { id: returnId(url) } })
+                                            router.push({ pathname: '/Pokemon', query: { id: pokemon._id } })
                                         }}
                                         backgroundColor={pokemonColor.primary}
                                         color={'white'}

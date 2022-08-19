@@ -22,7 +22,7 @@ const HomeComponent = (props: any) => {
   }, [props])
 
   useEffect(() => {
-    if (filtersActiveds.length != 0) {
+    if (filtersActiveds.length !== 0) {
       setActiveTab(filtersActiveds[0])
     }
   }, [filtersActiveds])
