@@ -7,6 +7,9 @@ export const Types = {
     GET_POKEMON_TYPES_REQUEST: 'GET_POKEMON_TYPES_REQUEST',
     GET_POKEMON_TYPES_SUCCESS: 'GET_POKEMON_TYPES_SUCCESS',
     GET_POKEMON_TYPES_FAIL: 'GET_POKEMON_TYPES_FAIL',
+    ADD_POKEMON_IN_CART_REQUEST: 'ADD_POKEMON_IN_CART_REQUEST',
+    ADD_POKEMON_IN_CART_SUCCESS: 'ADD_POKEMON_IN_CART_SUCCESS',
+    ADD_POKEMON_IN_CART_FAIL: 'ADD_POKEMON_IN_CART_FAIL',
 };
 
 const INITIAL_STATE: IPokemonDuckInitialState = {
@@ -18,6 +21,8 @@ const INITIAL_STATE: IPokemonDuckInitialState = {
     errorPokemonTypes: false,
     pokemonTypes: null,
     successPokemonTypes: false,
+    addPokemonInCartLoading: false,
+    addPokemonInCartError: false,
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
@@ -60,6 +65,24 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 loadingPokemonTypes: false,
                 errorPokemonTypes: true
             };
+        case Types.ADD_POKEMON_IN_CART_REQUEST:
+            return {
+                ...state,
+                addPokemonInCartLoading: true,
+                addPokemonInCartError: false
+            };
+        case Types.ADD_POKEMON_IN_CART_SUCCESS:
+            return {
+                ...state,
+                addPokemonInCartLoading: false,
+                addPokemonInCartError: false,
+            };
+        case Types.ADD_POKEMON_IN_CART_FAIL:
+            return {
+                ...state,
+                addPokemonInCartLoading: false,
+                addPokemonInCartError: true
+            };
         default:
             return state;
     }
@@ -89,5 +112,19 @@ export const Creators = {
     }),
     getPokemonTypesFail: () => ({
         type: Types.GET_POKEMON_TYPES_FAIL
+    }),
+    addPokemonInCartRequest: (payload: {
+        _id: string
+        name: string
+        front_default: string
+    }) => ({
+        type: Types.GET_POKEMONS_REQUEST,
+        payload
+    }),
+    addPokemonInCartSuccess: () => ({
+        type: Types.GET_POKEMONS_SUCCESS,
+    }),
+    addPokemonInCartFail: () => ({
+        type: Types.GET_POKEMONS_FAIL
     }),
 };

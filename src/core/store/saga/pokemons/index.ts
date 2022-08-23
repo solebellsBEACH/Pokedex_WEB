@@ -30,6 +30,19 @@ function* getPokemonTypes(): any {
   }
 }
 
+function* addPokemonInCart(): any {
+  try {
+    const response = yield call(api.get, `user/cart`);
+    if (response.status === 200) {
+      yield put(PokemonsActions.addPokemonInCartSuccess());
+    } else {
+      yield put(PokemonsActions.addPokemonInCartFail());
+    }
+  } catch (error) {
+    yield put(PokemonsActions.addPokemonInCartFail());
+  }
+}
+
 
 function* getPokemonsWatcher() {
   yield takeLatest(PokemonTypes.GET_POKEMONS_REQUEST, getPokemons);
@@ -37,11 +50,15 @@ function* getPokemonsWatcher() {
 function* getPokemonTypesWatcher() {
   yield takeLatest(PokemonTypes.GET_POKEMON_TYPES_REQUEST, getPokemonTypes);
 }
+function* addPokemonInCartWatcher() {
+  yield takeLatest(PokemonTypes.ADD_POKEMON_IN_CART_REQUEST, addPokemonInCart);
+}
 
 
 export default function* rootSagas() {
   yield all([
     fork(getPokemonsWatcher),
     fork(getPokemonTypesWatcher),
+    fork(addPokemonInCartWatcher),
   ]);
 }

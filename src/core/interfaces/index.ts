@@ -86,6 +86,8 @@ export interface IPokemonDuckInitialState {
     errorPokemonTypes: boolean,
     pokemonTypes: { success: boolean, status: number, data: IPokemonType[] } | null,
     successPokemonTypes: boolean,
+    addPokemonInCartLoading: boolean,
+    addPokemonInCartError: boolean,
 
 }
 
