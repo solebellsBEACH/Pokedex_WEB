@@ -1,10 +1,11 @@
 import axios from "axios";
 
 export const baseURL = process.env.BASE_URL
+const token:string = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDYzM2M3N2UzOTAzMThhODhmY2UyYSIsImlhdCI6MTY2MTM1MDg2MiwiZXhwIjoxNjY5OTkwODYyfQ.vbgjPv_Td-VovsLE4vyICy7h96iEDw_NN77SnJYl5FQ'
 
 export const api = axios.create({
   baseURL: baseURL,
   headers: {
-    'Authorization': "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMDYyZTFjN2UzOTAzMThhODhmY2RlOSIsImlhdCI6MTY2MTM0OTQxMSwiZXhwIjoxNjY5OTg5NDExfQ.KYx6aTJInmP6WoysO2AUATUlmX7Tc19xfzkqGeIZwOA",
+    'Authorization': "Bearer "+token,
   },
 });

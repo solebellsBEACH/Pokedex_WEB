@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Image from 'next/image'
 import { colors } from '../../../../core/helpers'
+import { FaUserCircle } from 'react-icons/fa'
 
 
 export const Container = styled.div`
@@ -61,4 +62,39 @@ display: flex;
 align-items:center;
 justify-content:center;
 
+`
+
+export const LoginContent = styled.button`
+margin-left:1vw;
+width:auto ;
+height:50px ;
+border-radius:50px ;
+background-color:${colors().blue1};
+filter:saturate(0.6);
+ 
+&:hover{
+    filter:saturate(1);
+}
+
+display: flex;
+align-items:center;
+justify-content:center;
+color:${colors().white};
+font-family:roboto;
+font-weight:bold;
+
+padding:10px 20px;
+
+
+@media (max-width:700px){
+    width:50px ;
+    padding:0px;
+}
+`
+
+export const StyledFaUserCircle = styled(FaUserCircle)`
+margin-left:10px;
+@media (max-width:700px){
+    margin-left:0px;
+}
 `
