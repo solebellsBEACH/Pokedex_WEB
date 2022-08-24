@@ -76,6 +76,13 @@ export interface IHomeDuckInitialState {
     error: boolean,
     pokemons: IPokemonRequest | null,
     success: boolean,
+    userLoginLoading: boolean,
+    userLoginError: boolean,
+    userLoginData: {
+        success: boolean,
+        message: string,
+        token: string
+    } | null,
 }
 export interface IPokemonDuckInitialState {
     loading: boolean,

@@ -27,7 +27,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
         pokemonColor = pokemonColors({ pokemonType: pokemon.type })
     }
 
-    console.log(pokemon)
+   
     return (
         <>
             {false ?

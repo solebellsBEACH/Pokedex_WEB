@@ -7,6 +7,9 @@ export const Types = {
     HOME_POKEMONS_FOR_TYPE_REQUEST: 'HOME_POKEMONS_FOR_TYPE_REQUEST',
     HOME_POKEMONS_FOR_TYPE_SUCCESS: 'HOME_POKEMONS_FOR_TYPE_SUCCESS',
     HOME_POKEMONS_FOR_TYPE_FAIL: 'HOME_POKEMONS_FOR_TYPE_FAIL',
+    LOGIN_REQUEST: 'LOGIN_REQUEST',
+    LOGIN_SUCCESS: 'LOGIN_SUCCESS',
+    LOGIN_FAIL: 'LOGIN_FAIL',
 };
 
 
@@ -16,6 +19,9 @@ const INITIAL_STATE: IHomeDuckInitialState = {
     error: false,
     pokemons: null,
     success: false,
+    userLoginLoading: false,
+    userLoginError: false,
+    userLoginData: null
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
@@ -59,6 +65,27 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 loading: false,
                 error: true
             };
+        case Types.LOGIN_REQUEST:
+            return {
+                ...state,
+                userLoginLoading: true,
+                userLoginError: false
+            };
+        case Types.LOGIN_SUCCESS:
+            return {
+                ...state,
+                userLoginLoading: false,
+                userLoginError: false,
+                userLoginData: action.payload
+
+            };
+        case Types.LOGIN_FAIL:
+            return {
+                ...state,
+                userLoginLoading: false,
+                userLoginError: true,
+                userLoginData: action.payload
+            };
         default:
             return state;
     }
@@ -86,5 +113,23 @@ export const Creators = {
     }),
     HomePokemonsForTypeFail: () => ({
         type: Types.HOME_POKEMONS_FOR_TYPE_FAIL
+    }),
+    loginRequest: (payload: { email: string, password: string }) => ({
+        type: Types.LOGIN_REQUEST,
+        payload
+    }),
+    loginSuccess: (payload: {
+        success: boolean,
+        message: string,
+        token: string
+    }) => ({
+        type: Types.LOGIN_SUCCESS,
+        payload
+    }),
+    loginFail: (payload: {
+        success: boolean,
+        message: string,
+    }) => ({
+        type: Types.LOGIN_FAIL
     }),
 };
