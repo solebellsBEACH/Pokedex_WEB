@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {  Carousel, Drawer, LoginModal, PokemonTabsGrid } from '../../core/components'
+import {  Carousel, Drawer, RegisterModal, PokemonTabsGrid } from '../../core/components'
 import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
@@ -9,7 +9,7 @@ import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/ho
 
 const HomeComponent = (props: any) => {
   const drawerDisclosure = useDisclosure()
-  const loginModalDisclosure = useDisclosure()
+  const RegisterModalDisclosure = useDisclosure()
 
   const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
   const dispacth = useDispatch();
@@ -33,15 +33,15 @@ const HomeComponent = (props: any) => {
     drawerDisclosure.onOpen()
   }
 
-  const handleLoginModal = () => {
-    loginModalDisclosure.onOpen()
+  const handleRegisterModal = () => {
+    RegisterModalDisclosure.onOpen()
   }
   return (
   <>
-  <LoginModal
-  isOpen={loginModalDisclosure.isOpen}
-  onClose={loginModalDisclosure.onClose}
-  onOpen={loginModalDisclosure.onOpen}
+  <RegisterModal
+  isOpen={RegisterModalDisclosure.isOpen}
+  onClose={RegisterModalDisclosure.onClose}
+  onOpen={RegisterModalDisclosure.onOpen}
   />
     <Drawer
       isOpen={drawerDisclosure.isOpen}
@@ -51,7 +51,7 @@ const HomeComponent = (props: any) => {
     />
     <Container>
       <Header 
-      handleLoginButton={handleLoginModal}
+      handleLoginButton={handleRegisterModal}
       handleFilterButton={handleDrawer} />
       <Carousel />
       {filtersActiveds.length == 0 ? <></> :
