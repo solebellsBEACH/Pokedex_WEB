@@ -2,7 +2,7 @@ import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
 import { api } from '../../../services/api';
 import { Creators as PokemonsActions, Types as PokemonTypes } from '../../ducks/pokemons';
 
-function* getPokemons(params: { type: string, payload: { id: number} }): any {
+function* getPokemons(params: { type: string, payload: { id: number } }): any {
   const { id } = params.payload
 
   try {
@@ -30,9 +30,9 @@ function* getPokemonTypes(): any {
   }
 }
 
-function* addPokemonInCart(): any {
+function* addPokemonInCart(props:any): any {
   try {
-    const response = yield call(api.get, `user/cart`);
+    const response = yield call(api.post, `user/cart`, props.payload);
     if (response.status === 200) {
       yield put(PokemonsActions.addPokemonInCartSuccess());
     } else {

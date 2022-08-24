@@ -22,6 +22,7 @@ import {
     InfoContent
 } from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
+import { Creators as PokemonActions } from '../../../../core/store/ducks/pokemons'
 import { useSelector } from 'react-redux';
 import { IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks';
@@ -48,12 +49,21 @@ export const ProductContainer = (props: IProductContainer) => {
 
     let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
     if (pokemonScreenData.pokemonData?.data[0].type != undefined) {
-        pokemonColor = pokemonColors({ pokemonType:pokemonScreenData.pokemonData?.data[0].type })
+        pokemonColor = pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type })
     }
 
     if (pokemonScreenData.error) {
         return <ErrorData />
     }
+
+    const handleAddProductInCardButton = () => {
+        if (pokemonScreenData.pokemonData?.data[0] == undefined) return
+        const { _id, name, front_default } = pokemonScreenData.pokemonData?.data[0]
+        const data = { _id, name, front_default }
+
+        dispacth(PokemonActions.addPokemonInCartRequest(data))
+    }
+
     return (
         <Container>
             <ContentImages
@@ -116,7 +126,7 @@ export const ProductContainer = (props: IProductContainer) => {
                                     <Progress
                                         isAnimated
                                         hasStripe
-                                        colorScheme={pokemonScreenData.pokemonData?.data[0].type != undefined ? pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type  }).name : 'gray'}
+                                        colorScheme={pokemonScreenData.pokemonData?.data[0].type != undefined ? pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type }).name : 'gray'}
                                         size='sm'
                                         w='75%'
                                         value={item.stats_value} />
@@ -170,6 +180,7 @@ export const ProductContainer = (props: IProductContainer) => {
                             color={'white'}
                         >Comprar agora</BuyButton>
                         <BuyButton
+                            onClick={handleAddProductInCardButton}
                             backgroundColor={pokemonColor.secondary}
                             color={colors().gray6}
                         >Adicionar ao carrinho</BuyButton>

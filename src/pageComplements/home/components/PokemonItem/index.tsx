@@ -81,7 +81,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 <BaseExperienceLabel>
                                     {pokemon.height} {isOpen ? 'Base Experience' : 'BS'}
                                 </BaseExperienceLabel>
-                                {pokemon.height < 100 ?
+                                {pokemon.height < 15 ?
                                     <AiFillCaretDown
                                         color={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).primary : 'red'}
                                         size={25}

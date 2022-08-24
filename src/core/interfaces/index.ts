@@ -17,7 +17,7 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
-    _id: number;
+    _id: string;
     name: string,
     front_default: string,
     height: number,

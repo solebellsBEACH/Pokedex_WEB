@@ -118,13 +118,13 @@ export const Creators = {
         name: string
         front_default: string
     }) => ({
-        type: Types.GET_POKEMONS_REQUEST,
+        type: Types. ADD_POKEMON_IN_CART_REQUEST,
         payload
     }),
     addPokemonInCartSuccess: () => ({
-        type: Types.GET_POKEMONS_SUCCESS,
+        type: Types. ADD_POKEMON_IN_CART_SUCCESS,
     }),
     addPokemonInCartFail: () => ({
-        type: Types.GET_POKEMONS_FAIL
+        type: Types. ADD_POKEMON_IN_CART_FAIL
     }),
 };

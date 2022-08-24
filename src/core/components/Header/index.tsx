@@ -32,6 +32,7 @@ export const Header = () => {
                     <Grid templateColumns='repeat(5, 1fr)' gap='2vh'>
                         {optionsTabs.map((item, index) => {
                             return <GridItem 
+                            key={index+item.name}
                             display='flex'
                             alignItems='center'
                             w='auto' h='10'><StyledLink
