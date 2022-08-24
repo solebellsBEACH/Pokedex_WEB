@@ -4,16 +4,18 @@ import { Container, Content, ContentRight, ContentLeft, ContentImage, ImageLogoP
 import { LogoPokemon, LogoConfig } from '../../../../assets';
 import { SearchPokemonInput } from '../../../../core/components';
 import Image from 'next/image';
-import { useMediaQuery } from '@chakra-ui/react';
+import { Tooltip, useMediaQuery } from '@chakra-ui/react';
 
 interface IHeaderProps {
     handleFilterButton: () => void
+    handleLoginButton: () => void
 }
 
-export const Header = ({ handleFilterButton }: IHeaderProps) => {
+export const Header = ({ handleFilterButton, handleLoginButton }: IHeaderProps) => {
     const [isLargerThan700] = useMediaQuery('(min-width: 700px)');
 
     return (
+
         <Container>
             <Content>
                 <ContentLeft>
@@ -21,19 +23,23 @@ export const Header = ({ handleFilterButton }: IHeaderProps) => {
                 </ContentLeft>
                 <ContentRight>
                     <SearchPokemonInput />
-                    <FilterButton
-                        onClick={handleFilterButton}
-                    >
-                        <Image src={LogoConfig} />
-                    </FilterButton>
+                    <Tooltip label='Abrir filtros'>
+                        <FilterButton
+                            onClick={handleFilterButton}
+                        >
+                            <Image src={LogoConfig} />
+                        </FilterButton>
+                    </Tooltip>
+                    <Tooltip label='Click para logar'>
+                        <LoginContent
+                            onClick={handleLoginButton}
+                        >
+                            {isLargerThan700 ? <>Logar</> : <></>}
 
-                    <LoginContent
-                    // onClick={handleFilterButton}
-                    >
-                        {isLargerThan700 ? <>Logar</> : <></>}
+                            <StyledFaUserCircle size={23} />
+                        </LoginContent>
 
-                        <StyledFaUserCircle size={23} />
-                    </LoginContent>
+                    </Tooltip>
                 </ContentRight>
             </Content>
         </Container>

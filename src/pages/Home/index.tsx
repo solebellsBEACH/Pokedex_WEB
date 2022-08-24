@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {  Carousel, Drawer, PokemonTabsGrid } from '../../core/components'
+import {  Carousel, Drawer, LoginModal, PokemonTabsGrid } from '../../core/components'
 import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
@@ -8,7 +8,9 @@ import { useDisclosure } from '@chakra-ui/react'
 import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
 
 const HomeComponent = (props: any) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const drawerDisclosure = useDisclosure()
+  const loginModalDisclosure = useDisclosure()
+
   const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
   const dispacth = useDispatch();
   const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
@@ -28,19 +30,29 @@ const HomeComponent = (props: any) => {
   }, [filtersActiveds])
 
   const handleDrawer = () => {
-    onOpen()
+    drawerDisclosure.onOpen()
   }
 
+  const handleLoginModal = () => {
+    loginModalDisclosure.onOpen()
+  }
   return (
   <>
+  <LoginModal
+  isOpen={loginModalDisclosure.isOpen}
+  onClose={loginModalDisclosure.onClose}
+  onOpen={loginModalDisclosure.onOpen}
+  />
     <Drawer
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={drawerDisclosure.isOpen}
+      onClose={drawerDisclosure.onClose}
       filtersActiveds={filtersActiveds}
       setFiltersActiveds={setFiltersActiveds}
     />
     <Container>
-      <Header handleFilterButton={handleDrawer} />
+      <Header 
+      handleLoginButton={handleLoginModal}
+      handleFilterButton={handleDrawer} />
       <Carousel />
       {filtersActiveds.length == 0 ? <></> :
         <ActiveFiltersGrid
