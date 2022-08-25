@@ -20,6 +20,7 @@ export const ContentLeft = styled.div`
 `
 export const ContentRight = styled.div`
 display:flex;
+align-items: center;
 `
 
 
