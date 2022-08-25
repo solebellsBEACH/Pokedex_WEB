@@ -2,7 +2,7 @@ import { Tooltip, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { IHomeDuckInitialState } from '../../interfaces';
-import { Container, StyledFaUserCircle } from './styles'
+import { Container, StyledFaUserCircle, StyledFiLogOut } from './styles'
 
 interface ILoginContent {
     handleLoginButton: () => void;
@@ -21,6 +21,7 @@ export const LoginContent = ({ handleLoginButton, size }: ILoginContent) => {
     }
 
     return (
+        <>
         <Tooltip label='Usar outra conta'>
             <Container
                 size={size}
@@ -28,9 +29,17 @@ export const LoginContent = ({ handleLoginButton, size }: ILoginContent) => {
             >
                 {isLargerThan ? <>{labelLoginButton()}</> : <></>}
 
-                <StyledFaUserCircle size={23} iconSize={size}/>
+                <StyledFaUserCircle size={23} iconSize={size} />
+
+               
             </Container>
 
         </Tooltip>
+        {homeData.userData !== null ? <Tooltip
+                    label='Encerrar sessão'
+                ><StyledFiLogOut 
+                onClick={()=>{}}
+                size={23} iconSize={size} /></Tooltip> : <></>}
+        </>
     )
 }

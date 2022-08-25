@@ -2,6 +2,7 @@
 import styled from 'styled-components'
 import { colors } from '../../helpers'
 import { FaUserCircle } from 'react-icons/fa'
+import { FiLogOut } from 'react-icons/fi'
 
 interface IContainerProps {
     size?: 'sm' | 'lg'
@@ -47,6 +48,16 @@ export const StyledFaUserCircle = styled(FaUserCircle) <IStyledFaUserCircleProps
 margin-left:10px;
 @media (max-width:1200px){
     margin-left:${props => props.iconSize == 'sm' ? 0 : 10}px;
+}
+@media (max-width:700px){
+    margin-left:0px;
+}
+`
+
+export const StyledFiLogOut = styled(FiLogOut) <IStyledFaUserCircleProps>`
+margin-left:2vw;
+@media (max-width:1200px){
+    margin-left:${props => props.iconSize == 'sm' ? 2 : 0}vw;
 }
 @media (max-width:700px){
     margin-left:0px;
