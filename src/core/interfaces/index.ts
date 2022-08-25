@@ -70,6 +70,12 @@ export type IPossiblePokemonKeys = {
     'normal'
 }
 
+export interface IUser {
+    _id: string;
+    name: string;
+    email: string;
+    cart: { _id: string, name: string, front_default: string }[]
+}
 
 export interface IHomeDuckInitialState {
     loading: boolean,
@@ -82,6 +88,20 @@ export interface IHomeDuckInitialState {
         success: boolean,
         message: string,
         token: string
+    } | null,
+    createUserLoading: boolean,
+    createUserError: boolean,
+    createUserData: {
+        success: boolean,
+        message: string,
+        token: string
+    } | null,
+    userLoading: boolean,
+    userError: boolean,
+    userData: {
+        success: boolean,
+        message: string,
+        data: IUser
     } | null,
 }
 export interface IPokemonDuckInitialState {

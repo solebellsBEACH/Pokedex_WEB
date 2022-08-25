@@ -112,7 +112,31 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
             password: '',
         })
 
-        const handleSubmit = () => { }
+        const handleSubmit = () => {
+            dispacth(HomeActions.createUserRequest(userData))
+            if (homeData.createUserError) {
+                toast({
+                    position: 'top',
+                    title: 'Ops, algo deu errado',
+                    description: homeData.createUserData?.message,
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                })
+            } else {
+                toast({
+                    position: 'top',
+                    title: 'Tudo Top !!',
+                    description: 'Registro efetuado com sucesso',
+                    status: 'success',
+                    duration: 3000,
+                    isClosable: true,
+                })
+                const token = homeData.createUserData?.token
+                if (token !== undefined) insertToken(token)
+                onClose()
+            }
+        }
 
         return <ModalContent>
             <ModalHeader>Crie seu usuário</ModalHeader>

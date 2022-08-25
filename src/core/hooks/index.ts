@@ -76,6 +76,7 @@ export function insertToken(token: string) {
     localStorage.setItem('@pokedex-authBearerToken', token)
 }
 export function getToken(): string {
+    if (typeof window == 'undefined') return 'not Valid'
     const token = localStorage.getItem('@pokedex-authBearerToken')
     if (token !== null) return token
     return 'not Valid'

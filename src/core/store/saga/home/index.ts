@@ -36,7 +36,6 @@ function* getHomePokemonsForType(params: { type: string, payload: { page: number
 
 function* login(params: { type: string, payload: { email: string, password: string } }): any {
   const { email, password } = params.payload
-  console.log(params)
   try {
     const response = yield call(api.post, `user/authenticate`, { email, password });
     if (response.status === 200) {
@@ -50,6 +49,36 @@ function* login(params: { type: string, payload: { email: string, password: stri
     yield put(HomeActions.loginFail({ success: false, message: '', }));
   }
 }
+function* createUser(params: { type: string, payload: { name: string, email: string, password: string } }): any {
+  const { email, password , name} = params.payload
+  try {
+    const response = yield call(api.post, `user/create`, { name, email, password });
+    if (response.status === 200) {
+      yield put(HomeActions.createUserSuccess(
+        response.data
+      ));
+    } else {
+      yield put(HomeActions.createUserFail(response));
+    }
+  } catch (error) {
+    yield put(HomeActions.createUserFail({ success: false, message: '', }));
+  }
+}
+
+function* getUser(): any {
+  try {
+    const response = yield call(api.get, `user`);
+    if (response.status === 200) {
+      yield put(HomeActions.getUserSuccess(
+        response.data
+      ));
+    } else {
+      yield put(HomeActions.getUserFail(response));
+    }
+  } catch (error) {
+    yield put(HomeActions.getUserFail({ success: false, message: '', }));
+  }
+}
 
 
 function* getHomePokemonsWatcher() {
@@ -61,11 +90,19 @@ function* getHomePokemonsForTypeWatcher() {
 function* loginWatcher() {
   yield takeLatest(HomeTypes.LOGIN_REQUEST, login);
 }
+function* createUserWatcher() {
+  yield takeLatest(HomeTypes.CREATE_USER_REQUEST, createUser);
+}
+function* getUserWatcher() {
+  yield takeLatest(HomeTypes.GET_USER_REQUEST, getUser);
+}
 
 export default function* rootSagas() {
   yield all([
     fork(getHomePokemonsWatcher),
     fork(loginWatcher),
+    fork(getUserWatcher),
     fork(getHomePokemonsForTypeWatcher),
+    fork(createUserWatcher),
   ]);
 }

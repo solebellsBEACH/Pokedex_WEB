@@ -21,6 +21,7 @@ const HomeComponent = (props: any) => {
       offset: 0,
       limit: 20
     }))
+    dispacth(HomeActions.getUserRequest())
   }, [props])
 
   useEffect(() => {

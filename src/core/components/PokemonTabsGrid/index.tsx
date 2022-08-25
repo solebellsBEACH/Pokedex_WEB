@@ -33,7 +33,6 @@ export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab }: IP
         const { label } = props;
         return <TabSelectorContainer
             onClick={() => {
-                // console.log('Clickou no ' + label)
                 setActiveTab(label)
             }}
             isActive={activeTab == label}>

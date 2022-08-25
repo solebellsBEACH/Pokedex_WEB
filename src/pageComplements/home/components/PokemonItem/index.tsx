@@ -56,8 +56,6 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                         if (!isDevice) {
                             router.push({ pathname: '/Pokemon', query: { id: pokemon._id } })
                         }
-
-                        // console.log(returnId(url))
                     }}
                 >
 

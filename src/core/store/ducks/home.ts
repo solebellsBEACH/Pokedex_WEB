@@ -10,6 +10,12 @@ export const Types = {
     LOGIN_REQUEST: 'LOGIN_REQUEST',
     LOGIN_SUCCESS: 'LOGIN_SUCCESS',
     LOGIN_FAIL: 'LOGIN_FAIL',
+    CREATE_USER_REQUEST: 'CREATE_USER_REQUEST',
+    CREATE_USER_SUCCESS: 'CREATE_USER_SUCCESS',
+    CREATE_USER_FAIL: 'CREATE_USER_FAIL',
+    GET_USER_REQUEST: 'GET_USER_REQUEST',
+    GET_USER_SUCCESS: 'GET_USER_SUCCESS',
+    GET_USER_FAIL: 'GET_USER_FAIL',
 };
 
 
@@ -21,7 +27,13 @@ const INITIAL_STATE: IHomeDuckInitialState = {
     success: false,
     userLoginLoading: false,
     userLoginError: false,
-    userLoginData: null
+    userLoginData: null,
+    createUserLoading: false,
+    createUserError: false,
+    createUserData: null,
+    userLoading: false,
+    userError: false,
+    userData: null
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
@@ -86,6 +98,27 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 userLoginError: true,
                 userLoginData: action.payload
             };
+        case Types.GET_USER_REQUEST:
+            return {
+                ...state,
+                userLoading: true,
+                userError: false
+            };
+        case Types.GET_USER_SUCCESS:
+            return {
+                ...state,
+                userLoading: false,
+                userError: false,
+                userData: action.payload
+
+            };
+        case Types.GET_USER_FAIL:
+            return {
+                ...state,
+                userLoading: false,
+                userError: true,
+                userData: null
+            };
         default:
             return state;
     }
@@ -131,5 +164,41 @@ export const Creators = {
         message: string,
     }) => ({
         type: Types.LOGIN_FAIL
+    }),
+    createUserRequest: (payload: { name: string, email: string, password: string }) => ({
+        type: Types.CREATE_USER_REQUEST,
+        payload
+    }),
+    createUserSuccess: (payload: {
+        success: boolean,
+        message: string,
+        token: string
+    }) => ({
+        type: Types.CREATE_USER_SUCCESS,
+        payload
+    }),
+    createUserFail: (payload: {
+        success: boolean,
+        message: string,
+    }) => ({
+        type: Types.CREATE_USER_FAIL
+    }),
+    getUserRequest: () => ({
+        type: Types.GET_USER_REQUEST,
+    }),
+    getUserSuccess: (payload: {
+        success: boolean,
+        message: string,
+        token: string
+    }) => ({
+        type: Types.GET_USER_SUCCESS,
+        payload
+    }),
+    getUserFail: (payload: {
+        success: boolean,
+        message: string,
+        
+    }) => ({
+        type: Types.GET_USER_FAIL
     }),
 };
