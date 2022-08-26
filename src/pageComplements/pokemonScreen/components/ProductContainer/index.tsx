@@ -87,6 +87,7 @@ export const ProductContainer = (props: IProductContainer) => {
 
     return (
         <Container>
+            <title>{capitalizeFirstLetter(pokemonScreenData.pokemonData?.data[0].name)}</title>
             <ContentImages
                 color={pokemonColor.primary}
             >

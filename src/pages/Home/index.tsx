@@ -39,6 +39,7 @@ const HomeComponent = (props: any) => {
   }
   return (
   <>
+  <title>Pokedex</title>
   <RegisterModal
   isOpen={RegisterModalDisclosure.isOpen}
   onClose={RegisterModalDisclosure.onClose}
