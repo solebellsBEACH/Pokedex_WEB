@@ -1,6 +1,7 @@
-import { Box, WrapItem } from '@chakra-ui/react'
+import { Box, Spinner, WrapItem } from '@chakra-ui/react'
 import React from 'react'
-import { IPokemon, IPokemonRequest } from '../../../../core/interfaces'
+import { useSelector } from 'react-redux'
+import { IHomeDuckInitialState, IPokemon, IPokemonRequest } from '../../../../core/interfaces'
 import { PokemonItem } from '../PokemonItem'
 import { Container, Grid } from './styles'
 
@@ -9,7 +10,7 @@ interface IPokemonGridProps {
     filtersActiveds?: boolean
 }
 export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) => {
-
+    const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
     const PokemonMap = (results: IPokemon[]) => {
         if (results !== undefined && pokemons != null) {
 
@@ -52,8 +53,8 @@ export const PokemonGrid = ({ pokemons, filtersActiveds }: IPokemonGridProps) =>
                 spacingY='30px'
                 justify='center'
             >
-
-                {pokemons !== null ? PokemonMap(pokemons.data) : <></>}
+                {homeData.error ? <h1>Nenhum Pokemon encontrado</h1> : <>
+                    {pokemons !== null ? PokemonMap(pokemons.data) : <Spinner size='lg' />}</>}
             </Grid>
         </Container>
     )
