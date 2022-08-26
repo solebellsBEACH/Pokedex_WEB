@@ -20,7 +20,7 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
     const [isCreateUser, setIsCreateUser] = useState(false)
 
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
-    const dispacth = useDispatch()
+    const dispatch = useDispatch()
     const toast = useToast()
 
     function LoginModal() {
@@ -33,7 +33,7 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
         })
 
         const handleSubmit = () => {
-            dispacth(HomeActions.loginRequest(userData))
+            dispatch(HomeActions.loginRequest(userData))
             if (homeData.userLoginError) {
                 toast({
                     position: 'top',
@@ -113,7 +113,7 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
         })
 
         const handleSubmit = () => {
-            dispacth(HomeActions.createUserRequest(userData))
+            dispatch(HomeActions.createUserRequest(userData))
             if (homeData.createUserError) {
                 toast({
                     position: 'top',

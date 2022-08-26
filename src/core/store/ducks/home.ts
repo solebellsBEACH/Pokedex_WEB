@@ -17,6 +17,9 @@ export const Types = {
     GET_USER_REQUEST: 'GET_USER_REQUEST',
     GET_USER_SUCCESS: 'GET_USER_SUCCESS',
     GET_USER_FAIL: 'GET_USER_FAIL',
+    GET_USER_CART_REQUEST: 'GET_USER_CART_REQUEST',
+    GET_USER_CART_SUCCESS: 'GET_USER_CART_SUCCESS',
+    GET_USER_CART_FAIL: 'GET_USER_CART_FAIL',
 };
 
 
@@ -34,7 +37,10 @@ const INITIAL_STATE: IHomeDuckInitialState = {
     createUserData: null,
     userLoading: false,
     userError: false,
-    userData: null
+    userData: null,
+    userCartLoading: false,
+    userCartError: false,
+    userCartData: null
 };
 
 export default function Home(state = INITIAL_STATE, action: any) {
@@ -115,6 +121,27 @@ export default function Home(state = INITIAL_STATE, action: any) {
 
             };
         case Types.GET_USER_FAIL:
+            return {
+                ...state,
+                userLoading: false,
+                userError: true,
+                userData: null
+            };
+        case Types.GET_USER_CART_REQUEST:
+            return {
+                ...state,
+                userLoading: true,
+                userError: false
+            };
+        case Types.GET_USER_CART_SUCCESS:
+            return {
+                ...state,
+                userLoading: false,
+                userError: false,
+                userData: action.payload
+
+            };
+        case Types.GET_USER_CART_FAIL:
             return {
                 ...state,
                 userLoading: false,
@@ -202,5 +229,23 @@ export const Creators = {
 
     }) => ({
         type: Types.GET_USER_FAIL
+    }),
+    getUserCartRequest: () => ({
+        type: Types.GET_USER_CART_REQUEST,
+    }),
+    getUserCartSuccess: (payload: {
+        success: boolean,
+        message: string,
+        data:{ _id: string, name: string, front_default: string }[]
+    }) => ({
+        type: Types.GET_USER_CART_SUCCESS,
+        payload
+    }),
+    getUserCartFail: (payload: {
+        success: boolean,
+        message: string,
+
+    }) => ({
+        type: Types.GET_USER_CART_FAIL
     }),
 };

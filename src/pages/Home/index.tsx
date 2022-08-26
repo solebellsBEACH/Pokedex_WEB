@@ -6,28 +6,23 @@ import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
 import { useDisclosure } from '@chakra-ui/react'
 import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
-import { getToken } from '../../core/hooks'
 
 const HomeComponent = (props: any) => {
   const drawerDisclosure = useDisclosure()
   const RegisterModalDisclosure = useDisclosure()
 
   const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
   const [activeTab, setActiveTab] = useState('')
 
   useEffect(() => {
-    dispacth(HomeActions.HomePokemonsRequest({
+    dispatch(HomeActions.HomePokemonsRequest({
       offset: 0,
       limit: 20
     }))
-    dispacth(HomeActions.getUserRequest())
+    dispatch(HomeActions.getUserRequest())
   }, [props])
-
-  useEffect(() =>{
-    dispacth(HomeActions.getUserRequest())
-  },[getToken()])
 
   useEffect(() => {
     if (filtersActiveds.length !== 0) {

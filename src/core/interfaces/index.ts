@@ -103,6 +103,13 @@ export interface IHomeDuckInitialState {
         message: string,
         data: IUser
     } | null,
+    userCartLoading: boolean,
+    userCartError: boolean,
+    userCartData: {
+        success: boolean,
+        message: string,
+        data: { _id: string, name: string, front_default: string }[]
+    } | null,
 }
 export interface IPokemonDuckInitialState {
     loading: boolean,

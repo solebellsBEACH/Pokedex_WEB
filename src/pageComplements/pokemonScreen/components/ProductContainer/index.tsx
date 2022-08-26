@@ -38,11 +38,11 @@ interface IProductContainer {
 export const ProductContainer = (props: IProductContainer) => {
 
     const [isLargerThan1400] = useMediaQuery('(min-width: 1400px)');
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const [quant, setQuant] = useState({ value: 1, label: '1 unidade' })
 
     useEffect(() => {
-        dispacth(PokemonScreenActions.getPokemonsScreenRequest({ id: props.id }))
+        dispatch(PokemonScreenActions.getPokemonsScreenRequest({ id: props.id }))
     }, [props])
     const toast = useToast()
 
@@ -63,7 +63,7 @@ export const ProductContainer = (props: IProductContainer) => {
         if (pokemonScreenData.pokemonData?.data[0] == undefined) return
         const { _id, name, front_default } = pokemonScreenData.pokemonData?.data[0]
         const data = { _id, name, front_default }
-        dispacth(PokemonActions.addPokemonInCartRequest(data))
+        dispatch(PokemonActions.addPokemonInCartRequest(data))
         if (pokemonData.addPokemonInCartError) {
             toast({
                 position: 'top',

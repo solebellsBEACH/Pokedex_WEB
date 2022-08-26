@@ -81,7 +81,24 @@ function* getUser(): any {
   }
 }
 
+function* getUserCart(): any {
+  try {
+    const response = yield call(api.get, `user/cart`);
+    if (response.status === 200) {
+      yield put(HomeActions.getUserCartSuccess(
+        response.data
+      ));
+    } else {
+      yield put(HomeActions.getUserCartFail(response));
+    }
+  } catch (error) {
+    yield put(HomeActions.getUserCartFail({ success: false, message: '', }));
+  }
+}
 
+function* getUserCartWatcher() {
+  yield takeLatest(HomeTypes.GET_USER_CART_REQUEST, getUserCart);
+}
 function* getHomePokemonsWatcher() {
   yield takeLatest(HomeTypes.HOME_POKEMONS_REQUEST, getHomePokemons);
 }
@@ -100,6 +117,7 @@ function* getUserWatcher() {
 
 export default function* rootSagas() {
   yield all([
+    fork(getUserCartWatcher),
     fork(getHomePokemonsWatcher),
     fork(loginWatcher),
     fork(getUserWatcher),

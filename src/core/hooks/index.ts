@@ -73,7 +73,6 @@ export function checkDevice(window: Window & typeof globalThis) {
 }
 
 export function insertToken(token: string) {
-    console.log(token)
     localStorage.setItem('@pokedex-authBearerToken', token)
 }
 export function getToken(): string {

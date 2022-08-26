@@ -1,24 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { ContentLeft, CarrinhoButton, Container, Content, ContentImage, FavoriteButton, ImageLogoPokemon, ContentRight, StyledLink } from './styles'
 import { LogoPokemon } from '../../../assets';
 import { useRouter } from 'next/router';
 import { Grid, GridItem, Tooltip, useMediaQuery } from '@chakra-ui/react';
 import { BsCart3, BsFillHeartFill } from 'react-icons/bs'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IHomeDuckInitialState } from '../../interfaces';
 import { LoginContent } from '../LoginContent';
+import { Creators as HomeActions } from '../../store/ducks/home'
 
 interface IHeaderProps {
 
 }
 
 
-export const Header = () => {
+export const Header = (props:any) => {
     const router = useRouter();
     const [isLargerThan950] = useMediaQuery('(min-width: 950px)');
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
     const optionsTabs: { name: string, url: string }[] = [{ name: 'Habitats', url: '/' }, { name: 'Habitats', url: '/' }, { name: 'Habitats', url: '/' }]
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(HomeActions.getUserRequest())
+    }, [props])
 
     return (
         <Container>
@@ -27,7 +33,6 @@ export const Header = () => {
                     router.push('/')
                 }}
             >
-
                 <ImageLogoPokemon src={LogoPokemon} />
             </ContentImage>
             {!isLargerThan950 ? <></> : <Content>
@@ -57,7 +62,7 @@ export const Header = () => {
                                 <BsCart3 size={23} />
                             </CarrinhoButton>
                         </Tooltip>
-                        <LoginContent size='sm' handleLoginButton={()=>{}}/>
+                        <LoginContent size='sm' handleLoginButton={() => { }} />
                     </> : <></>}
                 </ContentRight>
             </Content>}

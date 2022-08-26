@@ -14,12 +14,12 @@ interface IPokemonTabsGrid {
 
 export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab }: IPokemonTabsGrid) => {
 
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
 
     useEffect(() => {
         if(activeTab!==undefined) {
-            dispacth(HomeActions.HomePokemonsForTypeRequest({
+            dispatch(HomeActions.HomePokemonsForTypeRequest({
                 page: 0,
                 limit: 20,
                 pokemonType: activeTab
