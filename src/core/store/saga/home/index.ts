@@ -38,6 +38,7 @@ function* login(params: { type: string, payload: { email: string, password: stri
   const { email, password } = params.payload
   try {
     const response = yield call(api.post, `user/authenticate`, { email, password });
+    console.log(response.data);
     if (response.status === 200) {
       yield put(HomeActions.loginSuccess(
         response.data

@@ -62,4 +62,8 @@ margin-left:2vw;
 @media (max-width:700px){
     margin-left:0px;
 }
+
+&:hover{
+    color:blue;
+}
 `

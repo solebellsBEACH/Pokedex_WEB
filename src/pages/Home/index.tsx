@@ -6,6 +6,7 @@ import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
 import { useDisclosure } from '@chakra-ui/react'
 import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
+import { getToken } from '../../core/hooks'
 
 const HomeComponent = (props: any) => {
   const drawerDisclosure = useDisclosure()
@@ -23,6 +24,10 @@ const HomeComponent = (props: any) => {
     }))
     dispacth(HomeActions.getUserRequest())
   }, [props])
+
+  useEffect(() =>{
+    dispacth(HomeActions.getUserRequest())
+  },[getToken()])
 
   useEffect(() => {
     if (filtersActiveds.length !== 0) {

@@ -52,8 +52,8 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
                     duration: 3000,
                     isClosable: true,
                 })
-                const token = homeData.userLoginData?.token
-                if (token !== undefined) insertToken(token)
+
+                
                 onClose()
             }
         }

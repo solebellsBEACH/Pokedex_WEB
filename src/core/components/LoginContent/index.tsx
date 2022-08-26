@@ -1,6 +1,7 @@
 import { Tooltip, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux';
+import { insertToken } from '../../hooks';
 import { IHomeDuckInitialState } from '../../interfaces';
 import { Container, StyledFaUserCircle, StyledFiLogOut } from './styles'
 
@@ -37,8 +38,12 @@ export const LoginContent = ({ handleLoginButton, size }: ILoginContent) => {
         </Tooltip>
         {homeData.userData !== null ? <Tooltip
                     label='Encerrar sessão'
-                ><StyledFiLogOut 
-                onClick={()=>{}}
+                ><StyledFiLogOut
+                 
+                onClick={()=>{
+                    insertToken('not Valid')
+                    window.location.reload()
+                }}
                 size={23} iconSize={size} /></Tooltip> : <></>}
         </>
     )

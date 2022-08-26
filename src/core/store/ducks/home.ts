@@ -1,3 +1,4 @@
+import { insertToken } from "../../hooks";
 import { IHomeDuckInitialState, IPokemonRequest } from "../../interfaces";
 
 export const Types = {
@@ -84,6 +85,7 @@ export default function Home(state = INITIAL_STATE, action: any) {
                 userLoginError: false
             };
         case Types.LOGIN_SUCCESS:
+            insertToken(action.payload.token)
             return {
                 ...state,
                 userLoginLoading: false,
@@ -197,7 +199,7 @@ export const Creators = {
     getUserFail: (payload: {
         success: boolean,
         message: string,
-        
+
     }) => ({
         type: Types.GET_USER_FAIL
     }),
