@@ -108,7 +108,7 @@ export interface IHomeDuckInitialState {
     userCartData: {
         success: boolean,
         message: string,
-        data: { _id: string, name: string, front_default: string , height:number}[]
+        data: { _id: string, name: string, front_default: string, height: number, type: "fire" | "grass" | "electric" | "water" | "ground" | "rock" | "fairy" | "poison" | "bug" | "dragon" | "psychic" | "flying" | "fighting" | "normal" }[]
     } | null,
 }
 export interface IPokemonDuckInitialState {
