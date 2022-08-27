@@ -130,23 +130,23 @@ export default function Home(state = INITIAL_STATE, action: any) {
         case Types.GET_USER_CART_REQUEST:
             return {
                 ...state,
-                userLoading: true,
-                userError: false
+                userCartLoading: true,
+                userCartError: false
             };
         case Types.GET_USER_CART_SUCCESS:
             return {
                 ...state,
-                userLoading: false,
-                userError: false,
-                userData: action.payload
+                userCartLoading: false,
+                userCartError: false,
+                userCartData: action.payload
 
             };
         case Types.GET_USER_CART_FAIL:
             return {
                 ...state,
-                userLoading: false,
-                userError: true,
-                userData: null
+                userCartLoading: false,
+                userCartError: true,
+                userCartData: null
             };
         default:
             return state;

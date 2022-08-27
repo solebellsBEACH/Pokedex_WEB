@@ -1,18 +1,19 @@
-import { Box, Image, List, ListIcon, ListItem, Stat, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react"
+import { Box, Heading, Image, LinkBox, List, ListIcon, ListItem, Stat, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react"
 import { MdCheckCircle, MdSettings } from "react-icons/md"
-import { pokemonColors, returnPrice } from "../../../../core/hooks"
+import { capitalizeFirstLetter, pokemonColors, returnPrice } from "../../../../core/hooks"
 import { Container, ImageContainer, ImageContent, Content } from "./styles"
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { IPokemon } from "../../../../core/interfaces";
+import { IPokemon, IPossiblePokemonKeys } from "../../../../core/interfaces";
+import { MinusIcon } from '@chakra-ui/icons'
+import { PromocaoText } from "../../../pokemonScreen/components/ProductContainer/styles";
 
-
-interface ICartItem{
-  pokemon:IPokemon
+interface ICartItem {
+  pokemon: { _id: string; name: string; front_default: string; height: number, type: "fire" | "grass" | "electric" | "water" | "ground" | "rock" | "fairy" | "poison" | "bug" | "dragon" | "psychic" | "flying" | "fighting" | "normal" }
 }
 
-export function CartItem({pokemon}:ICartItem) {
+export function CartItem({ pokemon }: ICartItem) {
 
-  const pokemonColor = pokemonColors({ pokemonType: 'fire' })
+  const pokemonColor = pokemonColors({ pokemonType: pokemon.type })
 
   const ImageBox = () => {
     return <ImageContainer
@@ -21,7 +22,7 @@ export function CartItem({pokemon}:ICartItem) {
       <ImageContent
         pokemonColor={pokemonColor}
       >
-        <Image  boxSize='100px' src={pokemon.front_default}/>
+        <Image boxSize='100px' src={pokemon.front_default} />
       </ImageContent>
     </ImageContainer>
   }
@@ -30,30 +31,25 @@ export function CartItem({pokemon}:ICartItem) {
     <Container>
       <ImageBox />
       <Content>
-        <List marginLeft={8} marginBottom={10} spacing={3}>
-          <ListItem>
-            <ListIcon as={MdCheckCircle} color={pokemonColor.name} />
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-          </ListItem>
-          <ListItem>
-            <ListIcon as={MdCheckCircle} color={pokemonColor.name} />
-            Assumenda, quia temporibus eveniet a libero incidunt suscipit
-          </ListItem>
-          <ListItem>
-            <ListIcon as={MdCheckCircle} color={pokemonColor.name} />
-            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-          </ListItem>
-          {/* You can also use custom icons from react-icons */}
-          <ListItem>
-            <ListIcon as={MdSettings} color={pokemonColor.name} />
-            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-          </ListItem>
-        </List>
+      <LinkBox
+      marginLeft={8}
+      as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
+                    <Heading size='md' my='2'>
+                        {capitalizeFirstLetter(pokemon.name)}
+                    </Heading>
+                    <Stat>
+                        <StatHelpText>$  {(returnPrice(pokemon.height) * 1.8).toFixed(2)}</StatHelpText>
+                    </Stat>
+                    <Heading size='lg' my='0'>
+                        $ {returnPrice(pokemon.height).toFixed(2)}
+                    </Heading>
+                    <PromocaoText>em<div style={{ color: pokemonColor.primary }}>10x {(returnPrice(pokemon.height) / 10).toFixed(1)}</div><div style={{ color: pokemonColor.primary }} id='cents'>00</div> <div style={{ color: pokemonColor.primary }}>sem juros</div></PromocaoText>
+                </LinkBox>
 
         <Stat
           marginLeft={8}
         >
-          <StatLabel>Collected Fees</StatLabel>
+          <StatLabel>Price</StatLabel>
           <StatNumber
           >${returnPrice(pokemon.height)}</StatNumber>
           <StatHelpText
@@ -75,6 +71,7 @@ export function CartItem({pokemon}:ICartItem) {
           </StatHelpText>
         </Stat>
       </Content>
+      
     </Container>
   )
 }

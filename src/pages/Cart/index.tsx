@@ -14,17 +14,16 @@ const Cart = (props: any) => {
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
 
     useEffect(() => {
-        //dispatch(HomeActions.getUserCartRequest())
-    }, [props])
+        dispatch(HomeActions.getUserCartRequest())
+    }, [])
 
-    console.log(homeData.userCartData)
 
     return (
         <Container>
             <Header />
             <Content>
                 <SimpleGrid columns={1} spacing={10}>
-
+                    {homeData?.userCartData?.data.map((item, index) => <CartItem key={index + 'CART-ITEM'} pokemon={item} />)}
                     {/* <CartItem /> */}
                 </SimpleGrid>
             </Content>

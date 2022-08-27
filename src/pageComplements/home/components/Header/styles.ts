@@ -9,7 +9,9 @@ margin-top:1.5vh;
 display:flex;
 justify-content:center;
 align-items:center;
-
+@media(max-width:700px){
+    margin-bottom:10px;
+}
 `
 
 export const Content = styled.div`
@@ -40,6 +42,12 @@ flex-direction:row;
 @media(max-width:920px){
     width:100%;
 }
+
+@media(max-width:700px){
+    flex-direction:column;
+}
+
+
 `
 export const ContentImage = styled.div`
 `
@@ -61,4 +69,15 @@ display: flex;
 align-items:center;
 justify-content:center;
 
+`
+
+export const ContentButtons =  styled.div`
+display: flex;
+flex-direction:row;
+justify-content:center;
+align-items:center;
+
+@media(max-width:700px){
+    margin-top:20px;
+}
 `

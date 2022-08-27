@@ -61,8 +61,8 @@ export const ProductContainer = (props: IProductContainer) => {
 
     const handleAddProductInCardButton = () => {
         if (pokemonScreenData.pokemonData?.data[0] == undefined) return
-        const { _id, name, front_default } = pokemonScreenData.pokemonData?.data[0]
-        const data = { _id, name, front_default }
+        const { _id, name, front_default, height, type } = pokemonScreenData.pokemonData?.data[0]
+        const data = { _id, name, front_default, height, type }
         dispatch(PokemonActions.addPokemonInCartRequest(data))
         if (pokemonData.addPokemonInCartError) {
             toast({

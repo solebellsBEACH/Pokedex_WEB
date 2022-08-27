@@ -36,8 +36,8 @@ interface ICartItem {
 export const ImageContainer = styled.div<ICartItem>`
 background:${props => props.pokemonColor.secondary};
 border:1px solid ${props => props.pokemonColor.primary};
-width:138px ;
-height:144px ;
+width:276px ;
+height:288px ;
 border-radius:10px;
 `
 

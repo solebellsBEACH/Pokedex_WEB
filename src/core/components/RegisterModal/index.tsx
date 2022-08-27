@@ -22,6 +22,7 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
     const dispatch = useDispatch()
     const toast = useToast()
+    
 
     function LoginModal() {
         const [userData, setUserData] = useState<{
@@ -34,6 +35,7 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
 
         const handleSubmit = () => {
             dispatch(HomeActions.loginRequest(userData))
+            
             if (homeData.userLoginError) {
                 toast({
                     position: 'top',

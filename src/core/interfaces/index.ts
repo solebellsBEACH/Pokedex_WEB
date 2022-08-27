@@ -108,7 +108,7 @@ export interface IHomeDuckInitialState {
     userCartData: {
         success: boolean,
         message: string,
-        data: { _id: string, name: string, front_default: string }[]
+        data: { _id: string, name: string, front_default: string , height:number}[]
     } | null,
 }
 export interface IPokemonDuckInitialState {

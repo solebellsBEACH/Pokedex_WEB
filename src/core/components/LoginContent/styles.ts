@@ -11,6 +11,7 @@ interface IContainerProps {
 export const Container = styled.button<IContainerProps>`
 margin-left:1vw;
 width:auto ;
+margin-right:1vw;
 height:${props => props.size == 'sm' ? 30 : 50}px ;
 border-radius:50px ;
 background-color:${colors().blue1};
@@ -28,15 +29,16 @@ font-family:roboto;
 font-weight:bold;
 
 padding:10px 20px;
-@media (max-width:1200px){
+/* @media (max-width:1200px){
     width:${props => props.size == 'sm' ? '40px' : 'auto'};
     height:${props => props.size == 'sm' ? '40px' : '30px'};
     padding:${props => props.size == 'sm' ? '0px' : '10px 20px'};
-}
+} */
 
 @media (max-width:700px){
     width:50px ;
     padding:0px;
+    
 }
 `
 
@@ -59,10 +61,9 @@ margin-left:2vw;
 @media (max-width:1200px){
     margin-left:${props => props.iconSize == 'sm' ? 2 : 0}vw;
 }
-@media (max-width:700px){
-    margin-left:0px;
+@media(max-width:700px){
+    margin-top:2vw;
 }
-
 &:hover{
     color:blue;
 }

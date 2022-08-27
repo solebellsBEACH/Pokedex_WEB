@@ -24,7 +24,7 @@ export const Header = (props:any) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(HomeActions.getUserRequest())
-    }, [props])
+    }, [])
 
     return (
         <Container>
