@@ -1,7 +1,7 @@
 import axios from "axios";
 import { getToken } from "../hooks";
 
-export const baseURL = process.env.BASE_URL
+export const baseURL = 'https://pokedexapi.herokuapp.com/api/'
 const token:string = getToken();
 
 console.log(token);
