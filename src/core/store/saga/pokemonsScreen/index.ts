@@ -3,7 +3,7 @@ import { api } from '../../../services/api';
 import { Creators as PokemonsScreenActions, Types as PokemonTypes } from '../../ducks/pokemonsScreen';
 
 function* getPokemonsScreen(params: { type: string, payload: { id: number } }): any {
-console.log(params.payload)
+
   const { id } = params.payload
 
   try {

@@ -17,7 +17,7 @@ export interface IPokemonTypeRequest {
 }
 
 export interface IPokemon {
-    _id: number;
+    _id: string;
     name: string,
     front_default: string,
     height: number,
@@ -70,12 +70,46 @@ export type IPossiblePokemonKeys = {
     'normal'
 }
 
+export interface IUser {
+    _id: string;
+    name: string;
+    email: string;
+    cart: { _id: string, name: string, front_default: string }[]
+}
 
 export interface IHomeDuckInitialState {
     loading: boolean,
     error: boolean,
     pokemons: IPokemonRequest | null,
     success: boolean,
+    userLoginLoading: boolean,
+    userLoginError: boolean,
+    userLoginData: {
+        success: boolean,
+        message: string,
+        token: string
+    } | null,
+    createUserLoading: boolean,
+    createUserError: boolean,
+    createUserData: {
+        success: boolean,
+        message: string,
+        token: string
+    } | null,
+    userLoading: boolean,
+    userError: boolean,
+    userData: {
+        success: boolean,
+        message: string,
+        data: IUser
+    } | null,
+    userCartLoading: boolean,
+    userCartError: boolean,
+    userCartData: {
+        success: boolean,
+        message: string,
+        data: { _id: string, name: string, front_default: string, height: number, type: "fire" | "grass" | "electric" | "water" | "ground" | "rock" | "fairy" | "poison" | "bug" | "dragon" | "psychic" | "flying" | "fighting" | "normal" }[]
+    } | null,
 }
 export interface IPokemonDuckInitialState {
     loading: boolean,
@@ -86,6 +120,8 @@ export interface IPokemonDuckInitialState {
     errorPokemonTypes: boolean,
     pokemonTypes: { success: boolean, status: number, data: IPokemonType[] } | null,
     successPokemonTypes: boolean,
+    addPokemonInCartLoading: boolean,
+    addPokemonInCartError: boolean,
 
 }
 

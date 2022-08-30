@@ -5,6 +5,7 @@ import { PokemonGrid } from '../../../pageComplements/home/components';
 import { IHomeDuckInitialState } from '../../interfaces';
 import { Container, TabSelectorContainer, TabSelectorText, ContentTop, ContentBottom } from './styles'
 import { Creators as HomeActions } from '../../../core/store/ducks/home'
+import { Spinner } from '@chakra-ui/react';
 interface IPokemonTabsGrid {
     filtersActiveds: string[];
     setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -13,12 +14,12 @@ interface IPokemonTabsGrid {
 
 export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab }: IPokemonTabsGrid) => {
 
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
 
     useEffect(() => {
         if(activeTab!==undefined) {
-            dispacth(HomeActions.HomePokemonsForTypeRequest({
+            dispatch(HomeActions.HomePokemonsForTypeRequest({
                 page: 0,
                 limit: 20,
                 pokemonType: activeTab
@@ -33,7 +34,6 @@ export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab }: IP
         const { label } = props;
         return <TabSelectorContainer
             onClick={() => {
-                // console.log('Clickou no ' + label)
                 setActiveTab(label)
             }}
             isActive={activeTab == label}>
@@ -46,7 +46,7 @@ export const PokemonTabsGrid = ({ filtersActiveds, setActiveTab, activeTab }: IP
                 {filtersActiveds.map((item, index) => <TabSelector key={index + item} label={item} />)}
             </ContentTop>
             <ContentBottom>
-                <PokemonGrid filtersActiveds pokemons={homeData.pokemons} />
+                {homeData.pokemons==null||homeData.pokemons ==undefined?<Spinner size='lg'/>:<PokemonGrid filtersActiveds pokemons={homeData.pokemons} />}
             </ContentBottom>
         </Container>
     )

@@ -1,4 +1,4 @@
-import { Box, Button, Heading, LinkBox, Menu, MenuButton, MenuItem, MenuItemOption, MenuList, MenuOptionGroup, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Progress, SimpleGrid, Stat, StatHelpText, useMediaQuery } from '@chakra-ui/react'
+import { Box, Button, Heading, LinkBox, Menu, MenuButton, MenuItem, MenuItemOption, MenuList, MenuOptionGroup, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Progress, SimpleGrid, Spinner, Stat, StatHelpText, useMediaQuery, useToast } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import {
@@ -22,8 +22,9 @@ import {
     InfoContent
 } from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
+import { Creators as PokemonActions } from '../../../../core/store/ducks/pokemons'
 import { useSelector } from 'react-redux';
-import { IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
+import { IPokemonDuckInitialState, IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks';
 import { AiFillCaretDown, AiFillCaretUp, AiOutlineSafety, AiOutlineTrophy } from "react-icons/ai";
 import { ErrorData } from '../../../../core/components';
@@ -37,25 +38,56 @@ interface IProductContainer {
 export const ProductContainer = (props: IProductContainer) => {
 
     const [isLargerThan1400] = useMediaQuery('(min-width: 1400px)');
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const [quant, setQuant] = useState({ value: 1, label: '1 unidade' })
 
     useEffect(() => {
-        dispacth(PokemonScreenActions.getPokemonsScreenRequest({ id: props.id }))
+        dispatch(PokemonScreenActions.getPokemonsScreenRequest({ id: props.id }))
     }, [props])
+    const toast = useToast()
+
 
     const pokemonScreenData = useSelector((state: { pokemonScreen: IPokemonScreenDuckInitialState }) => state.pokemonScreen)
+    const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
 
     let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
     if (pokemonScreenData.pokemonData?.data[0].type != undefined) {
-        pokemonColor = pokemonColors({ pokemonType:pokemonScreenData.pokemonData?.data[0].type })
+        pokemonColor = pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type })
     }
 
     if (pokemonScreenData.error) {
         return <ErrorData />
     }
+
+    const handleAddProductInCardButton = () => {
+        if (pokemonScreenData.pokemonData?.data[0] == undefined) return
+        const { _id, name, front_default, height, type } = pokemonScreenData.pokemonData?.data[0]
+        const data = { _id, name, front_default, height, type }
+        dispatch(PokemonActions.addPokemonInCartRequest(data))
+        if (pokemonData.addPokemonInCartError) {
+            toast({
+                position: 'top',
+                title: 'Ops, algo deu errado',
+                description: "Erro em adicionar o pokemon em seu carrinho",
+                status: 'error',
+                duration: 3000,
+                isClosable: true,
+            })
+        } else {
+            toast({
+                position: 'top',
+                title: 'Sucesso',
+                description: "O pokemon foi adicionado em seu carrinho com sucesso",
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+            })
+        }
+    }
+
     return (
         <Container>
+            <title>{capitalizeFirstLetter(pokemonScreenData.pokemonData?.data[0].name)}</title>
             <ContentImages
                 color={pokemonColor.primary}
             >
@@ -116,7 +148,7 @@ export const ProductContainer = (props: IProductContainer) => {
                                     <Progress
                                         isAnimated
                                         hasStripe
-                                        colorScheme={pokemonScreenData.pokemonData?.data[0].type != undefined ? pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type  }).name : 'gray'}
+                                        colorScheme={pokemonScreenData.pokemonData?.data[0].type != undefined ? pokemonColors({ pokemonType: pokemonScreenData.pokemonData?.data[0].type }).name : 'gray'}
                                         size='sm'
                                         w='75%'
                                         value={item.stats_value} />
@@ -170,9 +202,24 @@ export const ProductContainer = (props: IProductContainer) => {
                             color={'white'}
                         >Comprar agora</BuyButton>
                         <BuyButton
+                            onClick={handleAddProductInCardButton}
                             backgroundColor={pokemonColor.secondary}
                             color={colors().gray6}
-                        >Adicionar ao carrinho</BuyButton>
+                        >
+                            {pokemonData.addPokemonInCartLoading ?
+                                <Spinner
+                                    thickness='4px'
+                                    speed='0.65s'
+                                    emptyColor='gray.200'
+                                    color='blue.500'
+                                    size='md'
+                                /> :
+                                <>
+                                    Adicionar ao carrinho
+
+                                </>
+                            }
+                        </BuyButton>
                     </ContentBuyButtons>
                     <AddInfoContent>
                         {[{ text: 'Compra Garantida, receba o produto que está esperando ou devolvemos o dinheiro.', icon: <AiOutlineSafety /> },

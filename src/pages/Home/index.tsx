@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {  Carousel, Drawer, PokemonTabsGrid } from '../../core/components'
+import {  Carousel, Drawer, RegisterModal, PokemonTabsGrid } from '../../core/components'
 import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
@@ -8,17 +8,20 @@ import { useDisclosure } from '@chakra-ui/react'
 import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
 
 const HomeComponent = (props: any) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const drawerDisclosure = useDisclosure()
+  const RegisterModalDisclosure = useDisclosure()
+
   const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
   const [activeTab, setActiveTab] = useState('')
 
   useEffect(() => {
-    dispacth(HomeActions.HomePokemonsRequest({
+    dispatch(HomeActions.HomePokemonsRequest({
       offset: 0,
       limit: 20
     }))
+    dispatch(HomeActions.getUserRequest())
   }, [props])
 
   useEffect(() => {
@@ -28,19 +31,30 @@ const HomeComponent = (props: any) => {
   }, [filtersActiveds])
 
   const handleDrawer = () => {
-    onOpen()
+    drawerDisclosure.onOpen()
   }
 
+  const handleRegisterModal = () => {
+    RegisterModalDisclosure.onOpen()
+  }
   return (
   <>
+  <title>Pokedex</title>
+  <RegisterModal
+  isOpen={RegisterModalDisclosure.isOpen}
+  onClose={RegisterModalDisclosure.onClose}
+  onOpen={RegisterModalDisclosure.onOpen}
+  />
     <Drawer
-      isOpen={isOpen}
-      onClose={onClose}
+      isOpen={drawerDisclosure.isOpen}
+      onClose={drawerDisclosure.onClose}
       filtersActiveds={filtersActiveds}
       setFiltersActiveds={setFiltersActiveds}
     />
     <Container>
-      <Header handleFilterButton={handleDrawer} />
+      <Header 
+      handleLoginButton={handleRegisterModal}
+      handleFilterButton={handleDrawer} />
       <Carousel />
       {filtersActiveds.length == 0 ? <></> :
         <ActiveFiltersGrid

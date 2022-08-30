@@ -27,7 +27,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
         pokemonColor = pokemonColors({ pokemonType: pokemon.type })
     }
 
-    console.log(pokemon)
+   
     return (
         <>
             {false ?
@@ -56,8 +56,6 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                         if (!isDevice) {
                             router.push({ pathname: '/Pokemon', query: { id: pokemon._id } })
                         }
-
-                        // console.log(returnId(url))
                     }}
                 >
 
@@ -81,7 +79,7 @@ export const PokemonItem = (props: IPokemonItemProps) => {
                                 <BaseExperienceLabel>
                                     {pokemon.height} {isOpen ? 'Base Experience' : 'BS'}
                                 </BaseExperienceLabel>
-                                {pokemon.height < 100 ?
+                                {pokemon.height < 15 ?
                                     <AiFillCaretDown
                                         color={pokemon.type != undefined ? pokemonColors({ pokemonType: pokemon.type }).primary : 'red'}
                                         size={25}

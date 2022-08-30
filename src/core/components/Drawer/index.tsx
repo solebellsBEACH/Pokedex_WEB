@@ -17,11 +17,11 @@ interface IDrawerProps {
 export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }: IDrawerProps) => {
 
 
-    const dispacth = useDispatch()
+    const dispatch = useDispatch()
     const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
 
     useEffect(() => {
-        dispacth(PokemonActions.getPokemonTypesRequest())
+        dispatch(PokemonActions.getPokemonTypesRequest())
     }, [isOpen])
 
     const handleClearFilters = () => {

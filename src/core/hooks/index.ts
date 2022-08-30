@@ -58,16 +58,26 @@ export const returnPrice = (value: number | undefined | null) => {
 export function checkDevice(window: Window & typeof globalThis) {
     const { navigator } = window
     if (navigator.userAgent.match(/Android/i)
-      || navigator.userAgent.match(/webOS/i)
-      || navigator.userAgent.match(/iPhone/i)
-      || navigator.userAgent.match(/iPad/i)
-      || navigator.userAgent.match(/iPod/i)
-      || navigator.userAgent.match(/BlackBerry/i)
-      || navigator.userAgent.match(/Windows Phone/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)
     ) {
-      return true; // está utilizando celular
+        return true; // está utilizando celular
     }
     else {
-      return false; // não é celular
+        return false; // não é celular
     }
-  }
+}
+
+export function insertToken(token: string) {
+    localStorage.setItem('@pokedex-authBearerToken', token)
+}
+export function getToken(): string {
+    if (typeof window == 'undefined') return 'not Valid'
+    const token = localStorage.getItem('@pokedex-authBearerToken')
+    if (token !== null) return token
+    return 'not Valid'
+}
