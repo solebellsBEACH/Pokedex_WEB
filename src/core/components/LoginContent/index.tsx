@@ -39,7 +39,6 @@ export const LoginContent = ({ handleLoginButton, size }: ILoginContent) => {
         {homeData.userData !== null ? <Tooltip
                     label='Encerrar sessão'
                 ><StyledFiLogOut
-                 
                 onClick={()=>{
                     insertToken('not Valid')
                     window.location.reload()

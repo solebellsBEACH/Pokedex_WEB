@@ -1,4 +1,5 @@
 import { all, fork, put, call, takeLatest } from 'redux-saga/effects';
+import { insertToken } from '../../../hooks';
 import { api } from '../../../services/api';
 import { Creators as HomeActions, Types as HomeTypes } from '../../ducks/home';
 
@@ -38,7 +39,6 @@ function* login(params: { type: string, payload: { email: string, password: stri
   const { email, password } = params.payload
   try {
     const response = yield call(api.post, `user/authenticate`, { email, password });
-    console.log(response.data);
     if (response.status === 200) {
       yield put(HomeActions.loginSuccess(
         response.data
@@ -70,6 +70,7 @@ function* getUser(): any {
   try {
     const response = yield call(api.get, `user`);
     if (response.status === 200) {
+      
       yield put(HomeActions.getUserSuccess(
         response.data
       ));

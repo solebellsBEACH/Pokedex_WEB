@@ -52,13 +52,17 @@ export const Header = (props:any) => {
                 </ContentLeft>
                 <ContentRight>
                     {homeData.userData !== null ? <>
-                        <Tooltip label="Favoritos">
+                        {/* <Tooltip label="Favoritos">
                             <FavoriteButton>
                                 <BsFillHeartFill size={20} />
                             </FavoriteButton>
-                        </Tooltip>
+                        </Tooltip> */}
                         <Tooltip label="Carrinho de compras">
-                            <CarrinhoButton>
+                            <CarrinhoButton
+                            onClick={()=>{
+                                router.push('/Cart')
+                            }}
+                            >
                                 <BsCart3 size={23} />
                             </CarrinhoButton>
                         </Tooltip>

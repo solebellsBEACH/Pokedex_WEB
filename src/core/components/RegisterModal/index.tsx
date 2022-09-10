@@ -2,7 +2,7 @@ import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButt
 import { useRef, useState } from "react"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { insertToken } from "../../hooks";
+import { getToken, insertToken } from "../../hooks";
 import { IHomeDuckInitialState } from "../../interfaces";
 import { Creators as HomeActions } from '../../store/ducks/home'
 
@@ -46,6 +46,7 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
                     isClosable: true,
                 })
             } else {
+                
                 toast({
                     position: 'top',
                     title: 'Tudo Top !!',
@@ -54,10 +55,9 @@ export function RegisterModal({ isOpen, onOpen, onClose }: IRegisterModal) {
                     duration: 3000,
                     isClosable: true,
                 })
-
-                
                 onClose()
             }
+            
         }
 
         return <ModalContent>

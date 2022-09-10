@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {  Carousel, Drawer, RegisterModal, PokemonTabsGrid } from '../../core/components'
+import { Carousel, Drawer, RegisterModal, PokemonTabsGrid } from '../../core/components'
 import { Container } from '../../pageComplements/home/styles'
 import { Creators as HomeActions } from '../../core/store/ducks/home'
 import { IHomeDuckInitialState } from '../../core/interfaces'
 import { useDisclosure } from '@chakra-ui/react'
 import { Header, ActiveFiltersGrid, PokemonGrid } from '../../pageComplements/home/components'
+import { getToken, insertToken } from '../../core/hooks'
 
 const HomeComponent = (props: any) => {
   const drawerDisclosure = useDisclosure()
@@ -21,7 +22,9 @@ const HomeComponent = (props: any) => {
       offset: 0,
       limit: 20
     }))
-    dispatch(HomeActions.getUserRequest())
+    if (getToken() !== 'not Valid') {
+      dispatch(HomeActions.getUserRequest())
+    }
   }, [props])
 
   useEffect(() => {
@@ -29,6 +32,13 @@ const HomeComponent = (props: any) => {
       setActiveTab(filtersActiveds[0])
     }
   }, [filtersActiveds])
+
+  useEffect(() => {
+    if (homeData.userLoginData?.token !== undefined) {
+      insertToken(homeData.userLoginData.token)
+      dispatch(HomeActions.getUserRequest())
+    }
+  }, [homeData.userLoginData])
 
   const handleDrawer = () => {
     drawerDisclosure.onOpen()
@@ -38,38 +48,38 @@ const HomeComponent = (props: any) => {
     RegisterModalDisclosure.onOpen()
   }
   return (
-  <>
-  <title>Pokedex</title>
-  <RegisterModal
-  isOpen={RegisterModalDisclosure.isOpen}
-  onClose={RegisterModalDisclosure.onClose}
-  onOpen={RegisterModalDisclosure.onOpen}
-  />
-    <Drawer
-      isOpen={drawerDisclosure.isOpen}
-      onClose={drawerDisclosure.onClose}
-      filtersActiveds={filtersActiveds}
-      setFiltersActiveds={setFiltersActiveds}
-    />
-    <Container>
-      <Header 
-      handleLoginButton={handleRegisterModal}
-      handleFilterButton={handleDrawer} />
-      <Carousel />
-      {filtersActiveds.length == 0 ? <></> :
-        <ActiveFiltersGrid
-          filtersActiveds={filtersActiveds}
-          setFiltersActiveds={setFiltersActiveds}
-        />
-      }
-      {filtersActiveds.length == 0 ?
-        <PokemonGrid pokemons={homeData.pokemons} /> :
-        <PokemonTabsGrid
-          setActiveTab={setActiveTab}
-          activeTab={activeTab}
-          filtersActiveds={filtersActiveds}
-        />}
-    </Container></>
+    <>
+      <title>Pokedex</title>
+      <RegisterModal
+        isOpen={RegisterModalDisclosure.isOpen}
+        onClose={RegisterModalDisclosure.onClose}
+        onOpen={RegisterModalDisclosure.onOpen}
+      />
+      <Drawer
+        isOpen={drawerDisclosure.isOpen}
+        onClose={drawerDisclosure.onClose}
+        filtersActiveds={filtersActiveds}
+        setFiltersActiveds={setFiltersActiveds}
+      />
+      <Container>
+        <Header
+          handleLoginButton={handleRegisterModal}
+          handleFilterButton={handleDrawer} />
+        <Carousel />
+        {filtersActiveds.length == 0 ? <></> :
+          <ActiveFiltersGrid
+            filtersActiveds={filtersActiveds}
+            setFiltersActiveds={setFiltersActiveds}
+          />
+        }
+        {filtersActiveds.length == 0 ?
+          <PokemonGrid pokemons={homeData.pokemons} /> :
+          <PokemonTabsGrid
+            setActiveTab={setActiveTab}
+            activeTab={activeTab}
+            filtersActiveds={filtersActiveds}
+          />}
+      </Container></>
   )
 }
 
