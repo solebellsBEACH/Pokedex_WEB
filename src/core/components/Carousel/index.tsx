@@ -1,7 +1,17 @@
 import { useMediaQuery } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { CarouselIMG02, CarouselIMG03, CarouselIMG04, CarouselIMG05, CarouselIMG01 } from '../../../assets/carousel'
-import { Container, StyledImage, StyledCarousel } from './styles'
+import {
+    CarouselIMG02,
+    CarouselIMG03,
+    CarouselIMG04,
+    CarouselIMG05,
+    CarouselIMG01
+} from '../../../assets/carousel'
+import {
+    Container,
+    StyledImage,
+    StyledCarousel
+} from './styles'
 
 
 export const Carousel = () => {
@@ -30,13 +40,13 @@ export const Carousel = () => {
                 slidesToShow={slideToShow}
                 withoutControls
                 autoplay
-                // cellAlign={'center'}
+            // cellAlign={'center'}
             >
-                <StyledImage key='carrosselImagem1'src={CarouselIMG01} />
-                <StyledImage key='carrosselImagem2'src={CarouselIMG02} />
-                <StyledImage key='carrosselImagem3'src={CarouselIMG03} />
-                <StyledImage key='carrosselImagem4'src={CarouselIMG04} />
-                <StyledImage key='carrosselImagem5'src={CarouselIMG05} />
+                <StyledImage key='carrosselImagem1' src={CarouselIMG01} />
+                <StyledImage key='carrosselImagem2' src={CarouselIMG02} />
+                <StyledImage key='carrosselImagem3' src={CarouselIMG03} />
+                <StyledImage key='carrosselImagem4' src={CarouselIMG04} />
+                <StyledImage key='carrosselImagem5' src={CarouselIMG05} />
             </StyledCarousel >
         </Container>
     )

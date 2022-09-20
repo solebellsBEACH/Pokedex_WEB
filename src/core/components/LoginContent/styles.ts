@@ -5,14 +5,14 @@ import { FaUserCircle } from 'react-icons/fa'
 import { FiLogOut } from 'react-icons/fi'
 
 interface IContainerProps {
-    size?: 'sm' | 'lg'
+    iconsize?: 'sm' | 'lg'
 }
 
 export const Container = styled.button<IContainerProps>`
 margin-left:1vw;
 width:auto ;
 margin-right:1vw;
-height:${props => props.size == 'sm' ? 30 : 50}px ;
+height:${props => props.iconsize == 'sm' ? 30 : 50}px ;
 border-radius:50px ;
 background-color:${colors().blue1};
 filter:saturate(0.6);
@@ -29,11 +29,6 @@ font-family:roboto;
 font-weight:bold;
 
 padding:10px 20px;
-/* @media (max-width:1200px){
-    width:${props => props.size == 'sm' ? '40px' : 'auto'};
-    height:${props => props.size == 'sm' ? '40px' : '30px'};
-    padding:${props => props.size == 'sm' ? '0px' : '10px 20px'};
-} */
 
 @media (max-width:700px){
     width:50px ;
@@ -43,23 +38,25 @@ padding:10px 20px;
 `
 
 interface IStyledFaUserCircleProps {
-    iconSize?: 'sm' | 'lg'
+    iconsize?: 'sm' | 'lg'
 }
 
 export const StyledFaUserCircle = styled(FaUserCircle) <IStyledFaUserCircleProps>`
 margin-left:10px;
 @media (max-width:1200px){
-    margin-left:${props => props.iconSize == 'sm' ? 0 : 10}px;
+    margin-left:${props => props.iconsize == 'sm' ? 0 : 10}px;
 }
 @media (max-width:700px){
     margin-left:0px;
 }
 `
-
-export const StyledFiLogOut = styled(FiLogOut) <IStyledFaUserCircleProps>`
+interface IStyledFiLogOutProps {
+    iconsize?: 'sm' | 'lg'
+}
+export const StyledFiLogOut = styled(FiLogOut) <IStyledFiLogOutProps>`
 margin-left:2vw;
 @media (max-width:1200px){
-    margin-left:${props => props.iconSize == 'sm' ? 2 : 0}vw;
+    margin-left:${props => props.iconsize == 'sm' ? 2 : 0}vw;
 }
 @media(max-width:700px){
     margin-top:2vw;

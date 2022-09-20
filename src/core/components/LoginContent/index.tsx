@@ -20,30 +20,30 @@ export const LoginContent = ({ handleLoginButton, size }: ILoginContent) => {
 
         return 'Logar'
     }
-
     return (
         <>
-        <Tooltip label='Usar outra conta'>
-            <Container
-                size={size}
-                onClick={handleLoginButton}
+            <Tooltip label='Usar outra conta'>
+                <Container
+                    iconsize={size}
+                    onClick={handleLoginButton}
+                >
+                    {isLargerThan ? <>{labelLoginButton()}</> : <></>}
+                    <StyledFaUserCircle size={23} iconsize={size} />
+                </Container>
+
+            </Tooltip>
+            {homeData.userData !== null ? <Tooltip
+                label='Encerrar sessão'
             >
-                {isLargerThan ? <>{labelLoginButton()}</> : <></>}
-
-                <StyledFaUserCircle size={23} iconSize={size} />
-
-               
-            </Container>
-
-        </Tooltip>
-        {homeData.userData !== null ? <Tooltip
-                    label='Encerrar sessão'
-                ><StyledFiLogOut
-                onClick={()=>{
-                    insertToken('not Valid')
-                    window.location.reload()
-                }}
-                size={23} iconSize={size} /></Tooltip> : <></>}
+                <StyledFiLogOut
+                    onClick={() => {
+                        insertToken('not Valid')
+                        window.location.reload()
+                    }}
+                    size={23}
+                    iconsize={size}
+                />
+            </Tooltip> : <></>}
         </>
     )
 }

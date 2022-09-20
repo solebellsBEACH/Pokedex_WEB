@@ -1,5 +1,18 @@
-import { DrawerBody, DrawerCloseButton, DrawerContent, DrawerHeader, DrawerOverlay, useDisclosure, Drawer as ChakraDrawer, Wrap, WrapItem, Button } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import {
+    DrawerBody,
+    DrawerCloseButton,
+    DrawerContent,
+    DrawerHeader,
+    DrawerOverlay,
+    Drawer as ChakraDrawer,
+    Wrap,
+    WrapItem,
+    Button
+} from '@chakra-ui/react'
+import React,
+{
+    useEffect
+} from 'react'
 import { useDispatch } from 'react-redux';
 import { FilterButton } from '../FilterButton';
 import { Creators as PokemonActions } from '../../store/ducks/pokemons'
@@ -15,8 +28,7 @@ interface IDrawerProps {
 }
 
 export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }: IDrawerProps) => {
-
-
+    
     const dispatch = useDispatch()
     const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
 
@@ -52,7 +64,7 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                             spacingY='10px'
                             spacingX='20px'
                         >
-                            {!pokemonData.errorPokemonTypes && pokemonData?.pokemonTypes?.data ?pokemonData?.pokemonTypes?.data.map((item, index) => {
+                            {!pokemonData.errorPokemonTypes && pokemonData?.pokemonTypes?.data ? pokemonData?.pokemonTypes?.data.map((item, index) => {
                                 return <WrapItem
                                     key={index + item.name}
                                 >
@@ -62,7 +74,7 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                                     />
 
                                 </WrapItem>
-                            }):<></>}
+                            }) : <></>}
 
                         </Wrap>
                         <Button
@@ -71,7 +83,6 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                             colorScheme='blue'
                             marginTop='60px'
                             width='100%'
-                            // marginBottom='10px'
                             variant='solid'>
                             Aplicar Filtros
                         </Button>
@@ -81,7 +92,6 @@ export const Drawer = ({ isOpen, onClose, filtersActiveds, setFiltersActiveds }:
                             colorScheme='red'
                             marginTop='20px'
                             width='100%'
-                            // marginBottom='10px'
                             variant='solid'>
                             Limpar Filtros
                         </Button>
