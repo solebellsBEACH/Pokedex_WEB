@@ -23,6 +23,10 @@ padding:20px 0;
     width: 350px;
 };
 
+@media (max-width:420px){
+    flex-direction: column;
+    align-items: center;
+};
 `
 
 interface ICartItem {
@@ -39,6 +43,10 @@ border:1px solid ${props => props.pokemonColor.primary};
 width:276px ;
 height:288px ;
 border-radius:10px;
+
+@media (max-width:420px){
+margin-bottom:20px ;
+};
 `
 
 export const ImageContent = styled.div<ICartItem>`

@@ -31,20 +31,20 @@ export function CartItem({ pokemon }: ICartItem) {
     <Container>
       <ImageBox />
       <Content>
-      <LinkBox
-      marginLeft={8}
-      as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
-                    <Heading size='md' my='2'>
-                        {capitalizeFirstLetter(pokemon.name)}
-                    </Heading>
-                    <Stat>
-                        <StatHelpText>$  {(returnPrice(pokemon.height) * 1.8).toFixed(2)}</StatHelpText>
-                    </Stat>
-                    <Heading size='lg' my='0'>
-                        $ {returnPrice(pokemon.height).toFixed(2)}
-                    </Heading>
-                    <PromocaoText>em<div style={{ color: pokemonColor.primary }}>10x {(returnPrice(pokemon.height) / 10).toFixed(1)}</div><div style={{ color: pokemonColor.primary }} id='cents'>00</div> <div style={{ color: pokemonColor.primary }}>sem juros</div></PromocaoText>
-                </LinkBox>
+        <LinkBox
+          marginLeft={8}
+          as='article' maxW='sm' p='5' borderWidth='1px' rounded='md'>
+          <Heading size='md' my='2'>
+            {capitalizeFirstLetter(pokemon.name)}
+          </Heading>
+          <Stat>
+            <StatHelpText>$  {(returnPrice(pokemon.height) * 1.8).toFixed(2)}</StatHelpText>
+          </Stat>
+          <Heading size='lg' my='0'>
+            $ {returnPrice(pokemon.height).toFixed(2)}
+          </Heading>
+          <PromocaoText>em<div style={{ color: pokemonColor.primary }}>10x {(returnPrice(pokemon.height) / 10).toFixed(1)}</div><div style={{ color: pokemonColor.primary }} id='cents'>00</div> <div style={{ color: pokemonColor.primary }}>sem juros</div></PromocaoText>
+        </LinkBox>
 
         <Stat
           marginLeft={8}
@@ -71,7 +71,6 @@ export function CartItem({ pokemon }: ICartItem) {
           </StatHelpText>
         </Stat>
       </Content>
-      
     </Container>
   )
 }
