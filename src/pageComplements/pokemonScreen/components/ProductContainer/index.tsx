@@ -24,7 +24,7 @@ import {
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
 import { Creators as PokemonActions } from '../../../../core/store/ducks/pokemons'
 import { useSelector } from 'react-redux';
-import { IPokemonDuckInitialState, IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
+import { IHomeDuckInitialState, IPokemonDuckInitialState, IPokemonScreenDuckInitialState } from '../../../../core/interfaces';
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from '../../../../core/hooks';
 import { AiFillCaretDown, AiFillCaretUp, AiOutlineSafety, AiOutlineTrophy } from "react-icons/ai";
 import { ErrorData } from '../../../../core/components';
@@ -45,10 +45,11 @@ export const ProductContainer = (props: IProductContainer) => {
         dispatch(PokemonScreenActions.getPokemonsScreenRequest({ id: props.id }))
     }, [props])
     const toast = useToast()
-
-
+    const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
     const pokemonScreenData = useSelector((state: { pokemonScreen: IPokemonScreenDuckInitialState }) => state.pokemonScreen)
     const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
+
+    console.log(homeData.userData?.data.cart)
 
     let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
     if (pokemonScreenData.pokemonData?.data[0].type != undefined) {
