@@ -19,7 +19,8 @@ import {
     ContentBuyButtons,
     BuyButton,
     AddInfoContent,
-    InfoContent
+    InfoContent,
+    PokemonInCartButton
 } from './styles'
 import { Creators as PokemonScreenActions } from '../../../../core/store/ducks/pokemonsScreen'
 import { Creators as PokemonActions } from '../../../../core/store/ducks/pokemons'
@@ -30,6 +31,7 @@ import { AiFillCaretDown, AiFillCaretUp, AiOutlineSafety, AiOutlineTrophy } from
 import { ErrorData } from '../../../../core/components';
 import { BsTruck, BsChevronDown, BsAward } from 'react-icons/bs'
 import { colors } from '../../../../core/helpers';
+import { pokemonInUserCart } from '../../hooks';
 
 interface IProductContainer {
     id: string;
@@ -48,8 +50,6 @@ export const ProductContainer = (props: IProductContainer) => {
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
     const pokemonScreenData = useSelector((state: { pokemonScreen: IPokemonScreenDuckInitialState }) => state.pokemonScreen)
     const pokemonData = useSelector((state: { pokemon: IPokemonDuckInitialState }) => state.pokemon)
-
-    console.log(homeData.userData?.data.cart)
 
     let pokemonColor = { primary: 'red', secondary: 'red', name: 'red' }
     if (pokemonScreenData.pokemonData?.data[0].type != undefined) {
@@ -202,25 +202,43 @@ export const ProductContainer = (props: IProductContainer) => {
                             backgroundColor={pokemonColor.primary}
                             color={'white'}
                         >Comprar agora</BuyButton>
-                        <BuyButton
-                            onClick={handleAddProductInCardButton}
+                        {homeData.userData && pokemonInUserCart(homeData.userData?.data.cart, props.id) ? <PokemonInCartButton
+                            onClick={() => {
+                                toast({
+                                    position: 'top',
+                                    title: 'Ops, esse pokemon já está em seu carrinho.',
+                                    description: homeData.userLoginData?.message,
+                                    status: 'error',
+                                    duration: 3000,
+                                    isClosable: true,
+                                })
+                            }}
                             backgroundColor={pokemonColor.secondary}
                             color={colors().gray6}
-                        >
-                            {pokemonData.addPokemonInCartLoading ?
-                                <Spinner
-                                    thickness='4px'
-                                    speed='0.65s'
-                                    emptyColor='gray.200'
-                                    color='blue.500'
-                                    size='md'
-                                /> :
-                                <>
-                                    Adicionar ao carrinho
+                        >Este pokemon já está em seu carrinho</PokemonInCartButton> : <>
+                            <BuyButton
+                                onClick={handleAddProductInCardButton}
+                                backgroundColor={pokemonColor.secondary}
+                                color={colors().gray6}
+                            >
+                                {pokemonData.addPokemonInCartLoading ?
+                                    <Spinner
+                                        thickness='4px'
+                                        speed='0.65s'
+                                        emptyColor='gray.200'
+                                        color='blue.500'
+                                        size='md'
+                                    /> :
+                                    <>
+                                        Adicionar ao carrinho
 
-                                </>
-                            }
-                        </BuyButton>
+                                    </>
+                                }
+                            </BuyButton>
+                        </>
+                        }
+
+
                     </ContentBuyButtons>
                     <AddInfoContent>
                         {[{ text: 'Compra Garantida, receba o produto que está esperando ou devolvemos o dinheiro.', icon: <AiOutlineSafety /> },

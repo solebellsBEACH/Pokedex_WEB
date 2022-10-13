@@ -101,7 +101,7 @@ export interface IHomeDuckInitialState {
     userData: {
         success: boolean,
         message: string,
-        data: IUser
+        data: { cart: { _id: string }[] }
     } | null,
     userCartLoading: boolean,
     userCartError: boolean,

@@ -229,3 +229,11 @@ div{
     filter:saturate(2);
 }
 `
+
+export const PokemonInCartButton = styled(BuyButton)`
+font-weight:bold;
+font-size:15px;
+&:hover{
+    filter:saturate(1);
+}
+`
