@@ -18,7 +18,7 @@ outline: none;
 
 `
 
-export const Container =  styled.div`
+export const Container =  styled.form`
 width:50vw;
 @media(min-width:920px){
     width:70vw;

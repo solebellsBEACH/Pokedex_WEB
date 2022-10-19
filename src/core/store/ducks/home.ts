@@ -154,7 +154,7 @@ export default function Home(state = INITIAL_STATE, action: any) {
 }
 
 export const Creators = {
-    HomePokemonsRequest: (payload: { offset: number, limit: number }) => ({
+    HomePokemonsRequest: (payload: { offset: number, limit: number, name?: string}) => ({
         type: Types.HOME_POKEMONS_REQUEST,
         payload
     }),
