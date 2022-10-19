@@ -13,9 +13,11 @@ import { useRouter } from 'next/router';
 interface IHeaderProps {
     handleFilterButton: () => void
     handleLoginButton: () => void
+    inputState: string
+    setInputState: React.Dispatch<React.SetStateAction<string>>
 }
 
-export const Header = ({ handleFilterButton, handleLoginButton }: IHeaderProps) => {
+export const Header = ({ handleFilterButton, handleLoginButton, inputState, setInputState}: IHeaderProps) => {
     const homeData = useSelector((state: { home: IHomeDuckInitialState }) => state.home)
     const router = useRouter();
     return (
@@ -26,7 +28,10 @@ export const Header = ({ handleFilterButton, handleLoginButton }: IHeaderProps) 
                     <ContentImage><ImageLogoPokemon height='80%' src={LogoPokemon} /></ContentImage>
                 </ContentLeft>
                 <ContentRight>
-                    <SearchPokemonInput />
+                    <SearchPokemonInput 
+                     inputState={inputState}
+                     setInputState={setInputState}
+                    />
 
                     <ContentButtons>
                         <Tooltip label='Abrir filtros'>

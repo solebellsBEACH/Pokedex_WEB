@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 import { colors } from '../../../helpers'
  
-export const Container  = styled.input`
+export const StyledInput  = styled.input`
 width:70vw;
-height:50px;
+min-height:50px;
  border-radius: 30px;
  background:${colors().gray2};
-
 text-align:center;
 align-items:center;
 
@@ -14,7 +13,19 @@ font-size:14px;
 color:${colors().gray5}; 
 outline: none;
 @media(min-width:920px){
-    width:60%;
+    width:100%;
 }
+
+`
+
+export const Container =  styled.div`
+width:50vw;
+@media(min-width:920px){
+    width:70vw;
+}
+
+
+display:flex;
+align-items: center;
 
 `

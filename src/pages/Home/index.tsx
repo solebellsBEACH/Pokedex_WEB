@@ -16,6 +16,7 @@ const HomeComponent = (props: any) => {
   const dispatch = useDispatch();
   const [filtersActiveds, setFiltersActiveds] = useState<string[]>([])
   const [activeTab, setActiveTab] = useState('')
+  const [inputState, setInputState] = useState('')
 
   useEffect(() => {
     dispatch(HomeActions.HomePokemonsRequest({
@@ -63,6 +64,8 @@ const HomeComponent = (props: any) => {
       />
       <Container>
         <Header
+        inputState={inputState}
+        setInputState={setInputState}
           handleLoginButton={handleRegisterModal}
           handleFilterButton={handleDrawer} />
         <Carousel />

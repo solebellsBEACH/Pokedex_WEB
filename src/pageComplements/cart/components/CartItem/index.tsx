@@ -1,10 +1,7 @@
-import { Box, Heading, Image, LinkBox, List, ListIcon, ListItem, Stat, StatHelpText, StatLabel, StatNumber } from "@chakra-ui/react"
-import { MdCheckCircle, MdSettings } from "react-icons/md"
+import { Box, Heading, Image, LinkBox,  Stat, StatHelpText, StatNumber } from "@chakra-ui/react"
 import { capitalizeFirstLetter, pokemonColors, returnPrice } from "../../../../core/hooks"
 import { Container, ImageContainer, ImageContent, Content } from "./styles"
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { IPokemon, IPossiblePokemonKeys } from "../../../../core/interfaces";
-import { MinusIcon } from '@chakra-ui/icons'
 import { PromocaoText } from "../../../pokemonScreen/components/ProductContainer/styles";
 
 interface ICartItem {
@@ -49,7 +46,7 @@ export function CartItem({ pokemon }: ICartItem) {
         <Stat
           marginLeft={8}
         >
-          <StatLabel>Price</StatLabel>
+          <StatNumber>Price</StatNumber>
           <StatNumber
           >${returnPrice(pokemon.height)}</StatNumber>
           <StatHelpText
