@@ -25,7 +25,9 @@ export const Header = ({ handleFilterButton, handleLoginButton, inputState, setI
         <Container>
             <Content>
                 <ContentLeft>
-                    <ContentImage><ImageLogoPokemon height='80%' src={LogoPokemon} /></ContentImage>
+                    <ContentImage
+                    onClick={()=>{ router.push('/')}}
+                    ><ImageLogoPokemon height='80%' src={LogoPokemon} /></ContentImage>
                 </ContentLeft>
                 <ContentRight>
                     <SearchPokemonInput 
