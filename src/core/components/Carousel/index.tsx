@@ -7,29 +7,21 @@ import {
     CarouselIMG05,
     CarouselIMG01
 } from '../../../assets/carousel'
+import { returnSlidesToShow } from './handles'
 import {
     Container,
     StyledImage,
     StyledCarousel
 } from './styles'
 
-
 export const Carousel = () => {
 
-    const [slideToShow, setSlideToShow] = useState(1);
+    const [slideToShow, setSlideToShow] = useState<number>(1);
     const [isLargerThan1400] = useMediaQuery('(min-width: 1400px)');
     const [isLargerThan700] = useMediaQuery('(min-width: 700px)');
 
     useEffect(() => {
-        if ([isLargerThan1400, isLargerThan700].toString() == [true, true].toString()) {
-            setSlideToShow(3)
-        }
-        if ([isLargerThan1400, isLargerThan700].toString() == [false, true].toString()) {
-            setSlideToShow(2)
-        }
-        if ([isLargerThan1400, isLargerThan700].toString() == [false, false].toString()) {
-            setSlideToShow(1)
-        }
+        setSlideToShow(returnSlidesToShow(isLargerThan1400, isLargerThan700))
     }, [isLargerThan1400, isLargerThan700])
 
     return (
